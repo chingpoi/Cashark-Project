@@ -1,5 +1,6 @@
 from django.shortcuts import redirect, render
 from django.views.generic import View
+from django.contrib import messages
 from .forms import *
 from django.http import HttpResponse
 
@@ -69,11 +70,12 @@ class Functions(View):
 
 	def LoginUser(request):
 		if request.method == "POST":
-			email = request.POST.get("Email")
-			password = request.POST.get("Password")
+			user = User.objects.get(Email = request.POST['Email'])
+			if user.Password == request.POST['Password']:
+				request.session['FirstName'] = user.FirstName
+				return redirect('http://127.0.0.1:8000/')
+			else:
+				return HttpResponse("You're Email and Password do not Match bruh.")
 
-			user = User.objects.get(Email = email)
-			request.session['FirstName'] = user.Firstname
-			return redirect('http://127.0.0.1:8000/')
 
 				
