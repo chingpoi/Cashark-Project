@@ -17,5 +17,5 @@ urlpatterns = [
     #FUNCTIONS
     path('Register', views.Functions.Register, name = "Register"),
     path('Logout', views.Functions.Logout, name="Logout"),
-    path('LoginUser', views.Functions.LoginUser, name = "LoginUser"),
+    path('UserLogin', views.Functions.UserLogin, name = "UserLogin"),
 ]

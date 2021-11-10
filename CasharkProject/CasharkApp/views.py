@@ -68,7 +68,7 @@ class Functions(View):
 			pass
 		return redirect('http://127.0.0.1:8000/')
 
-	def LoginUser(request):
+	def UserLogin(request):
 		if request.method == "POST":
 			user = User.objects.get(Email = request.POST['Email'])
 			if user.Password == request.POST['Password']:
