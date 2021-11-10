@@ -54,7 +54,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-light">
       <div class="container">
-        <a href="index.html"><img src="{% static '/img/casharklogowhite.png'%}" height="50" width="50"><img src="{% static '/img/Casharktext.png'%}" height="50" width="150"></a>
+        <a href="{% url 'CasharkApp:Index' %}"><img src="{% static '/img/casharklogowhite.png'%}" height="50" width="50"><img src="{% static '/img/Casharktext.png'%}" height="50" width="150"></a>
 
         <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -63,22 +63,22 @@
         <div class="navbar-collapse collapse" id="navbarContent">
           <ul class="navbar-nav ml-auto pt-3 pt-lg-0">
             <li class="nav-item active">
-              <a href="index.html" class="nav-link">Home</a>
+              <a href="{% url 'CasharkApp:Index' %}" class="nav-link">Home</a>
             </li>
             <li class="nav-item">
-              <a href="about.html" class="nav-link">About</a>
+              <a href="{% url 'CasharkApp:About' %}" class="nav-link">About</a>
             </li>
             <li class="nav-item">
-              <a href="services.html" class="nav-link">Services</a>
+              <a href="{% url 'CasharkApp:Services' %}" class="nav-link">Services</a>
             </li>
             <li class="nav-item">
-              <a href="portfolio.html" class="nav-link">Projects</a>
+              <a href="{% url 'CasharkApp:Portfolio' %}" class="nav-link">Projects</a>
             </li>
             <li class="nav-item">
-              <a href="blog.html" class="nav-link">News</a>
+              <a href="{% url 'CasharkApp:Blog' %}" class="nav-link">News</a>
             </li>
             <li class="nav-item">
-              <a href="contact.html" class="nav-link">Sign Up</a>
+              <a href="{% url 'CasharkApp:Contact' %}" class="nav-link">Sign Up</a>
             </li>
           </ul>
         </div>
@@ -92,7 +92,7 @@
             <img src="{% static '/img/cashark_image1.jpg'%}" alt="">
             <div class="img-caption">
               <div class="subhead">Giving you an easier way to do business</div>
-              <h1 class="mb-4">Be a Investor</h1>
+              <h1 class="mb-4">Be an Investor</h1>
               <a href="#services" class="btn btn-outline-light">Get Started</a>
             </div>
           </div>
@@ -149,7 +149,7 @@
 
             <p>Peer To Peer Money Lending System for Individuals, SME's, and Investors, with Descriptive and Prescriptive Data Analytics and Business Intelligence Tools to Guide User Decisions</p>
 
-            <a href="about.html" class="btn btn-primary mt-4">Read More</a>
+            <a href="{% url 'CasharkApp:About' %}" class="btn btn-primary mt-4">Read More</a>
           </div>
           <div class="col-lg-6 py-3">
             <div class="about-img">
@@ -233,7 +233,7 @@
             <div class="team-profile">
               <img src="{% static '/img/ching.png'%}" alt="">
             </div>
-            <div class="team-content">
+            <div class="team-content text-center">
               <h5>Jasper Ching</h5>
               <div class="text-sm fg-grey">Chief Executive Officer</div>
 
@@ -249,7 +249,7 @@
             <div class="team-profile">
               <img src="{% static '/img/nathan.jpg'%}" alt="">
             </div>
-            <div class="team-content">
+            <div class="team-content text-center">
               <h5>Luc Nathan Miscala</h5>
               <div class="text-sm fg-grey">Chief Technology Officer</div>
 
@@ -265,7 +265,7 @@
             <div class="team-profile">
               <img src="{% static '/img/franco.jpg'%}" alt="">
             </div>
-            <div class="team-content">
+            <div class="team-content text-center">
               <h5>Franco Miguel E. Dosdos</h5>
               <div class="text-sm fg-grey">Art & Design Director</div>
 
@@ -281,7 +281,7 @@
             <div class="team-profile">
               <img src="{% static '/img/benz.png'%}" alt="">
             </div>
-            <div class="team-content">
+            <div class="team-content  text-center">
               <h5>Ben Amiel Castanares</h5>
               <div class="text-sm fg-grey">Backend Developer</div>
 
@@ -306,7 +306,7 @@
             <h2 class="title-section">Our Latest Projects</h2>
           </div>
           <div class="col-md-6 py-3 text-md-right">
-            <a href="portfolio.html" class="btn btn-outline-primary">Browse Projects <span class="mai-arrow-forward ml-2"></span></a>
+            <a href="{% url 'CasharkApp:Portfolio' %}" class="btn btn-outline-primary">Browse Projects <span class="mai-arrow-forward ml-2"></span></a>
           </div>
         </div>
 
@@ -472,10 +472,10 @@
                 </div>
               </div>
               <div class="body">
-                <div class="post-title"><a href="blog-single.html">Ver 1.1 - Linked all Pages</a></div>
+                <div class="post-title"><a href="{% url 'CasharkApp:BlogSingle' %}">Ver 1.1 - Linked all Pages</a></div>
               </div>
               <div class="footer">
-                <a href="blog-single.html">Read More <span class="mai-chevron-forward text-sm"></span></a>
+                <a href="{% url 'CasharkApp:BlogSingle' %}">Read More <span class="mai-chevron-forward text-sm"></span></a>
               </div>
             </div>
           </div>
@@ -491,7 +491,7 @@
                 </div>
               </div>
               <div class="body">
-                <div class="post-title"><a href="blog-single.html">Ver 1.0 - Added Design To Page</a></div>
+                <div class="post-title"><a href="{% url 'CasharkApp:BlogSingle' %}">Ver 1.0 - Added Design To Page</a></div>
                 <div class="post-excerpt">Website Theme and Landing Page Final</div>
               </div>
               <div class="footer">

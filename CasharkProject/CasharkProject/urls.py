@@ -19,7 +19,14 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('CasharkApp.urls')),
+    path('', include('CasharkApp.urls',namespace="Index")),
+    path('About/', include('CasharkApp.urls',namespace="About")),
+    path('BlogSingle/', include('CasharkApp.urls',namespace="BlogSingle")),
+    path('Blog/', include('CasharkApp.urls',namespace="Blog")),
+    path('Contact/', include('CasharkApp.urls',namespace="Contact")),
+    path('Login/', include('CasharkApp.urls',namespace="Login")),
+    path('Portfolio/', include('CasharkApp.urls',namespace="Portfolio")),
+    path('Services/', include('CasharkApp.urls',namespace="Services")),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
