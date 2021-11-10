@@ -72,9 +72,18 @@
             <li class="nav-item">
               <a href="{% url 'CasharkApp:Blog' %}" class="nav-link">News</a>
             </li>
-            <li class="nav-item active">
+            {% if request.session.FirstName == None %}
+            <li class="nav-item">
               <a href="{% url 'CasharkApp:Contact' %}" class="nav-link">Sign Up</a>
             </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link disabled text-white">Welcome, {{request.session.FirstName}}</a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'CasharkApp:Logout' %}" class="nav-link">Logout</a>
+            </li>
+            {% endif %}
           </ul>
         </div>
       </div> <!-- .container -->
@@ -106,27 +115,24 @@
         </div>
         <div class="row justify-content-center mt-5">
           <div class="col-lg-8">
-            <form action="#" class="form-contact">
+            <form method="POST" action="Register" class="form-contact">
+              {% csrf_token %}
               <div class="row">
                 <div class="col-sm-6 py-2">
                   <label for="fname" class="fg-grey">First Name</label>
-                  <input type="text" class="form-control" id="fname" placeholder="First..">
+                  <input type="text" class="form-control" id="fname" name="FirstName" placeholder="First..">
                 </div>
                 <div class="col-sm-6 py-2">
                   <label for="lname" class="fg-grey">Last Name</label>
-                  <input type="text" class="form-control" id="lname" placeholder="Last..">
-                </div>
-                <div class="col-12 py-2">
-                  <label for="username" class="fg-grey">Username</label>
-                  <input type="text" class="form-control" id="id_username" placeholder="Username..">
+                  <input type="text" class="form-control" id="lname" name="LastName" placeholder="Last..">
                 </div>
                 <div class="col-12 py-2">
                   <label for="email" class="fg-grey">Email</label>
-                  <input type="text" class="form-control" id="id_email" placeholder="Email..">
+                  <input type="text" class="form-control" id="id_email" name="Email" placeholder="Email..">
                 </div>
                 <div class="col-12 py-2">
                   <label for="password" class="fg-grey">Password</label>
-                  <input type="password" class="form-control" id="id_password" placeholder="Password..">
+                  <input type="password" class="form-control" id="id_password" name="Password" placeholder="Password..">
                 </div>
                 <!--<div class="col-12 py-2">
                   <label for="message" class="fg-grey"></label>

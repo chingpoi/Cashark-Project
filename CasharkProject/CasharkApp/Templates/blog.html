@@ -72,9 +72,18 @@
             <li class="nav-item active">
               <a href="{% url 'CasharkApp:Blog' %}" class="nav-link">News</a>
             </li>
+            {% if request.session.FirstName == None %}
             <li class="nav-item">
               <a href="{% url 'CasharkApp:Contact' %}" class="nav-link">Sign Up</a>
             </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link disabled text-white">Welcome, {{request.session.FirstName}}</a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'CasharkApp:Logout' %}" class="nav-link">Logout</a>
+            </li>
+            {% endif %}
           </ul>
         </div>
       </div> <!-- .container -->

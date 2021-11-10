@@ -106,15 +106,16 @@
         </div>
         <div class="row justify-content-center mt-5">
           <div class="col-lg-8">
-            <form action="#" class="form-contact">
+            <form action="LoginUser" class="form-contact">
+              {% csrf_token %}
               <div class="row">
                 <div class="col-12 py-2">
-                  <label for="username" class="fg-grey">Username</label>
-                  <input type="text" class="form-control" id="id_username" placeholder="Username..">
+                  <label for="Email" class="fg-grey">Email</label>
+                  <input type="Email" class="form-control" id="Email" name="Email" placeholder="Email">
                 </div>
                 <div class="col-12 py-2">
-                  <label for="password" class="fg-grey">Password</label>
-                  <input type="password" class="form-control" id="id_password" placeholder="Password..">
+                  <label for="Password" class="fg-grey">Password</label>
+                  <input type="Password" class="form-control" id="Password" name="Password" placeholder="Password">
                 </div>
                 <!--<div class="col-12 py-2">
                   <label for="message" class="fg-grey"></label>

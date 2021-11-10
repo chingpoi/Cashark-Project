@@ -13,4 +13,9 @@ urlpatterns = [
     path('Login/', views.LoginView.as_view(), name="Login"),
     path('Portfolio/', views.PortfolioView.as_view(), name="Portfolio"),
     path('Services/', views.ServicesView.as_view(), name="Services"),
+
+    #FUNCTIONS
+    path('Register', views.Functions.Register, name = "Register"),
+    path('Logout', views.Functions.Logout, name="Logout"),
+    path('LoginUser', views.Functions.LoginUser, name = "LoginUser"),
 ]
