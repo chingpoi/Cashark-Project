@@ -76,6 +76,9 @@
             <li class="nav-item">
               <a href="{% url 'CasharkApp:Contact' %}" class="nav-link">Sign Up</a>
             </li>
+            <li class="nav-item">
+              <a href="{% url 'CasharkApp:Login' %}" class="nav-link">Login</a>
+            </li>
             {% else %}
             <li class="nav-item">
               <a class="nav-link disabled text-white">Welcome, {{request.session.FirstName}}</a>
