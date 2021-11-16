@@ -19,15 +19,16 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('CasharkApp.urls',namespace="Index")),
-    path('About/', include('CasharkApp.urls',namespace="About")),
-    path('BlogSingle/', include('CasharkApp.urls',namespace="BlogSingle")),
-    path('Blog/', include('CasharkApp.urls',namespace="Blog")),
-    path('Contact/', include('CasharkApp.urls',namespace="Contact")),
-    path('Login/', include('CasharkApp.urls',namespace="Login")),
-    path('Portfolio/', include('CasharkApp.urls',namespace="Portfolio")),
-    path('Services/', include('CasharkApp.urls',namespace="Services")),
-    path('BlogDouble/',include('CasharkApp.urls',namespace="BlogDouble")),
+    path('', include('CasharkApp.urls',namespace="index")),
+    path('about/', include('CasharkApp.urls',namespace="about")),
+    path('blog-single/', include('CasharkApp.urls',namespace="blog-single")),
+    path('blog/', include('CasharkApp.urls',namespace="blog")),
+    path('contact/', include('CasharkApp.urls',namespace="contact")),
+    path('login/', include('CasharkApp.urls',namespace="login")),
+    path('portfolio/', include('CasharkApp.urls',namespace="portfolio")),
+    path('services/', include('CasharkApp.urls',namespace="services")),
+    path('blog-double/',include('CasharkApp.urls',namespace="blog-double")),
+    path('profile/',include('CasharkApp.urls',namespace="profile")),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

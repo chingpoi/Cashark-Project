@@ -49,7 +49,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-light sticky">
       <div class="container">
-        <a href="{% url 'CasharkApp:Index' %}"><img src="{% static '/img/casharklogowhite.png '%}" height="50" width="50"><img src="{% static '/img/Casharktext.png '%}" height="50" width="150"></a>
+        <a href="{% url 'CasharkApp:index' %}"><img src="{% static '/img/casharklogowhite.png '%}" height="50" width="50"><img src="{% static '/img/Casharktext.png '%}" height="50" width="150"></a>
 
         <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -58,33 +58,33 @@
         <div class="navbar-collapse collapse" id="navbarContent">
           <ul class="navbar-nav ml-auto pt-3 pt-lg-0">
             <li class="nav-item">
-              <a href="{% url 'CasharkApp:Index' %}" class="nav-link">Home</a>
+              <a href="{% url 'CasharkApp:index' %}" class="nav-link">Home</a>
             </li>
             <li class="nav-item">
-              <a href="{% url 'CasharkApp:About' %}" class="nav-link">About</a>
+              <a href="{% url 'CasharkApp:about' %}" class="nav-link">About</a>
             </li>
             <li class="nav-item">
-              <a href="{% url 'CasharkApp:Services' %}" class="nav-link">Services</a>
+              <a href="{% url 'CasharkApp:services' %}" class="nav-link">Services</a>
             </li>
             <li class="nav-item">
-              <a href="{% url 'CasharkApp:Portfolio' %}" class="nav-link">Projects</a>
+              <a href="{% url 'CasharkApp:portfolio' %}" class="nav-link">Projects</a>
             </li>
             <li class="nav-item active">
-              <a href="{% url 'CasharkApp:Blog' %}" class="nav-link">News</a>
+              <a href="{% url 'CasharkApp:blog' %}" class="nav-link">News</a>
             </li>
-            {% if request.session.FirstName == None %}
+            {% if request.session.First_Name == None %}
             <li class="nav-item">
-              <a href="{% url 'CasharkApp:Contact' %}" class="nav-link">Sign Up</a>
+              <a href="{% url 'CasharkApp:contact' %}" class="nav-link">Sign Up</a>
             </li>
             <li class="nav-item">
-              <a href="{% url 'CasharkApp:Login' %}" class="nav-link">Login</a>
+              <a href="{% url 'CasharkApp:login' %}" class="nav-link">Login</a>
             </li>
             {% else %}
             <li class="nav-item">
-              <a class="nav-link disabled text-white">Welcome, {{request.session.FirstName}}</a>
+              <a class="nav-link disabled text-white">Welcome, {{request.session.First_Name}}</a>
             </li>
             <li class="nav-item">
-              <a href="{% url 'CasharkApp:Logout' %}" class="nav-link">Logout</a>
+              <a href="{% url 'CasharkApp:logout' %}" class="nav-link">Logout</a>
             </li>
             {% endif %}
           </ul>
@@ -98,7 +98,7 @@
           <div class="col-lg-8">
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb breadcrumb-dark bg-transparent justify-content-center py-0">
-                <li class="breadcrumb-item"><a href="{% url 'CasharkApp:Index' %}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'CasharkApp:index' %}">Home</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Dev Blog</li>
               </ol>
             </nav>
@@ -131,7 +131,7 @@
                     <div class="post-excerpt">You can now sign up and login to cashark</div>
                   </div>
                   <div class="footer">
-                    <a href="{% url 'CasharkApp:BlogDouble' %}">Read More <span class="mai-chevron-forward text-sm"></span></a>
+                    <a href="{% url 'CasharkApp:blog-double' %}">Read More <span class="mai-chevron-forward text-sm"></span></a>
                   </div>
                 </div>
               </div>
@@ -152,7 +152,7 @@
                     <div class="post-excerpt">All Html Webpages are now Linked together and streamlined</div>
                   </div>
                   <div class="footer">
-                    <a href="{% url 'CasharkApp:BlogSingle' %}">Read More <span class="mai-chevron-forward text-sm"></span></a>
+                    <a href="{% url 'CasharkApp:blog-single' %}">Read More <span class="mai-chevron-forward text-sm"></span></a>
                   </div>
                 </div>
               </div>

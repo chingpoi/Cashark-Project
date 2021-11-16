@@ -49,7 +49,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-light sticky">
       <div class="container">
-        <a href="{% url 'CasharkApp:Index' %}"><img src="{% static 'img/casharklogowhite.png '%}" height="50" width="50"><img src="{% static 'img/Casharktext.png '%}" height="50" width="150"></a>
+        <a href="{% url 'CasharkApp:index' %}"><img src="{% static 'img/casharklogowhite.png '%}" height="50" width="50"><img src="{% static 'img/Casharktext.png '%}" height="50" width="150"></a>
 
         <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -58,33 +58,33 @@
         <div class="navbar-collapse collapse" id="navbarContent">
           <ul class="navbar-nav ml-auto pt-3 pt-lg-0">
             <li class="nav-item">
-              <a href="{% url 'CasharkApp:Index' %}" class="nav-link">Home</a>
+              <a href="{% url 'CasharkApp:index' %}" class="nav-link">Home</a>
             </li>
             <li class="nav-item">
-              <a href="{% url 'CasharkApp:About' %}" class="nav-link">About</a>
+              <a href="{% url 'CasharkApp:about' %}" class="nav-link">About</a>
             </li>
             <li class="nav-item">
-              <a href="{% url 'CasharkApp:Services' %}" class="nav-link">Services</a>
+              <a href="{% url 'CasharkApp:services' %}" class="nav-link">Services</a>
             </li>
             <li class="nav-item">
-              <a href="{% url 'CasharkApp:Portfolio' %}" class="nav-link">Projects</a>
+              <a href="{% url 'CasharkApp:portfolio' %}" class="nav-link">Projects</a>
             </li>
             <li class="nav-item">
-              <a href="{% url 'CasharkApp:Blog' %}" class="nav-link">News</a>
+              <a href="{% url 'CasharkApp:blog' %}" class="nav-link">News</a>
             </li>
-            {% if request.session.FirstName == None %}
+            {% if request.session.First_Name == None %}
             <li class="nav-item">
-              <a href="{% url 'CasharkApp:Contact' %}" class="nav-link">Sign Up</a>
+              <a href="{% url 'CasharkApp:contact' %}" class="nav-link">Sign Up</a>
             </li>
             <li class="nav-item">
-              <a href="{% url 'CasharkApp:Login' %}" class="nav-link">Login</a>
+              <a href="{% url 'CasharkApp:login' %}" class="nav-link">Login</a>
             </li>
             {% else %}
             <li class="nav-item">
-              <a class="nav-link disabled text-white">Welcome, {{request.session.FirstName}}</a>
+              <a class="nav-link disabled text-white">Welcome, {{request.session.First_Name}}</a>
             </li>
             <li class="nav-item">
-              <a href="{% url 'CasharkApp:Logout' %}" class="nav-link">Logout</a>
+              <a href="{% url 'CasharkApp:logout' %}" class="nav-link">Logout</a>
             </li>
             {% endif %}
           </ul>
@@ -98,7 +98,7 @@
           <div class="col-lg-8">
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb breadcrumb-dark bg-transparent justify-content-center py-0">
-                <li class="breadcrumb-item"><a href="{% url 'CasharkApp:Index' %}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'CasharkApp:index' %}">Home</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Sign Up</li>
               </ol>
             </nav>
@@ -114,20 +114,20 @@
       <div class="container">
         <div class="text-center">
           <h2 class="title-section mb-3">Sign Up</h2>
-          <p>Be one of the many users of Cashark now! Already have an account? <a href="{% url 'CasharkApp:Login' %}">Login</a> instead!</p>
+          <p>Be one of the many users of Cashark now! Already have an account? <a href="{% url 'CasharkApp:login' %}">Login</a> instead!</p>
         </div>
         <div class="row justify-content-center mt-5">
           <div class="col-lg-8">
-            <form method="POST" action="Register" class="form-contact">
+            <form method="POST" action="register" class="form-contact">
               {% csrf_token %}
               <div class="row">
                 <div class="col-sm-6 py-2">
                   <label for="fname" class="fg-grey">First Name</label>
-                  <input type="text" class="form-control" id="fname" name="FirstName" placeholder="First..">
+                  <input type="text" class="form-control" id="fname" name="First_Name" placeholder="First..">
                 </div>
                 <div class="col-sm-6 py-2">
                   <label for="lname" class="fg-grey">Last Name</label>
-                  <input type="text" class="form-control" id="lname" name="LastName" placeholder="Last..">
+                  <input type="text" class="form-control" id="lname" name="Last_Name" placeholder="Last..">
                 </div>
                 <div class="col-12 py-2">
                   <label for="email" class="fg-grey">Email</label>

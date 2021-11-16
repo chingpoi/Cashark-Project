@@ -4,8 +4,8 @@ from django.db.models.fields.related import ForeignKey
 
 class User(models.Model):
     User_ID = models.AutoField(auto_created = True, primary_key = True)
-    FirstName = models.CharField(max_length = 50)
-    LastName = models.CharField(max_length = 50)
+    First_Name = models.CharField(max_length = 50)
+    Last_Name = models.CharField(max_length = 50)
     Email = models.CharField(max_length = 50)
     Password = models.CharField(max_length = 50)
     

@@ -1,6 +1,5 @@
 from django.shortcuts import redirect, render
 from django.views.generic import View
-from django.contrib import messages
 from .forms import *
 from django.http import HttpResponse
 
@@ -42,6 +41,10 @@ class ServicesView(View):
 	def get(self,request):
 		return render(request,'services.html')
 
+class ProfileView(View):
+	def get(self,request):
+		return render(request,'profile.html')
+
 
 #Functions
 class Functions(View):
@@ -49,37 +52,34 @@ class Functions(View):
 			if request.method == "POST":
 				form = UserForm(request.POST)
 				if form.is_valid():
-					firstName = request.POST.get("FirstName")
-					lastName = request.POST.get("LastName")
+					firstName = request.POST.get("First_Name")
+					lastName = request.POST.get("Last_Name")
 					email = request.POST.get("Email")
 					password = request.POST.get("Password")
 
 
-					form = User(FirstName = firstName, LastName = lastName, Email = email,  Password = password)
+					form = User(First_Name = firstName, Last_Name = lastName, Email = email,  Password = password)
 					form.save()
 
-					request.session['FirstName'] = firstName
+					request.session['First_Name'] = firstName
 
-					return redirect('http://127.0.0.1:8000/')
+					return redirect('http://127.0.0.1:8000/profile')
 				else:
 					print(form.errors)
 					return HttpResponse('not valid')
 
 	def Logout(request):
-		try:
-			del request.session['FirstName']
-		except KeyError:
-			pass
+		del request.session['First_Name']
 		return redirect('http://127.0.0.1:8000/')
 
 	def UserLogin(request):
 		if request.method == "POST":
 			user = User.objects.get(Email = request.POST['Email'])
 			if user.Password == request.POST['Password']:
-				request.session['FirstName'] = user.FirstName
-				return redirect('http://127.0.0.1:8000/')
+				request.session['First_Name'] = user.First_Name
+				return redirect('http://127.0.0.1:8000/profile')
 			else:
-				return HttpResponse("You're Email and Password do not Match bruh.")
+				return HttpResponse("Your Email and Password do not Match.")
 
 
 				
