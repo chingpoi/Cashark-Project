@@ -13,6 +13,7 @@ urlpatterns = [
     path('Login/', views.LoginView.as_view(), name="Login"),
     path('Portfolio/', views.PortfolioView.as_view(), name="Portfolio"),
     path('Services/', views.ServicesView.as_view(), name="Services"),
+    path('BlogDouble/',views.BlogDoubleView.as_view(), name="BlogDouble"),
 
     #FUNCTIONS
     path('Register', views.Functions.Register, name = "Register"),

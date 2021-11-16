@@ -13,6 +13,10 @@ class BlogSingleView(View):
 	def get(self,request):
 		return render(request,'blog-single.html')
 
+class BlogDoubleView(View):
+	def get(self,request):
+		return render(request,'blog-double.html')
+
 class BlogView(View):
 	def get(self,request):
 		return render(request,'blog.html')
