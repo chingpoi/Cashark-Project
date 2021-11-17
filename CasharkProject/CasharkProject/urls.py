@@ -28,6 +28,7 @@ urlpatterns = [
     path('Portfolio/', include('CasharkApp.urls',namespace="Portfolio")),
     path('Services/', include('CasharkApp.urls',namespace="Services")),
     path('BlogDouble/',include('CasharkApp.urls',namespace="BlogDouble")),
+    path('UserProfile/',include('CasharkApp.urls',namespace="Profile")),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

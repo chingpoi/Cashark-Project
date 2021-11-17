@@ -42,6 +42,10 @@ class ServicesView(View):
 	def get(self,request):
 		return render(request,'services.html')
 
+class ProfileView(View):
+	def get(self,request):
+		return render(request,'profile.html')
+
 
 #Functions
 class Functions(View):

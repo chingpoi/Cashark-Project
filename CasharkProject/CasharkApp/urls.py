@@ -14,6 +14,7 @@ urlpatterns = [
     path('Portfolio/', views.PortfolioView.as_view(), name="Portfolio"),
     path('Services/', views.ServicesView.as_view(), name="Services"),
     path('BlogDouble/',views.BlogDoubleView.as_view(), name="BlogDouble"),
+    path('UserProfile/',views.ProfileView.as_view(), name="Profile"),
 
     #FUNCTIONS
     path('Register', views.Functions.Register, name = "Register"),
