@@ -17,7 +17,7 @@ urlpatterns = [
     path('UserProfile/',views.ProfileView.as_view(), name="Profile"),
 
     #FUNCTIONS
-    path('Register', views.Functions.Register, name = "Register"),
-    path('Logout', views.Functions.Logout, name="Logout"),
-    path('UserLogin', views.Functions.UserLogin, name = "UserLogin"),
+    path('register', views.Functions.Register, name = "register"),
+    path('logout', views.Functions.Logout, name="logout"),
+    path('userLogin', views.Functions.UserLogin, name = "userLogin"),
 ]
