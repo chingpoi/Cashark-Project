@@ -87,7 +87,7 @@ class Functions(View):
 			user = User.objects.get(Email = request.POST['Email'])
 			if user.Password == request.POST['Password']:
 				request.session['First_Name'] = user.First_Name
-				return redirect('http://127.0.0.1:8000/profile')
+				return redirect('http://127.0.0.1:8000/user-profile')
 			else:
 				return HttpResponse("Your Email and Password do not Match.")
 
