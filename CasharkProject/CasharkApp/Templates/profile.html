@@ -72,7 +72,7 @@
             <li class="nav-item">
               <a href="{% url 'CasharkApp:blog' %}" class="nav-link">News</a>
             </li>
-            {% if request.session.First_Name == None %}
+            {% if request.session.User_ID == None %}
             <li class="nav-item">
               <a href="{% url 'CasharkApp:contact' %}" class="nav-link">Sign Up</a>
             </li>
@@ -81,7 +81,7 @@
             </li>
             {% else %}
             <li class="nav-item active">
-              <a class="nav-link text-white">Welcome, {{request.session.First_Name}}</a>
+              <a class="nav-link text-white">Welcome, {{user.First_Name}}</a>
             </li>
             <li class="nav-item">
               <a href="{% url 'CasharkApp:logout' %}" class="nav-link">Logout</a>
@@ -107,29 +107,31 @@
         </div>
       </div>
     </div> <!-- .page-banner -->
+
+
 <!-- Modal -->
     <div class="modal fade" id="withdrawModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="withdrawModalLabel">Withdraw from Bank</h5>
+            <h5 class="modal-title" id="withdrawModalLabel">Add Bank Information</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
-            <div class="col-sm-6 py-2">
-              <label for="fname" class="fg-grey">Bank Account</label>
-              <input type="text" class="form-control" id="bAcc" name="BankAccount" placeholder="xxxx-xxxx-xxxx">
+            <div class="col-sm-12 py-2">
+              <label for="Bank" class="fg-grey">Choose a bank</label>
+              <select name="Bank" class="form-control" id="Bank">
+                <option value="" disabled selected>Select a bank</option>
+                <option value="GCash">GCash</option>
+              </select>
             </div>
-            <div class="col-sm-6 py-2">
-              <label for="fname" class="fg-grey">Name</label>
-              <input type="text" class="form-control" id="fname" name="FirstName" placeholder="Name..">
+            <div class="col-sm-12 py-2">
+              <label for="fname" class="fg-grey">Mobile Number</label>
+              <input type="text" class="form-control" id="fname" name="FirstName" placeholder="Mobile number">
             </div>
-            <div class="col-sm-6 py-2">
-              <label for="fname" class="fg-grey">Amount</label>
-              <input type="text" class="form-control" id="amount" name="Amount" placeholder="Enter Amount..">
-            </div>
+
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -139,7 +141,7 @@
       </div>
     </div>
 
-    <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -157,7 +159,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
   </header>
 
   <main>
@@ -173,7 +175,8 @@
         <div class="row">
           <div class="col-lg-8">
             <div class="blog-single-wrap">
-              <div class="col-md-6 col-lg-4 py-3">
+
+              <!-- <div class="col-md-6 col-lg-4 py-3">
                 <div class="card-blog">
                   <div class="header">
                     <div class="avatar">
@@ -189,7 +192,19 @@
                     </div>
                   </div>
                 </div>
+              </div> -->
+
+              <div class="col-md-6 col-lg-4 py-3 ">
+                <div class="card-blog align-items-center">
+                  <div class="header">
+                  <img class="cursor-pointer" src="{% static '/img/icons/add.png '%}" data-toggle="modal" data-target="#withdrawModal" alt="">
+                    <div class="entry-footer">
+                      <h5 class="add-bank">Add a bank</h5>
+                    </div>
+                  </div>
+                </div>
               </div>
+              
               <h1 class="post-title">I Am A Loaner</h1>
               <div class="post-meta">
                 <div class="post-author">
@@ -212,7 +227,6 @@
                 <p>Born and raised in Metropolitan Cebu, my goal is to help people who need money the most. To loan them a generous amount
                    To use my priviledge in helping people who are in need and are honest in using their money.
                 </p>
-
               </div>
             </div> <!-- .blog-single-wrap -->
 

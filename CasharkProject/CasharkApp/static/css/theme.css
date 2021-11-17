@@ -2402,3 +2402,26 @@ a.fg-light:hover, a.fg-light:focus {
   background-color: #F64C72;
 }
 /*# sourceMappingURL=theme.css.map */
+
+.modal-open {
+  overflow:hidden;
+  overflow-y:scroll;
+  padding-right:0 !important;
+}
+
+
+
+.cursor-pointer {
+  cursor: pointer;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+}
+
+.add-bank {
+  margin: auto;
+  padding-left: 35px;
+  margin-top: 20px;
+}
+
