@@ -192,5 +192,27 @@ class Functions(View):
 			else:
 				return HttpResponse("Your Email and Password do not Match.")
 
+	def BankInfo(request):
+			if request.method == "POST":
+				form = AddBankForm(request.POST)
+				if form.is_valid():
+					user = request.POST.get("User_ID")
+					userID = User.objects.get(User_ID = user)
+
+					bank = request.POST.get("Bank")
+					mobileNumber = request.POST.get("Mobile_Number")
+
+					form = BankInfo(User_ID = userID, Bank = bank)
+					form.save()
+
+					bankInfoID = BankInfo.objects.get(User_ID = userID, Bank = bank)
+					
+					form = GCash(Bank_Info_ID = bankInfoID, Mobile_Number = mobileNumber, Balance = 5000)
+					form.save()
+					return redirect('http://127.0.0.1:8000/user-profile')
+				else:
+					print(form.errors)
+					return HttpResponse('not valid')
+
 
 				

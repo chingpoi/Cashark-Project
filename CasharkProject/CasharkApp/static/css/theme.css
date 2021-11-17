@@ -2425,3 +2425,13 @@ a.fg-light:hover, a.fg-light:focus {
   margin-top: 20px;
 }
 
+.GCash {
+  margin: auto;
+  padding-left: 55px;
+}
+
+.balance {
+  margin: auto;
+  padding-left: 40px;
+}
+

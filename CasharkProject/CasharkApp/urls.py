@@ -20,4 +20,5 @@ urlpatterns = [
     path('register', views.Functions.Register, name = "register"),
     path('logout', views.Functions.Logout, name="logout"),
     path('userLogin', views.Functions.UserLogin, name = "userLogin"),
+    path('bankInfo', views.Functions.BankInfo, name = "bankInfo"),
 ]

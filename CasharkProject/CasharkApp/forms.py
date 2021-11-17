@@ -11,3 +11,19 @@ class RegisterForm(forms.Form):
     Address_Province = models.CharField(max_length = 50)
     Address_City = models.CharField(max_length = 50)
     Address_Street = models.CharField(max_length = 50)
+
+class BankInfoForm(forms.Form):
+    class Meta:
+        model = BankInfo
+        fields = '__all__'
+
+class GCashForm(forms.Form):
+    class Meta:
+        model = GCash
+        fields = '__all__'
+
+class AddBankForm(forms.Form):
+    User_ID = models.IntegerField(max_length = 50)
+    Bank = models.CharField(max_length = 50)
+    Mobile_Number = models.CharField(max_length = 50)
+
