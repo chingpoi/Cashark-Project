@@ -81,7 +81,7 @@
             </li>
             {% else %}
             <li class="nav-item active">
-              <a class="nav-link disabled text-white">Welcome, {{request.session.FirstName}}</a>
+              <a class="nav-link text-white">Welcome, {{request.session.First_Name}}</a>
             </li>
             <li class="nav-item">
               <a href="{% url 'CasharkApp:logout' %}" class="nav-link">Logout</a>
@@ -165,8 +165,8 @@
       <div class="container">
         <nav aria-label="Breadcrumb">
           <ol class="breadcrumb bg-transparent mb-4">
-            <li class="breadcrumb-item"><a href="{% url 'CasharkApp:Index' %}">Home</a></li>
-            <li class="breadcrumb-item"><a href="{% url 'CasharkApp:Blog' %}">Profile</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'CasharkApp:index' %}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'CasharkApp:blog' %}">Profile</a></li>
             <li class="breadcrumb-item active" aria-current="page">User Profile</li>
           </ol>
         </nav>
@@ -284,7 +284,7 @@
                       </div>
                   </div>
                   <div class="body">
-                    <div class="post-title"><a href="{% url 'CasharkApp:BlogSingle' %}">I Am A Loaner</a></div>
+                    <div class="post-title"><a href="{% url 'CasharkApp:blog-single' %}">I Am A Loaner</a></div>
                     <div class="post-excerpt">I've been known to give generous deadlines.</div>
                   </div>
                   <div class="footer">

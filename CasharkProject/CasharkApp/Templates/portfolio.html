@@ -81,7 +81,7 @@
             </li>
             {% else %}
             <li class="nav-item">
-              <a class="nav-link disabled text-white">Welcome, {{request.session.First_Name}}</a>
+              <a class="nav-link text-white" href="{% url 'CasharkApp:profile' %}">Welcome, {{request.session.First_Name}}</a>
             </li>
             <li class="nav-item">
               <a href="{% url 'CasharkApp:logout' %}" class="nav-link">Logout</a>
