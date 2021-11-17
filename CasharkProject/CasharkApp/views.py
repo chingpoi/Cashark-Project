@@ -73,7 +73,7 @@ class Functions(View):
 
 					request.session['First_Name'] = firstName
 
-					return redirect('http://127.0.0.1:8000/profile')
+					return redirect('http://127.0.0.1:8000/user-profile')
 				else:
 					print(form.errors)
 					return HttpResponse('not valid')
