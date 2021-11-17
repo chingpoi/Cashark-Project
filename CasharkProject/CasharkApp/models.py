@@ -21,8 +21,8 @@ class User(models.Model):
     Password = models.CharField(max_length = 50)
     Birthdate = models.CharField(max_length = 10)
     Address_ID = models.ForeignKey(Address, on_delete = models.CASCADE)
-    Balance = models.IntegerField()
-    Credit_Score = models.IntegerField()
+    Balance = models.IntegerField(null = True, blank=True)
+    Credit_Score = models.IntegerField(null = True, blank=True)
 
     class meta:
         db_table = 'tblUser'

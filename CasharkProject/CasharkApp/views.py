@@ -50,15 +50,25 @@ class ProfileView(View):
 class Functions(View):
 	def Register(request):
 			if request.method == "POST":
-				form = UserForm(request.POST)
+				form = RegisterForm(request.POST)
 				if form.is_valid():
 					firstName = request.POST.get("First_Name")
 					lastName = request.POST.get("Last_Name")
 					email = request.POST.get("Email")
 					password = request.POST.get("Password")
+					birthdate = request.POST.get("Birthdate")
+					mobileNumber = request.POST.get("Mobile_Number")
 
+					aProvince = request.POST.get("Address_Province")
+					aCity = request.POST.get("Address_City")
+					aStreet = request.POST.get("Address_Street")
 
-					form = User(First_Name = firstName, Last_Name = lastName, Email = email,  Password = password)
+					form = Address(Address_Province = aProvince, Address_City = aCity, Address_Street = aStreet)
+					form.save()
+
+					AddressID = Address.objects.get(Address_Province = aProvince, Address_City = aCity, Address_Street = aStreet)
+					
+					form = User(First_Name = firstName, Last_Name = lastName, Email = email,  Password = password, Birthdate = birthdate, Mobile_Number = mobileNumber, Address_ID = AddressID, Balance = 0, Credit_Score = 0)
 					form.save()
 
 					request.session['First_Name'] = firstName

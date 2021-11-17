@@ -158,3 +158,5 @@ $('.filterable-btn').on( 'click', 'button', function() {
   $grid.isotope({ filter: filterValue });
 });
 
+
+
