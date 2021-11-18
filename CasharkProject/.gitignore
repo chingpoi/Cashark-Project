@@ -1,3 +1,4 @@
 CasharkProject\__pycache__
 CasharkApp\__pycache__
 CasharkApp\migrations
+*.pyc
