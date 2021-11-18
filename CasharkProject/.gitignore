@@ -1,2 +1,3 @@
-\Cashark-Project\CasharkProject\CasharkProject\__pycache__
-\Cashark-Project\CasharkProject\CasharkApp\__pycache__
+/Cashark-Project/CasharkProject/CasharkProject/__pycache__
+/Cashark-Project/CasharkProject/CasharkApp/__pycache__
+*.pyc 
