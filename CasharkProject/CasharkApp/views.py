@@ -131,23 +131,36 @@ class ProfileView(View):
 		bankInfo = BankInfo.objects.all()
 		transaction = Transaction.objects.all()
 		message = Message.objects.all()
-		gCash = GCash.objects.all()
-		address = Address.objects.all()
+		bank = Bank.objects.all()
+
 
 		context = {
 			'user': user,
 			'bankInfo': bankInfo,
 			'transaction': transaction,
 			'message': message,
-			'gCash': gCash,
-			'address': address,
+			'bank': bank,
 		}
 		return render(request,'profile.html',context)
 
 class AdminView(View):
 	def get(self,request):
-		
-		return render(request,'userdash.html')
+		currentUser = User.objects.get(User_ID = request.session['User_ID'])
+
+		user = User.objects.get(User_ID = currentUser.User_ID)
+		bankInfo = BankInfo.objects.all()
+		transaction = Transaction.objects.all()
+		message = Message.objects.all()
+		bank = Bank.objects.all()
+	
+		context = {
+			'user': user,
+			'bankInfo': bankInfo,
+			'transaction': transaction,
+			'message': message,
+			'bank': bank,
+		}
+		return render(request,'userdash.html',context)
 
 class BankView(View):
 	def get(self,request):
@@ -195,13 +208,8 @@ class Functions(View):
 					aProvince = request.POST.get("Address_Province")
 					aCity = request.POST.get("Address_City")
 					aStreet = request.POST.get("Address_Street")
-
-					form = Address(Address_Province = aProvince, Address_City = aCity, Address_Street = aStreet)
-					form.save()
-
-					AddressID = Address.objects.get(Address_Province = aProvince, Address_City = aCity, Address_Street = aStreet)
 					
-					form = User(First_Name = firstName, Last_Name = lastName, Email = email,  Password = password, Birthdate = birthdate, Mobile_Number = mobileNumber, Address_ID = AddressID, Balance = 0, Credit_Score = 0)
+					form = User(First_Name = firstName, Last_Name = lastName, Email = email,  Password = password, Birthdate = birthdate, Mobile_Number = mobileNumber, Balance = 0, Credit_Score = 0, Address_Province = aProvince, Address_City = aCity, Address_Street = aStreet)
 					form.save()
 
 					user = User.objects.get(Email = email)
@@ -234,14 +242,14 @@ class Functions(View):
 					userID = User.objects.get(User_ID = user)
 
 					bank = request.POST.get("Bank")
-					mobileNumber = request.POST.get("Mobile_Number")
+					accountNumber = request.POST.get("Account_Number")
 
 					form = BankInfo(User_ID = userID, Bank = bank)
 					form.save()
 
-					bankInfoID = BankInfo.objects.get(User_ID = userID, Bank = bank)
+					bankInfoID = BankInfo.objects.filter(User_ID = userID, Bank = bank).first()
 					
-					form = GCash(Bank_Info_ID = bankInfoID, Mobile_Number = mobileNumber, Balance = 5000)
+					form = Bank(Bank_Info_ID = bankInfoID, Account_Number = accountNumber, Balance = 5000)
 					form.save()
 					return redirect('http://127.0.0.1:8000/user-profile')
 				else:

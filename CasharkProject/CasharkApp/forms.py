@@ -19,11 +19,11 @@ class BankInfoForm(forms.Form):
 
 class GCashForm(forms.Form):
     class Meta:
-        model = GCash
+        model = Bank
         fields = '__all__'
 
 class AddBankForm(forms.Form):
     User_ID = models.IntegerField(max_length = 50)
     Bank = models.CharField(max_length = 50)
-    Mobile_Number = models.CharField(max_length = 50)
+    Account_Number = models.CharField(max_length = 50)
 

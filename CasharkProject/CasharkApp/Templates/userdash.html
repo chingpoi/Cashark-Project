@@ -70,7 +70,7 @@
             <li class="nav-item">
               <a href="{% url 'CasharkApp:portfolio' %}" class="nav-link">Projects</a>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item">
               <a href="{% url 'CasharkApp:blog' %}" class="nav-link">News</a>
             </li>
             {% if request.session.User_ID == None %}
@@ -138,16 +138,16 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>{{user.User_ID}}</td>
+                        <td>{{user.First_Name}}</td>
+                        <td>{{user.Last_Name}}</td>
+                        <td>{{user.Mobile_Number}}</td>
+                        <td>{{user.Email}}</td>
+                        <td>{{user.Password}}</td>
+                        <td>{{user.Birthdate}}</td>
+                        <td>{{user.Address_ID}}</td>
+                        <td>{{user.Balance}}</td>
+                        <td>{{user.Credit_Score}}</td>
                         <td><a type="button" class="btn btn-primary" href="#" data-toggle="modal" data-target="#updateModal">UPDATE</a>
                             <button class="btn btn-primary" data-toggle="modal" data-target="#deleteModal">DELETE</button></td>
                     </tr>

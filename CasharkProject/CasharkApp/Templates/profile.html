@@ -134,8 +134,8 @@
                </select>
              </div>
               <div class="col-sm-12 py-2">
-                <label for="Mobile_Number" class="fg-grey">Mobile Number</label>
-                <input type="text" class="form-control" id="Mobile_Number" name="Mobile_Number" placeholder="Mobile number">
+                <label for="Account_Number" class="fg-grey">Account Number</label>
+                <input type="text" class="form-control" id="Account_Number" name="Account_Number" placeholder="Account number">
               </div>
 
             </div>
@@ -209,9 +209,9 @@
                    <img class="cursor-pointer" src="{% static '/img/icons/GCash.png '%}" data-toggle="modal" data-target="#withdrawModal" alt="">
                       <div class="entry-footer">
                        <h5 class="GCash">{{i.Bank}}</h5>
-                        {% for g in gCash %}
-                        {% ifequal i.Bank_Info_ID g.Bank_Info_ID_id %}
-                        <h6 class="balance">Balance: {{ g.Balance }}</h6>
+                        {% for b in bank %}
+                        {% ifequal i.Bank_Info_ID b.Bank_Info_ID_id %}
+                        <h6 class="balance">Balance: {{ b.Balance }}</h6>
                         {% endifequal %}
                         {% endfor %}
                      </div>
