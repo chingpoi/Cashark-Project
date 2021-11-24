@@ -144,6 +144,40 @@ class ProfileView(View):
 		}
 		return render(request,'profile.html',context)
 
+class AdminView(View):
+	def get(self,request):
+		
+		return render(request,'userdash.html')
+
+class BankView(View):
+	def get(self,request):
+		
+		return render(request,'bankdash.html')
+
+class BankInfoView(View):
+	def get(self,request):
+		
+		return render(request,'dashbankinfo.html')
+
+class FeedbackView(View):
+	def get(self,request):
+		
+		return render(request,'dashfeedback.html')
+
+class TransactionView(View):
+	def get(self,request):
+		
+		return render(request,'dashtransaction.html')
+
+class MessageView(View):
+	def get(self,request):
+		
+		return render(request,'dashmessage.html')
+
+class AddressView(View):
+	def get(self,request):
+		
+		return render(request,'dashaddress.html')
 
 #Functions
 class Functions(View):

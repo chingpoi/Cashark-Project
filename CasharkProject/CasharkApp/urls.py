@@ -15,6 +15,13 @@ urlpatterns = [
     path('services/', views.ServicesView.as_view(), name="services"),
     path('blog-double/',views.BlogDoubleView.as_view(), name="blog-double"),
     path('user-profile/',views.ProfileView.as_view(), name="profile"),
+    path('admindashboard/',views.AdminView.as_view(), name="admindash"),
+    path('bankdashboard/',views.BankView.as_view(), name="dashbank"),
+    path('bankinfodashboard/',views.BankInfoView.as_view(), name="dashbankinfo"),
+    path('feedbackdashboard/',views.FeedbackView.as_view(), name="dashfeedback"),
+    path('transactiondashboard/',views.TransactionView.as_view(), name="dashtransaction"),
+    path('messagedashboard/',views.MessageView.as_view(), name="dashmessage"),
+    path('addressdashboard/',views.AddressView.as_view(), name="dashaddress"),
 
     #FUNCTIONS
     path('register', views.Functions.Register, name = "register"),

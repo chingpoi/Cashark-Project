@@ -29,6 +29,13 @@ urlpatterns = [
     path('services/', include('CasharkApp.urls',namespace="services")),
     path('blog-double/',include('CasharkApp.urls',namespace="blog-double")),
     path('user-profile/',include('CasharkApp.urls',namespace="profile")),
+    path('admindashboard/',include('CasharkApp.urls',namespace="admindash")),
+    path('bankdashboard/',include('CasharkApp.urls',namespace="dashbank")),
+    path('bankinfodashboard/',include('CasharkApp.urls',namespace="dashbankinfo")),
+    path('feedbackdashboard/',include('CasharkApp.urls',namespace="dashfeedback")),
+    path('transactiondashboard/',include('CasharkApp.urls',namespace="dashtransaction")),
+    path('messagedashboard/',include('CasharkApp.urls',namespace="dashmessage")),
+    path('addressdashboard/',include('CasharkApp.urls',namespace="dashaddress")),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

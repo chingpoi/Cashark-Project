@@ -23,6 +23,7 @@
 
   <link rel="stylesheet" href="{% static '/css/theme.css'%}" rel="stylesheet">
 
+  <link rel="icon" href= "{% static 'img/casharkicon.png'%}">
 </head>
 <body>
 
@@ -82,6 +83,9 @@
             {% else %}
             <li class="nav-item active">
               <a class="nav-link text-white">Welcome, {{user.First_Name}}</a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'CasharkApp:admindash' %}" class="nav-link">Admin Dashboard</a>
             </li>
             <li class="nav-item">
               <a href="{% url 'CasharkApp:logout' %}" class="nav-link">Logout</a>

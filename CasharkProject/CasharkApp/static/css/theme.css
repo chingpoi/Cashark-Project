@@ -8,7 +8,7 @@ body {
 }
 
 a {
-  color: #4B74FE;
+  color: #F64C72;
   text-decoration: none;
   background-color: transparent;
 }
@@ -356,16 +356,16 @@ a.fg-light:hover, a.fg-light:focus {
 
 .btn-primary:focus, .btn-primary.focus {
   color: #fff;
-  background-color: #4897fc;
-  border-color: #3c90fc;
+  background-color: #c20a32;
+  border-color: #c20a32;
   -webkit-box-shadow: none;
           box-shadow: none;
 }
 
 .btn-primary:disabled, .btn-primary.disabled {
   color: #fff;
-  background-color: #2F89FC;
-  border-color: #2F89FC;
+  background-color: #c20a32;
+  border-color: #c20a32;
 }
 
 .btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active,
