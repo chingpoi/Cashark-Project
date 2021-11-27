@@ -111,15 +111,15 @@
   </header>
 
   <main>
-    <div class="page-section">
+    <div class="page-section" id="1">
       <div class="container">
         <div class="row justify-content-center">
-          <a class="btn btn-primary text-white">Bank</a>
-          <a class="btn btn-primary text-white">Bank Info</a>
-          <a class="btn btn-primary text-white">Feedback</a>
-          <a class="btn btn-primary text-white">Transactions</a>
-          <a class="btn btn-primary text-white">Message</a>
-          <a class="btn btn-primary text-white">Address</a>
+          <a class="btn btn-primary text-white" type="button" data-div="2">Bank</a>
+          <a class="btn btn-primary text-white" type="button" data-div="3">Bank Info</a>
+          <a class="btn btn-primary text-white" type="button" data-div="4">Feedback</a>
+          <a class="btn btn-primary text-white" type="button" data-div="5">Transactions</a>
+          <a class="btn btn-primary text-white" type="button" data-div="6">Message</a>
+          <!--USER TABLE-->
             <table class="table">
                 <thead>
                     <tr>
@@ -137,24 +137,186 @@
                     </tr>
                 </thead>
                 <tbody>
+                  {% for u in user %}
                     <tr>
-                        <td>{{user.User_ID}}</td>
-                        <td>{{user.First_Name}}</td>
-                        <td>{{user.Last_Name}}</td>
-                        <td>{{user.Mobile_Number}}</td>
-                        <td>{{user.Email}}</td>
-                        <td>{{user.Password}}</td>
-                        <td>{{user.Birthdate}}</td>
-                        <td>{{user.Address_ID}}</td>
-                        <td>{{user.Balance}}</td>
-                        <td>{{user.Credit_Score}}</td>
+                        <td>{{u.User_ID}}</td>
+                        <td>{{u.First_Name}}</td>
+                        <td>{{u.Last_Name}}</td>
+                        <td>{{u.Mobile_Number}}</td>
+                        <td>{{u.Email}}</td>
+                        <td>{{u.Password}}</td>
+                        <td>{{u.Birthdate}}</td>
+                        <td>{{u.Address_ID}}</td>
+                        <td>{{u.Balance}}</td>
+                        <td>{{u.Credit_Score}}</td>
                         <td><a type="button" class="btn btn-primary" href="#" data-toggle="modal" data-target="#updateModal">UPDATE</a>
                             <button class="btn btn-primary" data-toggle="modal" data-target="#deleteModal">DELETE</button></td>
                     </tr>
+                  {% endfor %}
                 </tbody>
             </table>
         </div>
         <button class="btn btn-primary">Add User</button>
+      </div> <!-- .container -->
+    </div> <!-- .page-section -->
+
+    <!--BANK-->
+    <div class="page-section" id="2">
+      <div class="container">
+        <div class="row justify-content-center">
+          <a class="btn btn-primary text-white" type="button" data-div="1">User</a>
+          <a class="btn btn-primary text-white" type="button" data-div="3">Bank Info</a>
+          <a class="btn btn-primary text-white" type="button" data-div="4">Transactions</a>
+          <a class="btn btn-primary text-white" type="button" data-div="5">Message</a>
+          <!--BANK TABLE-->
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Bank ID</th>
+                        <th>Account Number</th>
+                        <th>Balance</th>
+                        <th>Bank Info ID</th>
+                        <th>Tools</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  {% for b in bank %}
+                    <tr>
+                        <td>{{b.Bank_ID}}</td>
+                        <td>{{b.Account_Number}}</td>
+                        <td>{{b.Balance}}</td>
+                        <td>{{b.Bank_Info_ID_id}}</td>
+                        <td><a type="button" class="btn btn-primary" href="#" data-toggle="modal" data-target="#updateModal">UPDATE</a>
+                            <button class="btn btn-primary" data-toggle="modal" data-target="#deleteModal">DELETE</button></td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <button class="btn btn-primary">Add Bank</button>
+      </div> <!-- .container -->
+    </div> <!-- .page-section -->
+
+    <!--BANK INFO-->
+    <div class="page-section" id="3">
+      <div class="container">
+        <div class="row justify-content-center">
+          <a class="btn btn-primary text-white" type="button" data-div="2">Bank</a>
+          <a class="btn btn-primary text-white" type="button" data-div="3">Bank Info</a>
+          <a class="btn btn-primary text-white" type="button" data-div="5">Transactions</a>
+          <a class="btn btn-primary text-white" type="button" data-div="6">Message</a>
+          <!--BANK INFO TABLE-->
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Bank Info ID</th>
+                        <th>Bank</th>
+                        <th>User ID id</th>
+                        <th>Tools</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  {% for bi in bankInfo %}
+                    <tr>
+                        <td>{{bi.Bank_Info_ID}}</td>
+                        <td>{{bi.Bank}}</td>
+                        <td>{{bi.User_ID_id}}</td>
+                        <td><a type="button" class="btn btn-primary" href="#" data-toggle="modal" data-target="#updateModal">UPDATE</a>
+                            <button class="btn btn-primary" data-toggle="modal" data-target="#deleteModal">DELETE</button></td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <button class="btn btn-primary">Add Bank Info</button>
+      </div> <!-- .container -->
+    </div> <!-- .page-section -->
+
+    <!--TRANSACTIONS-->
+    <div class="page-section" id="3">
+      <div class="container">
+        <div class="row justify-content-center">
+          <a class="btn btn-primary text-white" type="button" data-div="2">Bank</a>
+          <a class="btn btn-primary text-white" type="button" data-div="3">Bank Info</a>
+          <a class="btn btn-primary text-white" type="button" data-div="5">Transactions</a>
+          <a class="btn btn-primary text-white" type="button" data-div="6">Message</a>
+          <!--TRANSACTIONS TABLE-->
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Transaction ID</th>
+                        <th>Amount</th>
+                        <th>Interest Rate</th>
+                        <th>Date Due</th>
+                        <th>Transaction Date</th>
+                        <th>Status</th>
+                        <th>Borrower ID</th>
+                        <th>Lender ID</th>
+                        <th>Date Paid</th>
+                        <th>Tools</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  {% for t in transaction %}
+                    <tr>
+                        <td>{{t.Transaction_ID}}</td>
+                        <td>{{t.Amount}}</td>
+                        <td>{{t.Interest_Rate}}</td>
+                        <td>{{t.Date_Due}}</td>
+                        <td>{{t.Transaction_Date}}</td>
+                        <td>{{t.Status}}</td>
+                        <td>{{t.Borrower_ID}}</td>
+                        <td>{{t.Lender_ID}}</td>
+                        <td>{{t.Date_Paid}}</td>
+                        <td><a type="button" class="btn btn-primary" href="#" data-toggle="modal" data-target="#updateModal">UPDATE</a>
+                            <button class="btn btn-primary" data-toggle="modal" data-target="#deleteModal">DELETE</button></td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <button class="btn btn-primary">Add Bank Info</button>
+      </div> <!-- .container -->
+    </div> <!-- .page-section -->
+
+    <!--MESSAGE-->
+    <div class="page-section" id="4">
+      <div class="container">
+        <div class="row justify-content-center">
+          <a class="btn btn-primary text-white" type="button" data-div="2">Bank</a>
+          <a class="btn btn-primary text-white" type="button" data-div="3">Bank Info</a>
+          <a class="btn btn-primary text-white" type="button" data-div="5">Transactions</a>
+          <a class="btn btn-primary text-white" type="button" data-div="6">Message</a>
+          <!--MESSAGE TABLE-->
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Message ID</th>
+                        <th>Time Sent</th>
+                        <th>Date Sent</th>
+                        <th>Message</th>
+                        <th>Sender ID</th>
+                        <th>Transaction ID</th>
+                        <th>Tools</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  {% for m in message %}
+                    <tr>
+                        <td>{{m.Message_ID}}</td>
+                        <td>{{m.Time_Sent}}</td>
+                        <td>{{m.Date_Sent}}</td>
+                        <td>{{m.Message}}</td>
+                        <td>{{m.Sender_ID_id}}</td>
+                        <td>{{m.Transaction_ID_id}}</td>
+                        <td><a type="button" class="btn btn-primary" href="#" data-toggle="modal" data-target="#updateModal">UPDATE</a>
+                            <button class="btn btn-primary" data-toggle="modal" data-target="#deleteModal">DELETE</button></td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <button class="btn btn-primary">Add Message</button>
       </div> <!-- .container -->
     </div> <!-- .page-section -->
   </main>

@@ -147,7 +147,7 @@ class AdminView(View):
 	def get(self,request):
 		currentUser = User.objects.get(User_ID = request.session['User_ID'])
 
-		user = User.objects.get(User_ID = currentUser.User_ID)
+		user = User.objects.all()
 		bankInfo = BankInfo.objects.all()
 		transaction = Transaction.objects.all()
 		message = Message.objects.all()
