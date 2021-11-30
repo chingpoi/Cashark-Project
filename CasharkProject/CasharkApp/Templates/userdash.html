@@ -111,14 +111,17 @@
   </header>
 
   <main>
+    <div id="User" class="tabcontent">
     <div class="page-section" id="1">
       <div class="container">
         <div class="row justify-content-center">
-          <a class="btn btn-primary text-white" type="button" data-div="2">Bank</a>
-          <a class="btn btn-primary text-white" type="button" data-div="3">Bank Info</a>
-          <a class="btn btn-primary text-white" type="button" data-div="4">Feedback</a>
-          <a class="btn btn-primary text-white" type="button" data-div="5">Transactions</a>
-          <a class="btn btn-primary text-white" type="button" data-div="6">Message</a>
+          <button class="tablinks btn btn-primary text-white" type="button" data-div="1" onclick="openTab(event, 'User')">User</button>
+          <button class="tablinks btn btn-primary text-white" type="button" data-div="2" onclick="openTab(event, 'Bank')">Bank</button>
+          <button class="tablinks btn btn-primary text-white" type="button" data-div="3" onclick="openTab(event, 'Bank Info')">Bank Info</button>
+          <button class="tablinks btn btn-primary text-white" type="button" data-div="4" onclick="openTab(event, 'Feedback')">Feedback</button>
+          <button class="tablinks btn btn-primary text-white" type="button" data-div="5" onclick="openTab(event, 'Transactions')">Transactions</button>
+          <button class="tablinks btn btn-primary text-white" type="button" data-div="6" onclick="openTab(event, 'Message')">Message</button>
+
           <!--USER TABLE-->
             <table class="table">
                 <thead>
@@ -159,15 +162,18 @@
         <button class="btn btn-primary">Add User</button>
       </div> <!-- .container -->
     </div> <!-- .page-section -->
-
+  </div> <!-- .tab -->
+  <div id="Bank" class="tabcontent">
     <!--BANK-->
     <div class="page-section" id="2">
       <div class="container">
         <div class="row justify-content-center">
-          <a class="btn btn-primary text-white" type="button" data-div="1">User</a>
-          <a class="btn btn-primary text-white" type="button" data-div="3">Bank Info</a>
-          <a class="btn btn-primary text-white" type="button" data-div="4">Transactions</a>
-          <a class="btn btn-primary text-white" type="button" data-div="5">Message</a>
+          <button class="tablinks btn btn-primary text-white" type="button" data-div="1" onclick="openTab(event, 'User')">User</button>
+          <button class="tablinks btn btn-primary text-white" type="button" data-div="2" onclick="openTab(event, 'Bank')">Bank</button>
+          <button class="tablinks btn btn-primary text-white" type="button" data-div="3" onclick="openTab(event, 'Bank Info')">Bank Info</button>
+          <button class="tablinks btn btn-primary text-white" type="button" data-div="4" onclick="openTab(event, 'Feedback')">Feedback</button>
+          <button class="tablinks btn btn-primary text-white" type="button" data-div="5" onclick="openTab(event, 'Transactions')">Transactions</button>
+          <button class="tablinks btn btn-primary text-white" type="button" data-div="6" onclick="openTab(event, 'Message')">Message</button>
           <!--BANK TABLE-->
             <table class="table">
                 <thead>
@@ -196,15 +202,18 @@
         <button class="btn btn-primary">Add Bank</button>
       </div> <!-- .container -->
     </div> <!-- .page-section -->
-
+  </div> <!-- .tab -->
+  <div id="Bank Info" class="tabcontent">
     <!--BANK INFO-->
     <div class="page-section" id="3">
       <div class="container">
         <div class="row justify-content-center">
-          <a class="btn btn-primary text-white" type="button" data-div="2">Bank</a>
-          <a class="btn btn-primary text-white" type="button" data-div="3">Bank Info</a>
-          <a class="btn btn-primary text-white" type="button" data-div="5">Transactions</a>
-          <a class="btn btn-primary text-white" type="button" data-div="6">Message</a>
+          <button class="tablinks btn btn-primary text-white" type="button" data-div="1" onclick="openTab(event, 'User')">User</button>
+          <button class="tablinks btn btn-primary text-white" type="button" data-div="2" onclick="openTab(event, 'Bank')">Bank</button>
+          <button class="tablinks btn btn-primary text-white" type="button" data-div="3" onclick="openTab(event, 'Bank Info')">Bank Info</button>
+          <button class="tablinks btn btn-primary text-white" type="button" data-div="4" onclick="openTab(event, 'Feedback')">Feedback</button>
+          <button class="tablinks btn btn-primary text-white" type="button" data-div="5" onclick="openTab(event, 'Transactions')">Transactions</button>
+          <button class="tablinks btn btn-primary text-white" type="button" data-div="6" onclick="openTab(event, 'Message')">Message</button>
           <!--BANK INFO TABLE-->
             <table class="table">
                 <thead>
@@ -231,15 +240,57 @@
         <button class="btn btn-primary">Add Bank Info</button>
       </div> <!-- .container -->
     </div> <!-- .page-section -->
-
-    <!--TRANSACTIONS-->
-    <div class="page-section" id="3">
+  </div> <!-- .tab -->
+    <div id="Feedback" class="tabcontent">
+    <!--FEEDBACK-->
+    <div class="page-section" id="4">
       <div class="container">
         <div class="row justify-content-center">
-          <a class="btn btn-primary text-white" type="button" data-div="2">Bank</a>
-          <a class="btn btn-primary text-white" type="button" data-div="3">Bank Info</a>
-          <a class="btn btn-primary text-white" type="button" data-div="5">Transactions</a>
-          <a class="btn btn-primary text-white" type="button" data-div="6">Message</a>
+          <button class="tablinks btn btn-primary text-white" type="button" data-div="1" onclick="openTab(event, 'User')">User</button>
+          <button class="tablinks btn btn-primary text-white" type="button" data-div="2" onclick="openTab(event, 'Bank')">Bank</button>
+          <button class="tablinks btn btn-primary text-white" type="button" data-div="3" onclick="openTab(event, 'Bank Info')">Bank Info</button>
+          <button class="tablinks btn btn-primary text-white" type="button" data-div="4" onclick="openTab(event, 'Feedback')">Feedback</button>
+          <button class="tablinks btn btn-primary text-white" type="button" data-div="5" onclick="openTab(event, 'Transactions')">Transactions</button>
+          <button class="tablinks btn btn-primary text-white" type="button" data-div="6" onclick="openTab(event, 'Message')">Message</button>
+          <!--FEEDBACK TABLE-->
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Message ID</th>
+                        <th>Receiver ID</th>
+                        <th>Sender ID</th>
+                        <th>Message</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  {% for f in feedback %}
+                    <tr>
+                        <td>{{f.Feedback_ID}}</td>
+                        <td>{{f.Receiver_ID}}</td>
+                        <td>{{f.Sender_ID}}</td>
+                        <td>{{f.Message}}</td>
+                        <td><a type="button" class="btn btn-primary" href="#" data-toggle="modal" data-target="#updateModal">UPDATE</a>
+                            <button class="btn btn-primary" data-toggle="modal" data-target="#deleteModal">DELETE</button></td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <button class="btn btn-primary">Add Feedback</button>
+      </div> <!-- .container -->
+    </div> <!-- .page-section -->
+  </div> <!-- .tab -->
+  <div id="Transactions" class="tabcontent">
+    <!--TRANSACTIONS-->
+    <div class="page-section" id="5">
+      <div class="container">
+        <div class="row justify-content-center">
+          <button class="tablinks btn btn-primary text-white" type="button" data-div="1" onclick="openTab(event, 'User')">User</button>
+          <button class="tablinks btn btn-primary text-white" type="button" data-div="2" onclick="openTab(event, 'Bank')">Bank</button>
+          <button class="tablinks btn btn-primary text-white" type="button" data-div="3" onclick="openTab(event, 'Bank Info')">Bank Info</button>
+          <button class="tablinks btn btn-primary text-white" type="button" data-div="4" onclick="openTab(event, 'Feedback')">Feedback</button>
+          <button class="tablinks btn btn-primary text-white" type="button" data-div="5" onclick="openTab(event, 'Transactions')">Transactions</button>
+          <button class="tablinks btn btn-primary text-white" type="button" data-div="6" onclick="openTab(event, 'Message')">Message</button>
           <!--TRANSACTIONS TABLE-->
             <table class="table">
                 <thead>
@@ -278,15 +329,18 @@
         <button class="btn btn-primary">Add Bank Info</button>
       </div> <!-- .container -->
     </div> <!-- .page-section -->
-
+  </div> <!-- .tab -->
+  <div id="Message" class="tabcontent">
     <!--MESSAGE-->
-    <div class="page-section" id="4">
+    <div class="page-section" id="6">
       <div class="container">
         <div class="row justify-content-center">
-          <a class="btn btn-primary text-white" type="button" data-div="2">Bank</a>
-          <a class="btn btn-primary text-white" type="button" data-div="3">Bank Info</a>
-          <a class="btn btn-primary text-white" type="button" data-div="5">Transactions</a>
-          <a class="btn btn-primary text-white" type="button" data-div="6">Message</a>
+          <button class="tablinks btn btn-primary text-white" type="button" data-div="1" onclick="openTab(event, 'User')">User</button>
+          <button class="tablinks btn btn-primary text-white" type="button" data-div="2" onclick="openTab(event, 'Bank')">Bank</button>
+          <button class="tablinks btn btn-primary text-white" type="button" data-div="3" onclick="openTab(event, 'Bank Info')">Bank Info</button>
+          <button class="tablinks btn btn-primary text-white" type="button" data-div="4" onclick="openTab(event, 'Feedback')">Feedback</button>
+          <button class="tablinks btn btn-primary text-white" type="button" data-div="5" onclick="openTab(event, 'Transactions')">Transactions</button>
+          <button class="tablinks btn btn-primary text-white" type="button" data-div="6" onclick="openTab(event, 'Message')">Message</button>
           <!--MESSAGE TABLE-->
             <table class="table">
                 <thead>
@@ -319,6 +373,7 @@
         <button class="btn btn-primary">Add Message</button>
       </div> <!-- .container -->
     </div> <!-- .page-section -->
+  </div> <!-- .tab -->
   </main>
 
 
@@ -385,6 +440,8 @@
 <script src="{% static '/js/google-maps.js'%}"></script>
   
 <script src="{% static '/js/theme.js'%}"></script>
+
+<script src="{% static '/js/tabs.js'%}"></script>
 
 </body>
 </html>
