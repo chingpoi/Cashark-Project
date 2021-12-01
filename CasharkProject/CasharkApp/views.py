@@ -446,6 +446,35 @@ class AdminView(View):
 				print(form.errors)
 				return HttpResponse('not valid')
 
+	#FOR ADD MESSAGE
+	def AddMessage(request):
+		if request.method == "POST":
+			form = MessageForm(request.POST)
+
+			if form.is_valid():
+				print(form.is_valid())
+				#PRIMARY MESSAGE ATTRIBUTES
+				msgTransID = request.POST.get("Transaction_ID")
+				msgTimeSent = request.POST.get("Time_Sent")
+				msgDateSent = request.POST.get("Date_Sent")
+				msg = request.POST.get("Message")
+				msgSendID = request.POST.get("Sender_ID")
+
+				form = Message(
+					Transaction_ID = Transaction.objects.get(Transaction_ID = msgTransID),
+					Time_Sent = msgTimeSent,
+					Date_Sent = msgDateSent,
+					Message = msg,
+					Sender_ID = User.objects.get(User_ID = msgSendID)
+
+				)
+
+				form.save()
+				return redirect('http://127.0.0.1:8000/admindashboard/')
+			else:
+				print(form.errors)
+				return HttpResponse('not valid')
+
 
 
 class BankView(View):

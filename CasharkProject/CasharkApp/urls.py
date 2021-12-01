@@ -35,4 +35,5 @@ urlpatterns = [
     path('createBankInfo', views.AdminView.AddBankInfo, name = "bankInfoAdd"),
     path('createFeedback', views.AdminView.AddFeedback, name = "feedbackAdd"),
     path('createTransaction', views.AdminView.AddTransaction, name = "transactionAdd"),
+    path('createMessage', views.AdminView.AddMessage, name = "messageAdd"),
 ]

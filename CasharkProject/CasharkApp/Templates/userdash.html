@@ -778,8 +778,8 @@
                         <td>{{m.Time_Sent}}</td>
                         <td>{{m.Date_Sent}}</td>
                         <td>{{m.Message}}</td>
-                        <td>{{m.Sender_ID_id}}</td>
-                        <td>{{m.Transaction_ID_id}}</td>
+                        <td>{{m.Sender_ID}}</td>
+                        <td>{{m.Transaction_ID}}</td>
                         <td><button class="btn btn-primary" data-toggle="modal" data-target="#updateMessage-{{m.Message_ID}}">UPDATE</button>
                           <button class="btn btn-primary" data-toggle="modal" data-target="#deleteMessage-{{m.Message_ID}}">DELETE</button></td>
                     </tr>
@@ -1122,6 +1122,7 @@
               <div class="cut"></div>
               <label for="Message" class="placeholder">Message</label>
             </div>
+          </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="closex" data-dismiss="modal">Close</button>
@@ -1129,21 +1130,22 @@
         </div>
       </div>
     </div>
-  </div>  
   </form>
+  </div>  
+  
   <!--ADD TRANSACTIONS MODAL-->
-  <div class="modal fade" id="addTransactionsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: -250px;">
+  <div class="modal fade" id="addTransactionsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" name="transactionModal" aria-hidden="true" style="margin-top: -250px;">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header" style="background-color: #83b2d0;">
-          <h5 class="modal-title" id="exampleModalLabel" style="color: #ffffff;">Add Feedback</h5>
+          <h5 class="modal-title" id="exampleModalLabel" style="color: #ffffff;">Add Transaction</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
           <center>
-            <form method="POST" id = "addTransactions">
+            <form method="POST" id = "addTransactions" action = "{% url 'CasharkApp:transactionAdd'%}">
               {% csrf_token %}
               <div class="form1">
                 <div class="title1">Transactions</div>
@@ -1206,6 +1208,61 @@
     </div>  
     </form>
   <!--ADD MESSAGE MODAL-->
+  <div class="modal fade" id="addMessageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: -250px;">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header" style="background-color: #83b2d0;">
+          <h5 class="modal-title" id="exampleModalLabel" style="color: #ffffff;">Add Message</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <center>
+          <form method="POST" id = "addMessage" action = "{% url 'CasharkApp:messageAdd'%}">
+            {% csrf_token %}
+            <div class="form1">
+                <div class="title1">Message</div>
+                <hr>
+                <div class="input1-container ic2">
+                  <input id="Time_Sent" name="Time_Sent" class="input1" type="time" placeholder=" " required/>
+                  <div class="cut"></div>
+                  <label for="Time_Sent" class="placeholder">Time Sent</label>
+                </div>
+  
+                <div class="input1-container ic2">
+                  <input id="Date_Sent" name="Date_Sent" class="input1" type="date" placeholder=" " required/>
+                  <div class="cut"></div>
+                  <label for="Date_Sent" class="placeholder">Date Sent</label>
+                </div>
+                
+                <div class="input1-container ic2">
+                  <input id="Message" name="Message" class="input1" type="text" placeholder=" " required/>
+                  <div class="cut"></div>
+                  <label for="Message" class="placeholder">Message</label>
+                </div>
+
+                <div class="input1-container ic2">
+                  <input id="Sender_ID" name="Sender_ID" class="input1" type="number" placeholder=" " required/>
+                  <div class="cut"></div>
+                  <label for="Sender_ID" class="placeholder">Sender ID</label>
+                </div>
+
+                <div class="input1-container ic2">
+                  <input id="Transaction_ID" name="Transaction_ID" class="input1" type="number" placeholder=" " required/>
+                  <div class="cut"></div>
+                  <label for="Transaction_ID" class="placeholder">Transaction ID</label>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="closex" data-dismiss="modal">Close</button>
+          <button id = "btnAddMessage" name="btnAddMessage" type="submit" class="confirmx">Add Message</button>
+        </div>
+      </div>
+    </div>
+  </div>  
+  </form>
   <!--END CREATE USER MODAL-->
   
 <script src="{% static '/js/jquery-3.5.1.min.js'%}"></script>

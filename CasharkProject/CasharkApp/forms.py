@@ -52,3 +52,8 @@ class TransactionForm(forms.ModelForm):
         model = Transaction
         fields = '__all__'
 
+class MessageForm(forms.ModelForm):
+    class Meta:
+        model = Message
+        fields = '__all__'
+
