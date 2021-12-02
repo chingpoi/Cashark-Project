@@ -12,11 +12,12 @@ class AboutView(View):
 			user = User.objects.get(User_ID = currentUser.User_ID)
 			context = {
 				'user': user,
+				'About': 'active'
 			}
 			return render(request,'about.html',context)
 		except KeyError:
 			pass
-		return render(request,'about.html')
+		return render(request,'about.html',{'About': 'active'})
 		
 
 class BlogSingleView(View):
@@ -55,11 +56,12 @@ class BlogView(View):
 			user = User.objects.get(User_ID = currentUser.User_ID)
 			context = {
 				'user': user,
+				'Blog': 'active'
 			}
 			return render(request,'blog.html',context)
 		except KeyError:
 			pass
-		return render(request,'blog.html')
+		return render(request,'blog.html',{'Blog': 'active'})
 
 class ContactView(View):
 	def get(self,request):
@@ -69,11 +71,12 @@ class ContactView(View):
 			user = User.objects.get(User_ID = currentUser.User_ID)
 			context = {
 				'user': user,
+				'SignUp': 'active'
 			}
 			return render(request,'contact.html',context)
 		except KeyError:
 			pass
-		return render(request,'contact.html')
+		return render(request,'contact.html',{'SignUp': 'active'})
 
 class IndexView(View):
 	def get(self,request):
@@ -83,17 +86,18 @@ class IndexView(View):
 			user = User.objects.get(User_ID = currentUser.User_ID)
 			context = {
 				'user': user,
+				'Index': 'active'
 			}
 			return render(request,'index.html',context)
 		except KeyError:
 			pass
-		return render(request,'index.html')
+		return render(request,'index.html',{'Index': 'active'})
 
 
 class LoginView(View):
 	def get(self,request):
 
-		return render(request,'login.html')
+		return render(request,'login.html',{'Login': 'active'})
 
 class PortfolioView(View):
 	def get(self,request):
@@ -103,11 +107,12 @@ class PortfolioView(View):
 			user = User.objects.get(User_ID = currentUser.User_ID)
 			context = {
 				'user': user,
+				'Portfolio': 'active'
 			}
 			return render(request,'portfolio.html',context)
 		except KeyError:
 			pass
-		return render(request,'portfolio.html')
+		return render(request,'portfolio.html',{'Portfolio': 'active'})
 
 class ServicesView(View):
 	def get(self,request):
@@ -117,11 +122,12 @@ class ServicesView(View):
 			user = User.objects.get(User_ID = currentUser.User_ID)
 			context = {
 				'user': user,
+				'Service': 'active'
 			}
 			return render(request,'services.html',context)
 		except KeyError:
 			pass
-		return render(request,'services.html')
+		return render(request,'services.html',{'Service': 'active'})
 
 class ProfileView(View):
 	def get(self,request):
@@ -140,13 +146,13 @@ class ProfileView(View):
 			'transaction': transaction,
 			'message': message,
 			'bank': bank,
+			'Profile': 'active'
 		}
 		return render(request,'profile.html',context)
 
 class AdminView(View):
 	def get(self,request):
 		try:
-			request.session['User_ID']
 			currentUser = User.objects.get(User_ID = request.session['User_ID'])
 			user = User.objects.get(User_ID = currentUser.User_ID)
 			users = User.objects.all()
@@ -163,6 +169,7 @@ class AdminView(View):
 				'message': message,
 				'bank': bank,
 				'feedback': feedback,
+				'Admin': 'active'
 			}
 			return render(request,'userdash.html',context)
 		except KeyError:

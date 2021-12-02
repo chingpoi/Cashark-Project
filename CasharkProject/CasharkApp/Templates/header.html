@@ -61,36 +61,38 @@
 
                 <div class="navbar-collapse collapse" id="navbarContent">
                     <ul class="navbar-nav ml-auto pt-3 pt-lg-0">
-                        <li class="nav-item">
-                            <a href="{% url 'CasharkApp:index' %}" class="nav-link">Home</a>
-                        </li>
-                        <li class="nav-item active">
-                            <a href="{% url 'CasharkApp:about' %}" class="nav-link">About</a>
+                        <li class="nav-item ">
+                            <a href="{% url 'CasharkApp:index' %}" class="nav-link {{Index}}">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{% url 'CasharkApp:services' %}" class="nav-link">Services</a>
+                            <a href="{% url 'CasharkApp:about' %}" class="nav-link {{About}}">About</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{% url 'CasharkApp:portfolio' %}" class="nav-link">Projects</a>
+                            <a href="{% url 'CasharkApp:services' %}" class="nav-link {{Service}}">Services</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{% url 'CasharkApp:blog' %}" class="nav-link">News</a>
+                            <a href="{% url 'CasharkApp:portfolio' %}" class="nav-link {{Portfolio}}">Projects</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'CasharkApp:blog' %}" class="nav-link {{Blog}}">News</a>
                         </li>
                         {% if request.session.User_ID == None %}
                         <li class="nav-item">
-                            <a href="{% url 'CasharkApp:contact' %}" class="nav-link">Sign Up</a>
+                            <a href="{% url 'CasharkApp:contact' %}" class="nav-link {{SignUp}}">Sign Up</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{% url 'CasharkApp:login' %}" class="nav-link">Login</a>
+                            <a href="{% url 'CasharkApp:login' %}" class="nav-link {{Login}}">Login</a>
                         </li>
                         {% else %}
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="{% url 'CasharkApp:profile' %}">Welcome,
-                                {{user.First_Name}}</a>
+                            <a class="nav-link {{Admin}}" href="{% url 'CasharkApp:admindash' %}"> Admin
+                                Dashboard </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="{% url 'CasharkApp:admindash' %}"> Admin Dashboard </a>
+                            <a class="nav-link text-white {{Profile}}" href="{% url 'CasharkApp:profile' %}">Welcome,
+                                {{user.First_Name}}</a>
                         </li>
+
                         <li class="nav-item">
                             <a href="{% url 'CasharkApp:logout' %}" class="nav-link">Logout</a>
                         </li>
