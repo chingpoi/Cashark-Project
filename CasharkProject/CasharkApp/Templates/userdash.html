@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,861 +11,894 @@
 
   <title>Cashark - Admin Dashboard</title>
 
+  {% include "header.html" %}
   {% load static %}
-  <link rel="stylesheet" href="{% static '/css/bootstrap.css'%}" rel="stylesheet">
-  
-  <link rel="stylesheet" href="{% static '/css/maicons.css'%}" rel="stylesheet">
-
-  <link rel="stylesheet" href="{% static '/vendor/animate/animate.css'%}" rel="stylesheet">
-
-  <link rel="stylesheet" href="{% static '/vendor/owl-carousel/css/owl.carousel.css'%}" rel="stylesheet">
-
-  <link rel="stylesheet" href="{% static '/vendor/fancybox/css/jquery.fancybox.css'%}" rel="stylesheet">
-
-  <link rel="stylesheet" href="{% static '/css/theme.css'%}" rel="stylesheet">
-
-  <link rel="icon" href= "{% static 'img/casharkicon.png'%}">
-</head>
-<body>
-
-  <!-- Back to top button -->
-  <div class="back-to-top"></div>
-
-  <header>
-    <div class="top-bar">
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-md-8">
-          </div>
-          <div class="col-md-4 text-right d-none d-md-block">
-            <div class="social-mini-button">
-              <a href="https://www.facebook.com/st3r10official" target="blank"><span class="mai-logo-facebook-f"></span></a>
-              <a href="https://twitter.com/st3r10official" target="blank"><span class="mai-logo-twitter"></span></a>
-              <a href="https://www.youtube.com/channel/UCwzgkVy4QGM-J9wKzSplTfw" target="blank"><span class="mai-logo-youtube"></span></a>
-              <a href="https://open.spotify.com/artist/7oeyEGN0XiJUynY5Zit8Gu" target="blank"><span class="mai-logo-linkedin"></span></a>
-            </div>
-          </div>
-        </div>
-      </div> <!-- .container -->
-    </div> <!-- .top-bar -->
-
-    <nav class="navbar navbar-expand-lg navbar-light sticky">
-      <div class="container">
-        <a href="{% url 'CasharkApp:index' %}"><img src="{% static '/img/casharklogowhite.png '%}" height="50" width="50"><img src="{% static '/img/Casharktext.png '%}" height="50" width="150"></a>
-
-        <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="navbar-collapse collapse" id="navbarContent">
-          <ul class="navbar-nav ml-auto pt-3 pt-lg-0">
-            <li class="nav-item">
-              <a href="{% url 'CasharkApp:index' %}" class="nav-link">Home</a>
-            </li>
-            <li class="nav-item">
-              <a href="{% url 'CasharkApp:about' %}" class="nav-link">About</a>
-            </li>
-            <li class="nav-item">
-              <a href="{% url 'CasharkApp:services' %}" class="nav-link">Services</a>
-            </li>
-            <li class="nav-item">
-              <a href="{% url 'CasharkApp:portfolio' %}" class="nav-link">Projects</a>
-            </li>
-            <li class="nav-item">
-              <a href="{% url 'CasharkApp:blog' %}" class="nav-link">News</a>
-            </li>
-            {% if request.session.User_ID == None %}
-            <li class="nav-item">
-              <a href="{% url 'CasharkApp:contact' %}" class="nav-link">Sign Up</a>
-            </li>
-            <li class="nav-item">
-              <a href="{% url 'CasharkApp:login' %}" class="nav-link">Login</a>
-            </li>
-            {% else %}
-            <li class="nav-item">
-              <a class="nav-link text-white" href="{% url 'CasharkApp:profile' %}">Welcome, {{user.First_Name}}</a>
-            </li>
-            <li class="nav-item">
-              <a href="{% url 'CasharkApp:logout' %}" class="nav-link">Logout</a>
-            </li>
-            {% endif %}
-          </ul>
-        </div>
-      </div> <!-- .container -->
-    </nav> <!-- .navbar -->
-
-    <div class="page-banner bg-img bg-img-parallax overlay-dark" style="background-image: url(../static/img/cashark_image3.jpg);">
-      <div class="container h-100">
-        <div class="row justify-content-center align-items-center h-100">
-          <div class="col-lg-8">
-            <nav aria-label="breadcrumb">
-              <ol class="breadcrumb breadcrumb-dark bg-transparent justify-content-center py-0">
-                <li class="breadcrumb-item"><a href="{% url 'CasharkApp:index' %}">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Administration</li>
-              </ol>
-            </nav>
-            <h1 class="fg-white text-center">Admin Dashboard</h1>
-          </div>
+  <div class="page-banner bg-img bg-img-parallax overlay-dark"
+    style="background-image: url(../static/img/cashark_image3.jpg);">
+    <div class="container h-100">
+      <div class="row justify-content-center align-items-center h-100">
+        <div class="col-lg-8">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb breadcrumb-dark bg-transparent justify-content-center py-0">
+              <li class="breadcrumb-item"><a href="{% url 'CasharkApp:index' %}">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Administration</li>
+            </ol>
+          </nav>
+          <h1 class="fg-white text-center">Admin Dashboard</h1>
         </div>
       </div>
-    </div> <!-- .page-banner -->
+    </div>
+  </div> <!-- .page-banner -->
   </header>
 
   <main>
     <div id="User" class="tabcontent">
-    <div class="page-section" id="1">
-      <div class="container">
-        <div class="row justify-content-center">
-          <button class="tablinks btn btn-primary text-white" type="button" data-div="1" onclick="openTab(event, 'User')">User</button>
-          <button class="tablinks btn btn-primary text-white" type="button" data-div="2" onclick="openTab(event, 'Bank')">Bank</button>
-          <button class="tablinks btn btn-primary text-white" type="button" data-div="3" onclick="openTab(event, 'Bank Info')">Bank Info</button>
-          <button class="tablinks btn btn-primary text-white" type="button" data-div="4" onclick="openTab(event, 'Feedback')">Feedback</button>
-          <button class="tablinks btn btn-primary text-white" type="button" data-div="5" onclick="openTab(event, 'Transactions')">Transactions</button>
-          <button class="tablinks btn btn-primary text-white" type="button" data-div="6" onclick="openTab(event, 'MessageTab')">Message</button>
+      <div class="page-section" id="1">
+        <div class="container">
+          <div class="row justify-content-center">
+            <button class="tablinks btn btn-primary text-white" type="button" data-div="1"
+              onclick="openTab(event, 'User')">User</button>
+            <button class="tablinks btn btn-primary text-white" type="button" data-div="2"
+              onclick="openTab(event, 'Bank')">Bank</button>
+            <button class="tablinks btn btn-primary text-white" type="button" data-div="3"
+              onclick="openTab(event, 'Bank Info')">Bank Info</button>
+            <button class="tablinks btn btn-primary text-white" type="button" data-div="4"
+              onclick="openTab(event, 'Feedback')">Feedback</button>
+            <button class="tablinks btn btn-primary text-white" type="button" data-div="5"
+              onclick="openTab(event, 'Transactions')">Transactions</button>
+            <button class="tablinks btn btn-primary text-white" type="button" data-div="6"
+              onclick="openTab(event, 'MessageTab')">Message</button>
 
-          <!--USER TABLE-->
+            <!--USER TABLE-->
             <table class="table">
-                <thead>
-                    <tr>
-                        <th>User ID</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Mobile Number</th>
-                        <th>Email</th>
-                        <th>Password</th>
-                        <th>Birthdate</th>
-                        <th>Balance</th>
-                        <th>Credit Score</th>
-                        <th>Address City</th>
-                        <th>Address Street</th>
-                        <th>Address Province</th>
-                        <th>Tools</th>
-                    </tr>
-                </thead>
-                <tbody>
-                  {% for u in users %}
-                    <tr>
-                        <td>{{u.User_ID}}</td>
-                        <td>{{u.First_Name}}</td>
-                        <td>{{u.Last_Name}}</td>
-                        <td>{{u.Mobile_Number}}</td>
-                        <td>{{u.Email}}</td>
-                        <td>{{u.Password}}</td>
-                        <td>{{u.Birthdate}}</td>
-                        <td>{{u.Balance}}</td>
-                        <td>{{u.Credit_Score}}</td>
-                        <td>{{u.Address_City}}</td>
-                        <td>{{u.Address_Street}}</td>
-                        <td>{{u.Address_Province}}</td>
-                        
-                        <td><button class="btn btn-primary" data-toggle="modal" data-target="#updateUser-{{u.User_ID}}">UPDATE</button>
-                            <button class="btn btn-primary" data-toggle="modal" data-target="#deleteUser-{{u.User_ID}}">DELETE</button></td>
-                    </tr>
-                  <!--UPDATE USER MODAL-->
-                  <div class="modal fade" id="updateUser-{{u.User_ID}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: -250px;">
-                    <div class="modal-dialog" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header" style="background-color: #83b2d0;">
-                          <h5 class="modal-title" id="exampleModalLabel" style="color: #ffffff;">Update User</h5>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <div class="modal-body">
-                          <center>
-                          <form method="POST" id = "updateUser">
+              <thead>
+                <tr>
+                  <th>User ID</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Mobile Number</th>
+                  <th>Email</th>
+                  <th>Password</th>
+                  <th>Birthdate</th>
+                  <th>Balance</th>
+                  <th>Credit Score</th>
+                  <th>Address City</th>
+                  <th>Address Street</th>
+                  <th>Address Province</th>
+                  <th>Tools</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for u in users %}
+                <tr>
+                  <td>{{u.User_ID}}</td>
+                  <td>{{u.First_Name}}</td>
+                  <td>{{u.Last_Name}}</td>
+                  <td>{{u.Mobile_Number}}</td>
+                  <td>{{u.Email}}</td>
+                  <td>{{u.Password}}</td>
+                  <td>{{u.Birthdate}}</td>
+                  <td>{{u.Balance}}</td>
+                  <td>{{u.Credit_Score}}</td>
+                  <td>{{u.Address_City}}</td>
+                  <td>{{u.Address_Street}}</td>
+                  <td>{{u.Address_Province}}</td>
+
+                  <td><button class="btn btn-primary" data-toggle="modal"
+                      data-target="#updateUser-{{u.User_ID}}">UPDATE</button>
+                    <button class="btn btn-primary" data-toggle="modal"
+                      data-target="#deleteUser-{{u.User_ID}}">DELETE</button>
+                  </td>
+                </tr>
+                <!--UPDATE USER MODAL-->
+                <div class="modal fade" id="updateUser-{{u.User_ID}}" tabindex="-1" role="dialog"
+                  aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: -250px;">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header" style="background-color: #83b2d0;">
+                        <h5 class="modal-title" id="exampleModalLabel" style="color: #ffffff;">Update User</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <center>
+                          <form method="POST" id="updateUser">
                             {% csrf_token %}
                             <div class="form1">
-                                <div class="title1">User</div>
-                                <hr>
-                                <div class="input1-container ic2">
-                                  <input id="User_ID" name="User_ID" class="input1" type="text" value="{{u.User_ID}}" readonly/>
-                                  <div class="cut"></div>
-                                  <label for="User_ID" class="placeholder">User ID</label>
-                                </div>
-                  
-                                <div class="input1-container ic2">
-                                  <input id="First_Name" name="First_Name" class="input1" type="text" value="{{u.First_Name}}" placeholder=" " required/>
-                                  <div class="cut"></div>
-                                  <label for="First_Name" class="placeholder">First Name</label>
-                                </div>
-                  
-                                <div class="input1-container ic2">
-                                  <input id="Last_Name" name="Last_Name" class="input1" type="text" value="{{u.Last_Name}}" placeholder=" " required/>
-                                  <div class="cut cut-short"></div>
-                                  <label for="Last_Name" class="placeholder">Last Name</label>
-                                </div>
-                  
-                  
-                                <div class="input1-container ic2">
-                                  <input id="Mobile_Number" name="Mobile_Number" class="input1" type="text" value="{{u.Mobile_Number}}" placeholder=" " required/>
-                                  <div class="cut cut-short"></div>
-                                  <label for="Mobile_Number" class="placeholder">Contact Number</label>
-                                </div>
-                  
-                                <div class="input1-container ic2">
-                                  <input id="Email" name="Email" class="input1" type="email" value="{{u.Email}}" placeholder=" " required/>
-                                  <div class="cut cut-short"></div>
-                                  <label for="Email" class="placeholder">Email</label>
-                                </div>
+                              <div class="title1">User</div>
+                              <hr>
+                              <div class="input1-container ic2">
+                                <input id="User_ID" name="User_ID" class="input1" type="text" value="{{u.User_ID}}"
+                                  readonly />
+                                <div class="cut"></div>
+                                <label for="User_ID" class="placeholder">User ID</label>
+                              </div>
 
-                                <div class="input1-container ic2">
-                                  <input id="Password" name="Password" class="input1" type="text" value="{{u.Password}}" placeholder=" " required/>
-                                  <div class="cut cut-short"></div>
-                                  <label for="Password" class="placeholder">Password</label>
-                                </div>
-                                
-                                <div class="input1-container ic2">
-                                  <input id="Birthdate" name="Birthdate" class="input1" type="date" value="{{u.Birthdate}}" placeholder=" " required/>
-                                  <div class="cut cut-short"></div>
-                                  <label for="Birthdate" class="placeholder">Birthdate</label>
-                                </div>
+                              <div class="input1-container ic2">
+                                <input id="First_Name" name="First_Name" class="input1" type="text"
+                                  value="{{u.First_Name}}" placeholder=" " required />
+                                <div class="cut"></div>
+                                <label for="First_Name" class="placeholder">First Name</label>
+                              </div>
 
-                                <div class="input1-container ic2">
-                                  <input id="Balance" name="Balance" class="input1" type="number" value="{{u.Balance}}" placeholder=" " required/>
-                                  <div class="cut cut-short"></div>
-                                  <label for="Balance" class="placeholder">Balance</label>
-                                </div>
+                              <div class="input1-container ic2">
+                                <input id="Last_Name" name="Last_Name" class="input1" type="text"
+                                  value="{{u.Last_Name}}" placeholder=" " required />
+                                <div class="cut cut-short"></div>
+                                <label for="Last_Name" class="placeholder">Last Name</label>
+                              </div>
 
-                                <div class="input1-container ic2">
-                                  <input id="Credit_Score" name="Credit_Score" class="input1" type="number" value="{{u.Credit_Score}}" placeholder=" " required/>
-                                  <div class="cut cut-short"></div>
-                                  <label for="Credit_Score" class="placeholder">Credit Score</label>
-                                </div>
 
-                                <div class="input1-container ic2">
-                                  <input id="Address_City" name="Address_City" class="input1" type="text" value="{{u.Address_City}}" placeholder=" " required/>
-                                  <div class="cut cut-short"></div>
-                                  <label for="Address_City" class="placeholder">Address City</label>
-                                </div>
+                              <div class="input1-container ic2">
+                                <input id="Mobile_Number" name="Mobile_Number" class="input1" type="text"
+                                  value="{{u.Mobile_Number}}" placeholder=" " required />
+                                <div class="cut cut-short"></div>
+                                <label for="Mobile_Number" class="placeholder">Contact Number</label>
+                              </div>
 
-                                <div class="input1-container ic2">
-                                  <input id="Address_Street" name="Address_Street" class="input1" type="text" value="{{u.Address_Street}}" placeholder=" " required/>
-                                  <div class="cut cut-short"></div>
-                                  <label for="Address_Street" class="placeholder">Address Street</label>
-                                </div>
+                              <div class="input1-container ic2">
+                                <input id="Email" name="Email" class="input1" type="email" value="{{u.Email}}"
+                                  placeholder=" " required />
+                                <div class="cut cut-short"></div>
+                                <label for="Email" class="placeholder">Email</label>
+                              </div>
 
-                                <div class="input1-container ic2">
-                                  <input id="Address_Province" name="Address_Province" class="input1" type="text" value="{{u.Address_Province}}" placeholder=" " required/>
-                                  <div class="cut cut-short"></div>
-                                  <label for="Address_Province" class="placeholder">Address Province</label>
-                                </div>
-                                
+                              <div class="input1-container ic2">
+                                <input id="Password" name="Password" class="input1" type="text" value="{{u.Password}}"
+                                  placeholder=" " required />
+                                <div class="cut cut-short"></div>
+                                <label for="Password" class="placeholder">Password</label>
+                              </div>
+
+                              <div class="input1-container ic2">
+                                <input id="Birthdate" name="Birthdate" class="input1" type="date"
+                                  value="{{u.Birthdate}}" placeholder=" " required />
+                                <div class="cut cut-short"></div>
+                                <label for="Birthdate" class="placeholder">Birthdate</label>
+                              </div>
+
+                              <div class="input1-container ic2">
+                                <input id="Balance" name="Balance" class="input1" type="number" value="{{u.Balance}}"
+                                  placeholder=" " required />
+                                <div class="cut cut-short"></div>
+                                <label for="Balance" class="placeholder">Balance</label>
+                              </div>
+
+                              <div class="input1-container ic2">
+                                <input id="Credit_Score" name="Credit_Score" class="input1" type="number"
+                                  value="{{u.Credit_Score}}" placeholder=" " required />
+                                <div class="cut cut-short"></div>
+                                <label for="Credit_Score" class="placeholder">Credit Score</label>
+                              </div>
+
+                              <div class="input1-container ic2">
+                                <input id="Address_City" name="Address_City" class="input1" type="text"
+                                  value="{{u.Address_City}}" placeholder=" " required />
+                                <div class="cut cut-short"></div>
+                                <label for="Address_City" class="placeholder">Address City</label>
+                              </div>
+
+                              <div class="input1-container ic2">
+                                <input id="Address_Street" name="Address_Street" class="input1" type="text"
+                                  value="{{u.Address_Street}}" placeholder=" " required />
+                                <div class="cut cut-short"></div>
+                                <label for="Address_Street" class="placeholder">Address Street</label>
+                              </div>
+
+                              <div class="input1-container ic2">
+                                <input id="Address_Province" name="Address_Province" class="input1" type="text"
+                                  value="{{u.Address_Province}}" placeholder=" " required />
+                                <div class="cut cut-short"></div>
+                                <label for="Address_Province" class="placeholder">Address Province</label>
+                              </div>
+
                             </div>
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="closex" data-dismiss="modal">Close</button>
-                          <button id = "btnUpdateUser" name="btnUpdateUser" type="submit" class="confirmx">Update</button>
-                        </div>
                       </div>
-                    </div>
-                  </div>  
-                  </form>
-                  <!--DELETE USER MODAL-->
-                  <div id="deleteUser-{{u.User_ID}}" class="modal fade">
-                    <div class="modal-dialog modal-confirm">
-                      <div class="modal-content">
-                        <div class="modal-header flex-column">
-                          <div class="icon-box">
-                            <i class="material-icons">&#xE5CD;</i>
-                          </div>						
-                          <h4 class="modal-title w-100">Are you sure?</h4>	
-                                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        </div>
-                        <form method="POST" id = "deleteUser">
-                          {% csrf_token %}
-                          <div class="modal-body">
-                            <input type="text" class="form-control" id ="User_ID" name="User_ID" value="{{u.User_ID}}" hidden>
-                            <p>Do you really want to delete the data of User no. {{u.User_ID}}: {{u.First_Name}}? This process cannot be undone.</p>
-                          </div>
-                        <div class="modal-footer justify-content-center">
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                          <button type="submit" id="btnDeleteUser" name ="btnDeleteUser" class="btn btn-danger">Delete</button>
-                        </div>
+                      <div class="modal-footer">
+                        <button type="button" class="closex" data-dismiss="modal">Close</button>
+                        <button id="btnUpdateUser" name="btnUpdateUser" type="submit" class="confirmx">Update</button>
                       </div>
                     </div>
                   </div>
-                  </form>
-                  {% endfor %}
-                </tbody>
+                </div>
+                </form>
+                <!--DELETE USER MODAL-->
+                <div id="deleteUser-{{u.User_ID}}" class="modal fade">
+                  <div class="modal-dialog modal-confirm">
+                    <div class="modal-content">
+                      <div class="modal-header flex-column">
+                        <div class="icon-box">
+                          <i class="material-icons">&#xE5CD;</i>
+                        </div>
+                        <h4 class="modal-title w-100">Are you sure?</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                      </div>
+                      <form method="POST" id="deleteUser">
+                        {% csrf_token %}
+                        <div class="modal-body">
+                          <input type="text" class="form-control" id="User_ID" name="User_ID" value="{{u.User_ID}}"
+                            hidden>
+                          <p>Do you really want to delete the data of User no. {{u.User_ID}}: {{u.First_Name}}? This
+                            process cannot be undone.</p>
+                        </div>
+                        <div class="modal-footer justify-content-center">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                          <button type="submit" id="btnDeleteUser" name="btnDeleteUser"
+                            class="btn btn-danger">Delete</button>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+                </form>
+                {% endfor %}
+              </tbody>
             </table>
-        </div>
-        <button class="btn btn-primary" data-toggle="modal" data-target="#addUserModal">Add User</button>
+          </div>
+          <button class="btn btn-primary" data-toggle="modal" data-target="#addUserModal">Add User</button>
 
-      </div> <!-- .container -->
-    </div> <!-- .page-section -->
-  </div> <!-- .tab -->
-  <div id="Bank" class="tabcontent">
-    <!--BANK-->
-    <div class="page-section" id="2">
-      <div class="container">
-        <div class="row justify-content-center">
-          <button class="tablinks btn btn-primary text-white" type="button" data-div="1" onclick="openTab(event, 'User')">User</button>
-          <button class="tablinks btn btn-primary text-white" type="button" data-div="2" onclick="openTab(event, 'Bank')">Bank</button>
-          <button class="tablinks btn btn-primary text-white" type="button" data-div="3" onclick="openTab(event, 'Bank Info')">Bank Info</button>
-          <button class="tablinks btn btn-primary text-white" type="button" data-div="4" onclick="openTab(event, 'Feedback')">Feedback</button>
-          <button class="tablinks btn btn-primary text-white" type="button" data-div="5" onclick="openTab(event, 'Transactions')">Transactions</button>
-          <button class="tablinks btn btn-primary text-white" type="button" data-div="6" onclick="openTab(event, 'MessageTab')">Message</button>
-          <!--BANK TABLE-->
+        </div> <!-- .container -->
+      </div> <!-- .page-section -->
+    </div> <!-- .tab -->
+    <div id="Bank" class="tabcontent">
+      <!--BANK-->
+      <div class="page-section" id="2">
+        <div class="container">
+          <div class="row justify-content-center">
+            <button class="tablinks btn btn-primary text-white" type="button" data-div="1"
+              onclick="openTab(event, 'User')">User</button>
+            <button class="tablinks btn btn-primary text-white" type="button" data-div="2"
+              onclick="openTab(event, 'Bank')">Bank</button>
+            <button class="tablinks btn btn-primary text-white" type="button" data-div="3"
+              onclick="openTab(event, 'Bank Info')">Bank Info</button>
+            <button class="tablinks btn btn-primary text-white" type="button" data-div="4"
+              onclick="openTab(event, 'Feedback')">Feedback</button>
+            <button class="tablinks btn btn-primary text-white" type="button" data-div="5"
+              onclick="openTab(event, 'Transactions')">Transactions</button>
+            <button class="tablinks btn btn-primary text-white" type="button" data-div="6"
+              onclick="openTab(event, 'MessageTab')">Message</button>
+            <!--BANK TABLE-->
             <table class="table">
-                <thead>
-                    <tr>
-                        <th>Bank ID</th>
-                        <th>Account Number</th>
-                        <th>Balance</th>
-                        <th>Bank Info ID</th>
-                        <th>Tools</th>
-                    </tr>
-                </thead>
-                <tbody>
-                  {% for b in bank %}
-                    <tr>
-                        <td>{{b.Bank_ID}}</td>
-                        <td>{{b.Account_Number}}</td>
-                        <td>{{b.Balance}}</td>
-                        <td>{{b.Bank_Info_ID_id}}</td>
-                        <td><button class="btn btn-primary" data-toggle="modal" data-target="#updateBank-{{b.Bank_ID}}">UPDATE</button>
-                          <button class="btn btn-primary" data-toggle="modal" data-target="#deleteBank-{{b.Bank_ID}}">DELETE</button></td>
-                    </tr>
-                    <!--UPDATE BANK MODAL-->
-                  <div class="modal fade" id="updateBank-{{b.Bank_ID}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: -250px;">
-                    <div class="modal-dialog" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header" style="background-color: #83b2d0;">
-                          <h5 class="modal-title" id="exampleModalLabel" style="color: #ffffff;">Update Bank</h5>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <div class="modal-body">
-                          <center>
-                          <form method="POST" id = "updateBank">
+              <thead>
+                <tr>
+                  <th>Bank ID</th>
+                  <th>Account Number</th>
+                  <th>Balance</th>
+                  <th>Bank Info ID</th>
+                  <th>Tools</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for b in bank %}
+                <tr>
+                  <td>{{b.Bank_ID}}</td>
+                  <td>{{b.Account_Number}}</td>
+                  <td>{{b.Balance}}</td>
+                  <td>{{b.Bank_Info_ID_id}}</td>
+                  <td><button class="btn btn-primary" data-toggle="modal"
+                      data-target="#updateBank-{{b.Bank_ID}}">UPDATE</button>
+                    <button class="btn btn-primary" data-toggle="modal"
+                      data-target="#deleteBank-{{b.Bank_ID}}">DELETE</button>
+                  </td>
+                </tr>
+                <!--UPDATE BANK MODAL-->
+                <div class="modal fade" id="updateBank-{{b.Bank_ID}}" tabindex="-1" role="dialog"
+                  aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: -250px;">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header" style="background-color: #83b2d0;">
+                        <h5 class="modal-title" id="exampleModalLabel" style="color: #ffffff;">Update Bank</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <center>
+                          <form method="POST" id="updateBank">
                             {% csrf_token %}
                             <div class="form1">
-                                <div class="title1">Bank</div>
-                                <hr>
-                                <div class="input1-container ic2">
-                                  <input id="Bank_ID" name="Bank_ID" class="input1" type="number" value="{{b.Bank_ID}}" readonly/>
-                                  <div class="cut"></div>
-                                  <label for="Bank_ID" class="placeholder">Bank ID</label>
-                                </div>
-                                <div class="input1-container ic2">
-                                  <input id="Account_Number" name="Account_Number" class="input1" type="text" value="{{b.Account_Number}}" placeholder=" " required/>
-                                  <div class="cut"></div>
-                                  <label for="Account_Number" class="placeholder">Account Number</label>
-                                </div>
-                  
-                                <div class="input1-container ic2">
-                                  <input id="Balance" name="Balance" class="input1" type="number" value="{{b.Balance}}" placeholder=" " required/>
-                                  <div class="cut cut-short"></div>
-                                  <label for="Balance" class="placeholder">Balance</label>
-                                </div>
-                                
+                              <div class="title1">Bank</div>
+                              <hr>
+                              <div class="input1-container ic2">
+                                <input id="Bank_ID" name="Bank_ID" class="input1" type="number" value="{{b.Bank_ID}}"
+                                  readonly />
+                                <div class="cut"></div>
+                                <label for="Bank_ID" class="placeholder">Bank ID</label>
+                              </div>
+                              <div class="input1-container ic2">
+                                <input id="Account_Number" name="Account_Number" class="input1" type="text"
+                                  value="{{b.Account_Number}}" placeholder=" " required />
+                                <div class="cut"></div>
+                                <label for="Account_Number" class="placeholder">Account Number</label>
+                              </div>
+
+                              <div class="input1-container ic2">
+                                <input id="Balance" name="Balance" class="input1" type="number" value="{{b.Balance}}"
+                                  placeholder=" " required />
+                                <div class="cut cut-short"></div>
+                                <label for="Balance" class="placeholder">Balance</label>
+                              </div>
+
                             </div>
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="closex" data-dismiss="modal">Close</button>
-                          <button id = "btnUpdateBank" name="btnUpdateBank" type="submit" class="confirmx">Update</button>
-                        </div>
                       </div>
-                    </div>
-                  </div>  
-                  </form>
-                  <!--DELETE BANK MODAL-->
-                  <div id="deleteBank-{{b.Bank_ID}}" class="modal fade">
-                    <div class="modal-dialog modal-confirm">
-                      <div class="modal-content">
-                        <div class="modal-header flex-column">
-                          <div class="icon-box">
-                            <i class="material-icons">&#xE5CD;</i>
-                          </div>						
-                          <h4 class="modal-title w-100">Are you sure?</h4>	
-                                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        </div>
-                        <form method="POST" id = "deleteBank">
-                          {% csrf_token %}
-                          <div class="modal-body">
-                            <input type="text" class="form-control" id ="Bank_ID" name="Bank_ID" value="{{b.Bank_ID}}" hidden>
-                            <p>Do you really want to delete the data of Bank no. {{b.Bank_ID}}: {{b.Account_Number}}? This process cannot be undone.</p>
-                          </div>
-                        <div class="modal-footer justify-content-center">
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                          <button type="submit" id="btnDeleteBank" name ="btnDeleteBank" class="btn btn-danger">Delete</button>
-                        </div>
+                      <div class="modal-footer">
+                        <button type="button" class="closex" data-dismiss="modal">Close</button>
+                        <button id="btnUpdateBank" name="btnUpdateBank" type="submit" class="confirmx">Update</button>
                       </div>
                     </div>
                   </div>
-                  </form>
-                  {% endfor %}
-                </tbody>
-            </table>
-        </div>
-        <button class="btn btn-primary" data-toggle="modal" data-target="#addBankModal">Add Bank</button>
-      </div> <!-- .container -->
-    </div> <!-- .page-section -->
-  </div> <!-- .tab -->
-  <div id="Bank Info" class="tabcontent">
-    <!--BANK INFO-->
-    <div class="page-section" id="3">
-      <div class="container">
-        <div class="row justify-content-center">
-          <button class="tablinks btn btn-primary text-white" type="button" data-div="1" onclick="openTab(event, 'User')">User</button>
-          <button class="tablinks btn btn-primary text-white" type="button" data-div="2" onclick="openTab(event, 'Bank')">Bank</button>
-          <button class="tablinks btn btn-primary text-white" type="button" data-div="3" onclick="openTab(event, 'Bank Info')">Bank Info</button>
-          <button class="tablinks btn btn-primary text-white" type="button" data-div="4" onclick="openTab(event, 'Feedback')">Feedback</button>
-          <button class="tablinks btn btn-primary text-white" type="button" data-div="5" onclick="openTab(event, 'Transactions')">Transactions</button>
-          <button class="tablinks btn btn-primary text-white" type="button" data-div="6" onclick="openTab(event, 'MessageTab')">Message</button>
-          <!--BANK INFO TABLE-->
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Bank Info ID</th>
-                        <th>Bank</th>
-                        <th>User ID id</th>
-                        <th>Tools</th>
-                    </tr>
-                </thead>
-                <tbody>
-                  {% for bi in bankInfo %}
-                    <tr>
-                        <td>{{bi.Bank_Info_ID}}</td>
-                        <td>{{bi.Bank}}</td>
-                        <td>{{bi.User_ID_id}}</td>
-                        <td><button class="btn btn-primary" data-toggle="modal" data-target="#updateBankInfo-{{bi.Bank_Info_ID}}">UPDATE</button>
-                          <button class="btn btn-primary" data-toggle="modal" data-target="#deleteBankInfo-{{bi.Bank_Info_ID}}">DELETE</button></td>
-                    </tr>
-                    <!--UPDATE BANK INFO MODAL-->
-                  <div class="modal fade" id="updateBankInfo-{{bi.Bank_Info_ID}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: -250px;">
-                    <div class="modal-dialog" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header" style="background-color: #83b2d0;">
-                          <h5 class="modal-title" id="exampleModalLabel" style="color: #ffffff;">Update Bank Info</h5>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
+                </div>
+                </form>
+                <!--DELETE BANK MODAL-->
+                <div id="deleteBank-{{b.Bank_ID}}" class="modal fade">
+                  <div class="modal-dialog modal-confirm">
+                    <div class="modal-content">
+                      <div class="modal-header flex-column">
+                        <div class="icon-box">
+                          <i class="material-icons">&#xE5CD;</i>
                         </div>
-                        <div class="modal-body">
-                          <center>
-                          <form method="POST" id = "updateBankInfo">
-                            {% csrf_token %}
-                            <div class="form1">
-                                <div class="title1">Bank Info</div>
-                                <hr>
-                                <div class="input1-container ic2">
-                                  <input id="Bank_Info_ID" name="Bank_Info_ID" class="input1" type="number" value="{{bi.Bank_Info_ID}}" readonly/>
-                                  <div class="cut"></div>
-                                  <label for="Bank_Info_ID" class="placeholder">Bank Info ID</label>
-                                </div>
-                                <div class="input1-container ic2">
-                                  <input id="Bank" name="Bank" class="input1" type="text" value="{{bi.Bank}}" placeholder=" " required/>
-                                  <div class="cut"></div>
-                                  <label for="Bank" class="placeholder">Bank</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="closex" data-dismiss="modal">Close</button>
-                          <button id = "btnUpdateBankInfo" name="btnUpdateBankInfo" type="submit" class="confirmx">Update</button>
-                        </div>
+                        <h4 class="modal-title w-100">Are you sure?</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                       </div>
-                    </div>
-                  </div>  
-                  </form>
-                  <!--DELETE BANK INFO MODAL-->
-                  <div id="deleteBankInfo-{{bi.Bank_Info_ID}}" class="modal fade">
-                    <div class="modal-dialog modal-confirm">
-                      <div class="modal-content">
-                        <div class="modal-header flex-column">
-                          <div class="icon-box">
-                            <i class="material-icons">&#xE5CD;</i>
-                          </div>						
-                          <h4 class="modal-title w-100">Are you sure?</h4>	
-                                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                      <form method="POST" id="deleteBank">
+                        {% csrf_token %}
+                        <div class="modal-body">
+                          <input type="text" class="form-control" id="Bank_ID" name="Bank_ID" value="{{b.Bank_ID}}"
+                            hidden>
+                          <p>Do you really want to delete the data of Bank no. {{b.Bank_ID}}: {{b.Account_Number}}? This
+                            process cannot be undone.</p>
                         </div>
-                        <form method="POST" id = "deleteBankInfo">
-                          {% csrf_token %}
-                          <div class="modal-body">
-                            <input type="text" class="form-control" id ="Bank_Info_ID" name="Bank_Info_ID" value="{{bi.Bank_Info_ID}}" hidden>
-                            <p>Do you really want to delete the data of Bank Info no. {{bi.Bank_Info_ID}}: {{bi.Bank}}? This process cannot be undone.</p>
-                          </div>
                         <div class="modal-footer justify-content-center">
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                          <button type="submit" id="btnDeleteBankInfo" name ="btnDeleteBankInfo" class="btn btn-danger">Delete</button>
+                          <button type="submit" id="btnDeleteBank" name="btnDeleteBank"
+                            class="btn btn-danger">Delete</button>
                         </div>
+                    </div>
+                  </div>
+                </div>
+                </form>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          <button class="btn btn-primary" data-toggle="modal" data-target="#addBankModal">Add Bank</button>
+        </div> <!-- .container -->
+      </div> <!-- .page-section -->
+    </div> <!-- .tab -->
+    <div id="Bank Info" class="tabcontent">
+      <!--BANK INFO-->
+      <div class="page-section" id="3">
+        <div class="container">
+          <div class="row justify-content-center">
+            <button class="tablinks btn btn-primary text-white" type="button" data-div="1"
+              onclick="openTab(event, 'User')">User</button>
+            <button class="tablinks btn btn-primary text-white" type="button" data-div="2"
+              onclick="openTab(event, 'Bank')">Bank</button>
+            <button class="tablinks btn btn-primary text-white" type="button" data-div="3"
+              onclick="openTab(event, 'Bank Info')">Bank Info</button>
+            <button class="tablinks btn btn-primary text-white" type="button" data-div="4"
+              onclick="openTab(event, 'Feedback')">Feedback</button>
+            <button class="tablinks btn btn-primary text-white" type="button" data-div="5"
+              onclick="openTab(event, 'Transactions')">Transactions</button>
+            <button class="tablinks btn btn-primary text-white" type="button" data-div="6"
+              onclick="openTab(event, 'MessageTab')">Message</button>
+            <!--BANK INFO TABLE-->
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Bank Info ID</th>
+                  <th>Bank</th>
+                  <th>User ID id</th>
+                  <th>Tools</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for bi in bankInfo %}
+                <tr>
+                  <td>{{bi.Bank_Info_ID}}</td>
+                  <td>{{bi.Bank}}</td>
+                  <td>{{bi.User_ID_id}}</td>
+                  <td><button class="btn btn-primary" data-toggle="modal"
+                      data-target="#updateBankInfo-{{bi.Bank_Info_ID}}">UPDATE</button>
+                    <button class="btn btn-primary" data-toggle="modal"
+                      data-target="#deleteBankInfo-{{bi.Bank_Info_ID}}">DELETE</button>
+                  </td>
+                </tr>
+                <!--UPDATE BANK INFO MODAL-->
+                <div class="modal fade" id="updateBankInfo-{{bi.Bank_Info_ID}}" tabindex="-1" role="dialog"
+                  aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: -250px;">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header" style="background-color: #83b2d0;">
+                        <h5 class="modal-title" id="exampleModalLabel" style="color: #ffffff;">Update Bank Info</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <center>
+                          <form method="POST" id="updateBankInfo">
+                            {% csrf_token %}
+                            <div class="form1">
+                              <div class="title1">Bank Info</div>
+                              <hr>
+                              <div class="input1-container ic2">
+                                <input id="Bank_Info_ID" name="Bank_Info_ID" class="input1" type="number"
+                                  value="{{bi.Bank_Info_ID}}" readonly />
+                                <div class="cut"></div>
+                                <label for="Bank_Info_ID" class="placeholder">Bank Info ID</label>
+                              </div>
+                              <div class="input1-container ic2">
+                                <input id="Bank" name="Bank" class="input1" type="text" value="{{bi.Bank}}"
+                                  placeholder=" " required />
+                                <div class="cut"></div>
+                                <label for="Bank" class="placeholder">Bank</label>
+                              </div>
+                            </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="closex" data-dismiss="modal">Close</button>
+                        <button id="btnUpdateBankInfo" name="btnUpdateBankInfo" type="submit"
+                          class="confirmx">Update</button>
                       </div>
                     </div>
                   </div>
-                  </form>
-                  {% endfor %}
-                </tbody>
+                </div>
+                </form>
+                <!--DELETE BANK INFO MODAL-->
+                <div id="deleteBankInfo-{{bi.Bank_Info_ID}}" class="modal fade">
+                  <div class="modal-dialog modal-confirm">
+                    <div class="modal-content">
+                      <div class="modal-header flex-column">
+                        <div class="icon-box">
+                          <i class="material-icons">&#xE5CD;</i>
+                        </div>
+                        <h4 class="modal-title w-100">Are you sure?</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                      </div>
+                      <form method="POST" id="deleteBankInfo">
+                        {% csrf_token %}
+                        <div class="modal-body">
+                          <input type="text" class="form-control" id="Bank_Info_ID" name="Bank_Info_ID"
+                            value="{{bi.Bank_Info_ID}}" hidden>
+                          <p>Do you really want to delete the data of Bank Info no. {{bi.Bank_Info_ID}}: {{bi.Bank}}?
+                            This process cannot be undone.</p>
+                        </div>
+                        <div class="modal-footer justify-content-center">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                          <button type="submit" id="btnDeleteBankInfo" name="btnDeleteBankInfo"
+                            class="btn btn-danger">Delete</button>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+                </form>
+                {% endfor %}
+              </tbody>
             </table>
-        </div>
-        <button class="btn btn-primary" data-toggle="modal" data-target="#addBankInfoModal">Add Bank Info</button>
-      </div> <!-- .container -->
-    </div> <!-- .page-section -->
-  </div> <!-- .tab -->
+          </div>
+          <button class="btn btn-primary" data-toggle="modal" data-target="#addBankInfoModal">Add Bank Info</button>
+        </div> <!-- .container -->
+      </div> <!-- .page-section -->
+    </div> <!-- .tab -->
     <div id="Feedback" class="tabcontent">
-    <!--FEEDBACK-->
-    <div class="page-section" id="4">
-      <div class="container">
-        <div class="row justify-content-center">
-          <button class="tablinks btn btn-primary text-white" type="button" data-div="1" onclick="openTab(event, 'User')">User</button>
-          <button class="tablinks btn btn-primary text-white" type="button" data-div="2" onclick="openTab(event, 'Bank')">Bank</button>
-          <button class="tablinks btn btn-primary text-white" type="button" data-div="3" onclick="openTab(event, 'Bank Info')">Bank Info</button>
-          <button class="tablinks btn btn-primary text-white" type="button" data-div="4" onclick="openTab(event, 'Feedback')">Feedback</button>
-          <button class="tablinks btn btn-primary text-white" type="button" data-div="5" onclick="openTab(event, 'Transactions')">Transactions</button>
-          <button class="tablinks btn btn-primary text-white" type="button" data-div="6" onclick="openTab(event, 'MessageTab')">Message</button>
-          <!--FEEDBACK TABLE-->
+      <!--FEEDBACK-->
+      <div class="page-section" id="4">
+        <div class="container">
+          <div class="row justify-content-center">
+            <button class="tablinks btn btn-primary text-white" type="button" data-div="1"
+              onclick="openTab(event, 'User')">User</button>
+            <button class="tablinks btn btn-primary text-white" type="button" data-div="2"
+              onclick="openTab(event, 'Bank')">Bank</button>
+            <button class="tablinks btn btn-primary text-white" type="button" data-div="3"
+              onclick="openTab(event, 'Bank Info')">Bank Info</button>
+            <button class="tablinks btn btn-primary text-white" type="button" data-div="4"
+              onclick="openTab(event, 'Feedback')">Feedback</button>
+            <button class="tablinks btn btn-primary text-white" type="button" data-div="5"
+              onclick="openTab(event, 'Transactions')">Transactions</button>
+            <button class="tablinks btn btn-primary text-white" type="button" data-div="6"
+              onclick="openTab(event, 'MessageTab')">Message</button>
+            <!--FEEDBACK TABLE-->
             <table class="table">
-                <thead>
-                    <tr>
-                        <th>Feedback ID</th>
-                        <th>Receiver ID</th>
-                        <th>Sender ID</th>
-                        <th>Message</th>
-                        <th>Tools</th>
-                    </tr>
-                </thead>
-                <tbody>
-                  {% for f in feedback %}
-                    <tr>
-                        <td>{{f.Feedback_ID}}</td>
-                        <td>{{f.Receiver_ID.User_ID}}</td>
-                        <td>{{f.Sender_ID.User_ID}}</td>
-                        <td>{{f.Message}}</td>
-                        <td><button class="btn btn-primary" data-toggle="modal" data-target="#updateFeedback-{{f.Feedback_ID}}">UPDATE</button>
-                          <button class="btn btn-primary" data-toggle="modal" data-target="#deleteFeedback-{{f.Feedback_ID}}">DELETE</button></td>
-                    </tr>
-                    <!--UPDATE FEEDBACK MODAL-->
-                  <div class="modal fade" id="updateFeedback-{{f.Feedback_ID}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: -250px;">
-                    <div class="modal-dialog" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header" style="background-color: #83b2d0;">
-                          <h5 class="modal-title" id="exampleModalLabel" style="color: #ffffff;">Update Bank</h5>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <div class="modal-body">
-                          <center>
-                          <form method="POST" id = "updateFeedback">
+              <thead>
+                <tr>
+                  <th>Feedback ID</th>
+                  <th>Receiver ID</th>
+                  <th>Sender ID</th>
+                  <th>Message</th>
+                  <th>Tools</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for f in feedback %}
+                <tr>
+                  <td>{{f.Feedback_ID}}</td>
+                  <td>{{f.Receiver_ID.User_ID}}</td>
+                  <td>{{f.Sender_ID.User_ID}}</td>
+                  <td>{{f.Message}}</td>
+                  <td><button class="btn btn-primary" data-toggle="modal"
+                      data-target="#updateFeedback-{{f.Feedback_ID}}">UPDATE</button>
+                    <button class="btn btn-primary" data-toggle="modal"
+                      data-target="#deleteFeedback-{{f.Feedback_ID}}">DELETE</button>
+                  </td>
+                </tr>
+                <!--UPDATE FEEDBACK MODAL-->
+                <div class="modal fade" id="updateFeedback-{{f.Feedback_ID}}" tabindex="-1" role="dialog"
+                  aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: -250px;">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header" style="background-color: #83b2d0;">
+                        <h5 class="modal-title" id="exampleModalLabel" style="color: #ffffff;">Update Bank</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <center>
+                          <form method="POST" id="updateFeedback">
                             {% csrf_token %}
                             <div class="form1">
-                                <div class="title1">Feedback</div>
-                                <hr>
-                                <div class="input1-container ic2">
-                                  <input id="Feedback_ID" name="Feedback_ID" class="input1" type="number" value="{{f.Feedback_ID}}" readonly/>
-                                  <div class="cut"></div>
-                                  <label for="Feedback_ID" class="placeholder">Feedback ID</label>
-                                </div>
-                                <div class="input1-container ic2">
-                                  <input id="Message" name="Message" class="input1" type="text" value="{{f.Message}}" placeholder=" " required/>
-                                  <div class="cut"></div>
-                                  <label for="Message" class="placeholder">Message</label>
-                                </div>
+                              <div class="title1">Feedback</div>
+                              <hr>
+                              <div class="input1-container ic2">
+                                <input id="Feedback_ID" name="Feedback_ID" class="input1" type="number"
+                                  value="{{f.Feedback_ID}}" readonly />
+                                <div class="cut"></div>
+                                <label for="Feedback_ID" class="placeholder">Feedback ID</label>
+                              </div>
+                              <div class="input1-container ic2">
+                                <input id="Message" name="Message" class="input1" type="text" value="{{f.Message}}"
+                                  placeholder=" " required />
+                                <div class="cut"></div>
+                                <label for="Message" class="placeholder">Message</label>
+                              </div>
                             </div>
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="closex" data-dismiss="modal">Close</button>
-                          <button id = "btnUpdateFeedback" name="btnUpdateFeedback" type="submit" class="confirmx">Update</button>
-                        </div>
                       </div>
-                    </div>
-                  </div>  
-                  </form>
-                  <!--DELETE FEEDBACK MODAL-->
-                  <div id="deleteFeedback-{{f.Feedback_ID}}" class="modal fade">
-                    <div class="modal-dialog modal-confirm">
-                      <div class="modal-content">
-                        <div class="modal-header flex-column">
-                          <div class="icon-box">
-                            <i class="material-icons">&#xE5CD;</i>
-                          </div>						
-                          <h4 class="modal-title w-100">Are you sure?</h4>	
-                                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        </div>
-                        <form method="POST" id = "deleteFeedback">
-                          {% csrf_token %}
-                          <div class="modal-body">
-                            <input type="text" class="form-control" id ="Feedback_ID" name="Feedback_ID" value="{{f.Feedback_ID}}" hidden>
-                            <p>Do you really to delete want the data of Feedback no. {{f.Feedback_ID}}: {{f.Message}}? This process cannot be undone.</p>
-                          </div>
-                        <div class="modal-footer justify-content-center">
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                          <button type="submit" id="btnDeleteFeedback" name ="btnDeleteFeedback" class="btn btn-danger">Delete</button>
-                        </div>
+                      <div class="modal-footer">
+                        <button type="button" class="closex" data-dismiss="modal">Close</button>
+                        <button id="btnUpdateFeedback" name="btnUpdateFeedback" type="submit"
+                          class="confirmx">Update</button>
                       </div>
                     </div>
                   </div>
-                  </form>
-                  {% endfor %}
-                </tbody>
-            </table>
-        </div>
-        <button class="btn btn-primary" data-toggle="modal" data-target="#addFeedbackModal">Add Feedback</button>
-      </div> <!-- .container -->
-    </div> <!-- .page-section -->
-  </div> <!-- .tab -->
-  <div id="Transactions" class="tabcontent">
-    <!--TRANSACTIONS-->
-    <div class="page-section" id="5">
-      <div class="container">
-        <div class="row justify-content-center">
-          <button class="tablinks btn btn-primary text-white" type="button" data-div="1" onclick="openTab(event, 'User')">User</button>
-          <button class="tablinks btn btn-primary text-white" type="button" data-div="2" onclick="openTab(event, 'Bank')">Bank</button>
-          <button class="tablinks btn btn-primary text-white" type="button" data-div="3" onclick="openTab(event, 'Bank Info')">Bank Info</button>
-          <button class="tablinks btn btn-primary text-white" type="button" data-div="4" onclick="openTab(event, 'Feedback')">Feedback</button>
-          <button class="tablinks btn btn-primary text-white" type="button" data-div="5" onclick="openTab(event, 'Transactions')">Transactions</button>
-          <button class="tablinks btn btn-primary text-white" type="button" data-div="6" onclick="openTab(event, 'MessageTab')">Message</button>
-          <!--TRANSACTIONS TABLE-->
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Transaction ID</th>
-                        <th>Amount</th>
-                        <th>Interest Rate</th>
-                        <th>Date Due</th>
-                        <th>Transaction Date</th>
-                        <th>Status</th>
-                        <th>Borrower ID</th>
-                        <th>Lender ID</th>
-                        <th>Date Paid</th>
-                        <th>Tools</th>
-                    </tr>
-                </thead>
-                <tbody>
-                  {% for t in transaction %}
-                    <tr>
-                        <td>{{t.Transaction_ID}}</td>
-                        <td>{{t.Amount}}</td>
-                        <td>{{t.Interest_Rate}}</td>
-                        <td>{{t.Date_Due}}</td>
-                        <td>{{t.Transaction_Date}}</td>
-                        <td>{{t.Status}}</td>
-                        <td>{{t.Borrower_ID}}</td>
-                        <td>{{t.Lender_ID}}</td>
-                        <td>{{t.Date_Paid}}</td>
-                        <td><button class="btn btn-primary" data-toggle="modal" data-target="#updateTransactions-{{t.Transaction_ID}}">UPDATE</button>
-                          <button class="btn btn-primary" data-toggle="modal" data-target="#deleteTransactions-{{t.Transaction_ID}}">DELETE</button></td>
-                    </tr>
-                    <!--UPDATE TRANSACTIONS MODAL-->
-                  <div class="modal fade" id="updateTransactions-{{t.Transaction_ID}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: -250px;">
-                    <div class="modal-dialog" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header" style="background-color: #83b2d0;">
-                          <h5 class="modal-title" id="exampleModalLabel" style="color: #ffffff;">Update Bank</h5>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
+                </div>
+                </form>
+                <!--DELETE FEEDBACK MODAL-->
+                <div id="deleteFeedback-{{f.Feedback_ID}}" class="modal fade">
+                  <div class="modal-dialog modal-confirm">
+                    <div class="modal-content">
+                      <div class="modal-header flex-column">
+                        <div class="icon-box">
+                          <i class="material-icons">&#xE5CD;</i>
                         </div>
-                        <div class="modal-body">
-                          <center>
-                          <form method="POST" id = "updateTransactions">
-                            {% csrf_token %}
-                            <div class="form1">
-                                <div class="title1">Transactions</div>
-                                <hr>
-                                <div class="input1-container ic2">
-                                  <input id="Transaction_ID" name="Transaction_ID" class="input1" type="number" value="{{t.Transaction_ID}}" readonly/>
-                                  <div class="cut"></div>
-                                  <label for="Transaction_ID" class="placeholder">Transaction ID</label>
-                                </div>
-                                <div class="input1-container ic2">
-                                  <input id="Amount" name="Amount" class="input1" type="number" value="{{t.Amount}}" placeholder=" " required/>
-                                  <div class="cut"></div>
-                                  <label for="Amount" class="placeholder">Amount</label>
-                                </div>
-                  
-                                <div class="input1-container ic2">
-                                  <input id="Interest_Rate" name="Interest_Rate" class="input1" type="number" value="{{t.Interest_Rate}}" placeholder=" " required/>
-                                  <div class="cut"></div>
-                                  <label for="Interest_Rate" class="placeholder">Interest Rate</label>
-                                </div>
-                                
-                                <div class="input1-container ic2">
-                                  <input id="Date_Due" name="Date_Due" class="input1" type="date" value="{{t.Date_Due}}" placeholder=" " required/>
-                                  <div class="cut"></div>
-                                  <label for="Date_Due" class="placeholder">Date Due</label>
-                                </div>
-
-                                <div class="input1-container ic2">
-                                  <input id="Transaction_Date" name="Transaction_Date" class="input1" type="date" value="{{t.Transaction_Date}}" placeholder=" " required/>
-                                  <div class="cut"></div>
-                                  <label for="Transaction_Date" class="placeholder">Transaction Date</label>
-                                </div>
-
-                                <div class="input1-container ic2">
-                                  <input id="Status" name="Status" class="input1" type="text" value="{{t.Status}}" placeholder=" " required/>
-                                  <div class="cut"></div>
-                                  <label for="Status" class="placeholder">Status</label>
-                                </div>
-
-                                <div class="input1-container ic2">
-                                  <input id="Date_Paid" name="Date_Paid" class="input1" type="date" value="{{t.Date_Paid}}" placeholder=" " required/>
-                                  <div class="cut"></div>
-                                  <label for="Date_Paid" class="placeholder">Date Paid</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="closex" data-dismiss="modal">Close</button>
-                          <button id = "btnUpdateTransactions" name="btnUpdateTransactions" type="submit" class="confirmx">Update</button>
-                        </div>
+                        <h4 class="modal-title w-100">Are you sure?</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                       </div>
-                    </div>
-                  </div>  
-                  </form>
-                  <!--DELETE TRANSACTIONS MODAL-->
-                  <div id="deleteTransactions-{{t.Transaction_ID}}" class="modal fade">
-                    <div class="modal-dialog modal-confirm">
-                      <div class="modal-content">
-                        <div class="modal-header flex-column">
-                          <div class="icon-box">
-                            <i class="material-icons">&#xE5CD;</i>
-                          </div>						
-                          <h4 class="modal-title w-100">Are you sure?</h4>	
-                                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                      <form method="POST" id="deleteFeedback">
+                        {% csrf_token %}
+                        <div class="modal-body">
+                          <input type="text" class="form-control" id="Feedback_ID" name="Feedback_ID"
+                            value="{{f.Feedback_ID}}" hidden>
+                          <p>Do you really to delete want the data of Feedback no. {{f.Feedback_ID}}: {{f.Message}}?
+                            This process cannot be undone.</p>
                         </div>
-                        <form method="POST" id = "deleteTransactions">
-                          {% csrf_token %}
-                          <div class="modal-body">
-                            <input type="text" class="form-control" id ="Transaction_ID" name="Transaction_ID" value="{{t.Transaction_ID}}" hidden>
-                            <p>Do you really want to delete the data of Transaction no. {{t.Transaction_ID}}: {{t.Amount}} {{t.Interest_Rate}} {{t.Status}}? This process cannot be undone.</p>
-                          </div>
                         <div class="modal-footer justify-content-center">
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                          <button type="submit" id="btnDeleteTransactions" name ="btnDeleteTransactions" class="btn btn-danger">Delete</button>
+                          <button type="submit" id="btnDeleteFeedback" name="btnDeleteFeedback"
+                            class="btn btn-danger">Delete</button>
                         </div>
+                    </div>
+                  </div>
+                </div>
+                </form>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          <button class="btn btn-primary" data-toggle="modal" data-target="#addFeedbackModal">Add Feedback</button>
+        </div> <!-- .container -->
+      </div> <!-- .page-section -->
+    </div> <!-- .tab -->
+    <div id="Transactions" class="tabcontent">
+      <!--TRANSACTIONS-->
+      <div class="page-section" id="5">
+        <div class="container">
+          <div class="row justify-content-center">
+            <button class="tablinks btn btn-primary text-white" type="button" data-div="1"
+              onclick="openTab(event, 'User')">User</button>
+            <button class="tablinks btn btn-primary text-white" type="button" data-div="2"
+              onclick="openTab(event, 'Bank')">Bank</button>
+            <button class="tablinks btn btn-primary text-white" type="button" data-div="3"
+              onclick="openTab(event, 'Bank Info')">Bank Info</button>
+            <button class="tablinks btn btn-primary text-white" type="button" data-div="4"
+              onclick="openTab(event, 'Feedback')">Feedback</button>
+            <button class="tablinks btn btn-primary text-white" type="button" data-div="5"
+              onclick="openTab(event, 'Transactions')">Transactions</button>
+            <button class="tablinks btn btn-primary text-white" type="button" data-div="6"
+              onclick="openTab(event, 'MessageTab')">Message</button>
+            <!--TRANSACTIONS TABLE-->
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Transaction ID</th>
+                  <th>Amount</th>
+                  <th>Interest Rate</th>
+                  <th>Date Due</th>
+                  <th>Transaction Date</th>
+                  <th>Status</th>
+                  <th>Borrower ID</th>
+                  <th>Lender ID</th>
+                  <th>Date Paid</th>
+                  <th>Tools</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for t in transaction %}
+                <tr>
+                  <td>{{t.Transaction_ID}}</td>
+                  <td>{{t.Amount}}</td>
+                  <td>{{t.Interest_Rate}}</td>
+                  <td>{{t.Date_Due}}</td>
+                  <td>{{t.Transaction_Date}}</td>
+                  <td>{{t.Status}}</td>
+                  <td>{{t.Borrower_ID}}</td>
+                  <td>{{t.Lender_ID}}</td>
+                  <td>{{t.Date_Paid}}</td>
+                  <td><button class="btn btn-primary" data-toggle="modal"
+                      data-target="#updateTransactions-{{t.Transaction_ID}}">UPDATE</button>
+                    <button class="btn btn-primary" data-toggle="modal"
+                      data-target="#deleteTransactions-{{t.Transaction_ID}}">DELETE</button>
+                  </td>
+                </tr>
+                <!--UPDATE TRANSACTIONS MODAL-->
+                <div class="modal fade" id="updateTransactions-{{t.Transaction_ID}}" tabindex="-1" role="dialog"
+                  aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: -250px;">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header" style="background-color: #83b2d0;">
+                        <h5 class="modal-title" id="exampleModalLabel" style="color: #ffffff;">Update Bank</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <center>
+                          <form method="POST" id="updateTransactions">
+                            {% csrf_token %}
+                            <div class="form1">
+                              <div class="title1">Transactions</div>
+                              <hr>
+                              <div class="input1-container ic2">
+                                <input id="Transaction_ID" name="Transaction_ID" class="input1" type="number"
+                                  value="{{t.Transaction_ID}}" readonly />
+                                <div class="cut"></div>
+                                <label for="Transaction_ID" class="placeholder">Transaction ID</label>
+                              </div>
+                              <div class="input1-container ic2">
+                                <input id="Amount" name="Amount" class="input1" type="number" value="{{t.Amount}}"
+                                  placeholder=" " required />
+                                <div class="cut"></div>
+                                <label for="Amount" class="placeholder">Amount</label>
+                              </div>
+
+                              <div class="input1-container ic2">
+                                <input id="Interest_Rate" name="Interest_Rate" class="input1" type="number"
+                                  value="{{t.Interest_Rate}}" placeholder=" " required />
+                                <div class="cut"></div>
+                                <label for="Interest_Rate" class="placeholder">Interest Rate</label>
+                              </div>
+
+                              <div class="input1-container ic2">
+                                <input id="Date_Due" name="Date_Due" class="input1" type="date" value="{{t.Date_Due}}"
+                                  placeholder=" " required />
+                                <div class="cut"></div>
+                                <label for="Date_Due" class="placeholder">Date Due</label>
+                              </div>
+
+                              <div class="input1-container ic2">
+                                <input id="Transaction_Date" name="Transaction_Date" class="input1" type="date"
+                                  value="{{t.Transaction_Date}}" placeholder=" " required />
+                                <div class="cut"></div>
+                                <label for="Transaction_Date" class="placeholder">Transaction Date</label>
+                              </div>
+
+                              <div class="input1-container ic2">
+                                <input id="Status" name="Status" class="input1" type="text" value="{{t.Status}}"
+                                  placeholder=" " required />
+                                <div class="cut"></div>
+                                <label for="Status" class="placeholder">Status</label>
+                              </div>
+
+                              <div class="input1-container ic2">
+                                <input id="Date_Paid" name="Date_Paid" class="input1" type="date"
+                                  value="{{t.Date_Paid}}" placeholder=" " required />
+                                <div class="cut"></div>
+                                <label for="Date_Paid" class="placeholder">Date Paid</label>
+                              </div>
+                            </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="closex" data-dismiss="modal">Close</button>
+                        <button id="btnUpdateTransactions" name="btnUpdateTransactions" type="submit"
+                          class="confirmx">Update</button>
                       </div>
                     </div>
                   </div>
-                  </form>
-                  {% endfor %}
-                </tbody>
-            </table>
-        </div>
-        <button class="btn btn-primary" data-toggle="modal" data-target="#addTransactionsModal">Add Transaction</button>
-      </div> <!-- .container -->
-    </div> <!-- .page-section -->
-  </div> <!-- .tab -->
-  <div id="MessageTab" class="tabcontent">
-    <!--MESSAGE-->
-    <div class="page-section" id="6">
-      <div class="container">
-        <div class="row justify-content-center">
-          <button class="tablinks btn btn-primary text-white" type="button" data-div="1" onclick="openTab(event, 'User')">User</button>
-          <button class="tablinks btn btn-primary text-white" type="button" data-div="2" onclick="openTab(event, 'Bank')">Bank</button>
-          <button class="tablinks btn btn-primary text-white" type="button" data-div="3" onclick="openTab(event, 'Bank Info')">Bank Info</button>
-          <button class="tablinks btn btn-primary text-white" type="button" data-div="4" onclick="openTab(event, 'Feedback')">Feedback</button>
-          <button class="tablinks btn btn-primary text-white" type="button" data-div="5" onclick="openTab(event, 'Transactions')">Transactions</button>
-          <button class="tablinks btn btn-primary text-white" type="button" data-div="6" onclick="openTab(event, 'MessageTab')">Message</button>
-          <!--MESSAGE TABLE-->
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Message ID</th>
-                        <th>Time Sent</th>
-                        <th>Date Sent</th>
-                        <th>Message</th>
-                        <th>Sender ID</th>
-                        <th>Transaction ID</th>
-                        <th>Tools</th>
-                    </tr>
-                </thead>
-                <tbody>
-                  {% for m in message %}
-                    <tr>
-                        <td>{{m.Message_ID}}</td>
-                        <td>{{m.Time_Sent}}</td>
-                        <td>{{m.Date_Sent}}</td>
-                        <td>{{m.Message}}</td>
-                        <td>{{m.Sender_ID}}</td>
-                        <td>{{m.Transaction_ID}}</td>
-                        <td><button class="btn btn-primary" data-toggle="modal" data-target="#updateMessage-{{m.Message_ID}}">UPDATE</button>
-                          <button class="btn btn-primary" data-toggle="modal" data-target="#deleteMessage-{{m.Message_ID}}">DELETE</button></td>
-                    </tr>
-                    <!--UPDATE MESSAGE MODAL-->
-                  <div class="modal fade" id="updateMessage-{{m.Message_ID}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: -250px;">
-                    <div class="modal-dialog" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header" style="background-color: #83b2d0;">
-                          <h5 class="modal-title" id="exampleModalLabel" style="color: #ffffff;">Update Bank</h5>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
+                </div>
+                </form>
+                <!--DELETE TRANSACTIONS MODAL-->
+                <div id="deleteTransactions-{{t.Transaction_ID}}" class="modal fade">
+                  <div class="modal-dialog modal-confirm">
+                    <div class="modal-content">
+                      <div class="modal-header flex-column">
+                        <div class="icon-box">
+                          <i class="material-icons">&#xE5CD;</i>
                         </div>
-                        <div class="modal-body">
-                          <center>
-                          <form method="POST" id = "updateMessage">
-                            {% csrf_token %}
-                            <div class="form1">
-                                <div class="title1">Message</div>
-                                <hr>
-                                <div class="input1-container ic2">
-                                  <input id="Message_ID" name="Message_ID" class="input1" type="number" value="{{m.Message_ID}}" readonly/>
-                                  <div class="cut"></div>
-                                  <label for="Message_ID" class="placeholder">Message ID</label>
-                                </div>
-                                <div class="input1-container ic2">
-                                  <input id="Time_Sent" name="Time_Sent" class="input1" type="time" value="{{m.Time_Sent}}" placeholder=" " required/>
-                                  <div class="cut"></div>
-                                  <label for="Time_Sent" class="placeholder">Time Sent</label>
-                                </div>
-                  
-                                <div class="input1-container ic2">
-                                  <input id="Date_Sent" name="Date_Sent" class="input1" type="date" value="{{m.Date_Sent}}" placeholder=" " required/>
-                                  <div class="cut"></div>
-                                  <label for="Date_Sent" class="placeholder">Date Sent</label>
-                                </div>
-                                
-                                <div class="input1-container ic2">
-                                  <input id="Message" name="Message" class="input1" type="text" value="{{m.Message}}" placeholder=" " required/>
-                                  <div class="cut"></div>
-                                  <label for="Message" class="placeholder">Message</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="closex" data-dismiss="modal">Close</button>
-                          <button id = "btnUpdateMessage" name="btnUpdateMessage" type="submit" class="confirmx">Update</button>
-                        </div>
+                        <h4 class="modal-title w-100">Are you sure?</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                       </div>
-                    </div>
-                  </div>  
-                  </form>
-                  <!--DELETE MESSAGE MODAL-->
-                  <div id="deleteMessage-{{m.Message_ID}}" class="modal fade">
-                    <div class="modal-dialog modal-confirm">
-                      <div class="modal-content">
-                        <div class="modal-header flex-column">
-                          <div class="icon-box">
-                            <i class="material-icons">&#xE5CD;</i>
-                          </div>
-                          <h4 class="modal-title w-100">Are you sure?</h4>	
-                                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                      <form method="POST" id="deleteTransactions">
+                        {% csrf_token %}
+                        <div class="modal-body">
+                          <input type="text" class="form-control" id="Transaction_ID" name="Transaction_ID"
+                            value="{{t.Transaction_ID}}" hidden>
+                          <p>Do you really want to delete the data of Transaction no. {{t.Transaction_ID}}: {{t.Amount}}
+                            {{t.Interest_Rate}} {{t.Status}}? This process cannot be undone.</p>
                         </div>
-                        <form method="POST" id = "deleteMessage">
-                          {% csrf_token %}
-                          <div class="modal-body">
-                            <input type="text" class="form-control" id ="Message_ID" name="Message_ID" value="{{m.Message_ID}}" hidden>
-                            <p>Do you really want to delete the data of Message no. {{m.Message_ID}}: {{m.Time_Sent}} {{m.Date_Sent}} {{m.Message}}? This process cannot be undone.</p>
-                          </div>
                         <div class="modal-footer justify-content-center">
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                          <button type="submit" id="btnDeleteMessage" name ="btnDeleteMessage" class="btn btn-danger">Delete</button>
+                          <button type="submit" id="btnDeleteTransactions" name="btnDeleteTransactions"
+                            class="btn btn-danger">Delete</button>
                         </div>
+                    </div>
+                  </div>
+                </div>
+                </form>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          <button class="btn btn-primary" data-toggle="modal" data-target="#addTransactionsModal">Add
+            Transaction</button>
+        </div> <!-- .container -->
+      </div> <!-- .page-section -->
+    </div> <!-- .tab -->
+    <div id="MessageTab" class="tabcontent">
+      <!--MESSAGE-->
+      <div class="page-section" id="6">
+        <div class="container">
+          <div class="row justify-content-center">
+            <button class="tablinks btn btn-primary text-white" type="button" data-div="1"
+              onclick="openTab(event, 'User')">User</button>
+            <button class="tablinks btn btn-primary text-white" type="button" data-div="2"
+              onclick="openTab(event, 'Bank')">Bank</button>
+            <button class="tablinks btn btn-primary text-white" type="button" data-div="3"
+              onclick="openTab(event, 'Bank Info')">Bank Info</button>
+            <button class="tablinks btn btn-primary text-white" type="button" data-div="4"
+              onclick="openTab(event, 'Feedback')">Feedback</button>
+            <button class="tablinks btn btn-primary text-white" type="button" data-div="5"
+              onclick="openTab(event, 'Transactions')">Transactions</button>
+            <button class="tablinks btn btn-primary text-white" type="button" data-div="6"
+              onclick="openTab(event, 'MessageTab')">Message</button>
+            <!--MESSAGE TABLE-->
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Message ID</th>
+                  <th>Time Sent</th>
+                  <th>Date Sent</th>
+                  <th>Message</th>
+                  <th>Sender ID</th>
+                  <th>Transaction ID</th>
+                  <th>Tools</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for m in message %}
+                <tr>
+                  <td>{{m.Message_ID}}</td>
+                  <td>{{m.Time_Sent}}</td>
+                  <td>{{m.Date_Sent}}</td>
+                  <td>{{m.Message}}</td>
+                  <td>{{m.Sender_ID}}</td>
+                  <td>{{m.Transaction_ID}}</td>
+                  <td><button class="btn btn-primary" data-toggle="modal"
+                      data-target="#updateMessage-{{m.Message_ID}}">UPDATE</button>
+                    <button class="btn btn-primary" data-toggle="modal"
+                      data-target="#deleteMessage-{{m.Message_ID}}">DELETE</button>
+                  </td>
+                </tr>
+                <!--UPDATE MESSAGE MODAL-->
+                <div class="modal fade" id="updateMessage-{{m.Message_ID}}" tabindex="-1" role="dialog"
+                  aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: -250px;">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header" style="background-color: #83b2d0;">
+                        <h5 class="modal-title" id="exampleModalLabel" style="color: #ffffff;">Update Bank</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <center>
+                          <form method="POST" id="updateMessage">
+                            {% csrf_token %}
+                            <div class="form1">
+                              <div class="title1">Message</div>
+                              <hr>
+                              <div class="input1-container ic2">
+                                <input id="Message_ID" name="Message_ID" class="input1" type="number"
+                                  value="{{m.Message_ID}}" readonly />
+                                <div class="cut"></div>
+                                <label for="Message_ID" class="placeholder">Message ID</label>
+                              </div>
+                              <div class="input1-container ic2">
+                                <input id="Time_Sent" name="Time_Sent" class="input1" type="time"
+                                  value="{{m.Time_Sent}}" placeholder=" " required />
+                                <div class="cut"></div>
+                                <label for="Time_Sent" class="placeholder">Time Sent</label>
+                              </div>
+
+                              <div class="input1-container ic2">
+                                <input id="Date_Sent" name="Date_Sent" class="input1" type="date"
+                                  value="{{m.Date_Sent}}" placeholder=" " required />
+                                <div class="cut"></div>
+                                <label for="Date_Sent" class="placeholder">Date Sent</label>
+                              </div>
+
+                              <div class="input1-container ic2">
+                                <input id="Message" name="Message" class="input1" type="text" value="{{m.Message}}"
+                                  placeholder=" " required />
+                                <div class="cut"></div>
+                                <label for="Message" class="placeholder">Message</label>
+                              </div>
+                            </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="closex" data-dismiss="modal">Close</button>
+                        <button id="btnUpdateMessage" name="btnUpdateMessage" type="submit"
+                          class="confirmx">Update</button>
                       </div>
                     </div>
                   </div>
-                  </form>
-                  {% endfor %}
-                </tbody>
+                </div>
+                </form>
+                <!--DELETE MESSAGE MODAL-->
+                <div id="deleteMessage-{{m.Message_ID}}" class="modal fade">
+                  <div class="modal-dialog modal-confirm">
+                    <div class="modal-content">
+                      <div class="modal-header flex-column">
+                        <div class="icon-box">
+                          <i class="material-icons">&#xE5CD;</i>
+                        </div>
+                        <h4 class="modal-title w-100">Are you sure?</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                      </div>
+                      <form method="POST" id="deleteMessage">
+                        {% csrf_token %}
+                        <div class="modal-body">
+                          <input type="text" class="form-control" id="Message_ID" name="Message_ID"
+                            value="{{m.Message_ID}}" hidden>
+                          <p>Do you really want to delete the data of Message no. {{m.Message_ID}}: {{m.Time_Sent}}
+                            {{m.Date_Sent}} {{m.Message}}? This process cannot be undone.</p>
+                        </div>
+                        <div class="modal-footer justify-content-center">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                          <button type="submit" id="btnDeleteMessage" name="btnDeleteMessage"
+                            class="btn btn-danger">Delete</button>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+                </form>
+                {% endfor %}
+              </tbody>
             </table>
-        </div>
-        <button class="btn btn-primary" data-toggle="modal" data-target="#addMessageModal">Add Message</button>
-      </div> <!-- .container -->
-    </div> <!-- .page-section -->
-  </div> <!-- .tab -->
+          </div>
+          <button class="btn btn-primary" data-toggle="modal" data-target="#addMessageModal">Add Message</button>
+        </div> <!-- .container -->
+      </div> <!-- .page-section -->
+    </div> <!-- .tab -->
   </main>
 
 
@@ -905,10 +939,13 @@
         </div>
         <div class="col-md-6 text-right">
           <div class="sosmed-button">
-            <a href="https://www.facebook.com/st3r10official" target="blank"><span class="mai-logo-facebook-f"></span></a>
+            <a href="https://www.facebook.com/st3r10official" target="blank"><span
+                class="mai-logo-facebook-f"></span></a>
             <a href="https://twitter.com/st3r10official" target="blank"><span class="mai-logo-twitter"></span></a>
-            <a href="https://www.youtube.com/channel/UCwzgkVy4QGM-J9wKzSplTfw" target="blank"><span class="mai-logo-youtube"></span></a>
-            <a href="https://open.spotify.com/artist/7oeyEGN0XiJUynY5Zit8Gu" target="blank"><span class="mai-logo-linkedin"></span></a>
+            <a href="https://www.youtube.com/channel/UCwzgkVy4QGM-J9wKzSplTfw" target="blank"><span
+                class="mai-logo-youtube"></span></a>
+            <a href="https://open.spotify.com/artist/7oeyEGN0XiJUynY5Zit8Gu" target="blank"><span
+                class="mai-logo-linkedin"></span></a>
           </div>
         </div>
       </div>
@@ -917,7 +954,8 @@
 
   <!--START CREATE MODALS-->
   <!--ADD USER MODAL-->
-  <div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: -250px;">
+  <div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true" style="margin-top: -250px;">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header" style="background-color: #83b2d0;">
@@ -928,90 +966,93 @@
         </div>
         <div class="modal-body">
           <center>
-          <form method="POST" id = "addUser" action = "{% url 'CasharkApp:userAdd'%}">
-            {% csrf_token %}
-            <div class="form1">
+            <form method="POST" id="addUser" action="{% url 'CasharkApp:userAdd'%}">
+              {% csrf_token %}
+              <div class="form1">
                 <div class="title1">User</div>
                 <hr>
                 <div class="input1-container ic2">
-                  <input id="First_Name" name="First_Name" class="input1" type="text" placeholder=" " required/>
+                  <input id="First_Name" name="First_Name" class="input1" type="text" placeholder=" " required />
                   <div class="cut"></div>
                   <label for="First_Name" class="placeholder">First Name</label>
                 </div>
-  
+
                 <div class="input1-container ic2">
-                  <input id="Last_Name" name="Last_Name" class="input1" type="text" placeholder=" " required/>
+                  <input id="Last_Name" name="Last_Name" class="input1" type="text" placeholder=" " required />
                   <div class="cut cut-short"></div>
                   <label for="Last_Name" class="placeholder">Last Name</label>
                 </div>
-  
-  
+
+
                 <div class="input1-container ic2">
-                  <input id="Mobile_Number" name="Mobile_Number" class="input1" type="text" placeholder=" " required/>
+                  <input id="Mobile_Number" name="Mobile_Number" class="input1" type="text" placeholder=" " required />
                   <div class="cut cut-short"></div>
                   <label for="Mobile_Number" class="placeholder">Contact Number</label>
                 </div>
-  
+
                 <div class="input1-container ic2">
-                  <input id="Email" name="Email" class="input1" type="email" placeholder=" " required/>
+                  <input id="Email" name="Email" class="input1" type="email" placeholder=" " required />
                   <div class="cut cut-short"></div>
                   <label for="Email" class="placeholder">Email</label>
                 </div>
 
                 <div class="input1-container ic2">
-                  <input id="Password" name="Password" class="input1" type="text" placeholder=" " required/>
+                  <input id="Password" name="Password" class="input1" type="text" placeholder=" " required />
                   <div class="cut cut-short"></div>
                   <label for="Password" class="placeholder">Password</label>
                 </div>
-                
+
                 <div class="input1-container ic2">
-                  <input id="Birthdate" name="Birthdate" class="input1" type="date" placeholder=" " required/>
+                  <input id="Birthdate" name="Birthdate" class="input1" type="date" placeholder=" " required />
                   <div class="cut cut-short"></div>
                   <label for="Birthdate" class="placeholder">Birthdate</label>
                 </div>
 
                 <div class="input1-container ic2">
-                  <input id="Balance" name="Balance" class="input1" type="number" placeholder=" " required/>
+                  <input id="Balance" name="Balance" class="input1" type="number" placeholder=" " required />
                   <div class="cut cut-short"></div>
                   <label for="Balance" class="placeholder">Balance</label>
                 </div>
 
                 <div class="input1-container ic2">
-                  <input id="Credit_Score" name="Credit_Score" class="input1" type="number" placeholder=" " required/>
+                  <input id="Credit_Score" name="Credit_Score" class="input1" type="number" placeholder=" " required />
                   <div class="cut cut-short"></div>
                   <label for="Credit_Score" class="placeholder">Credit Score</label>
                 </div>
 
                 <div class="input1-container ic2">
-                  <input id="Address_City" name="Address_City" class="input1" type="text" placeholder=" " required/>
+                  <input id="Address_City" name="Address_City" class="input1" type="text" placeholder=" " required />
                   <div class="cut cut-short"></div>
                   <label for="Address_City" class="placeholder">Address City</label>
                 </div>
 
                 <div class="input1-container ic2">
-                  <input id="Address_Street" name="Address_Street" class="input1" type="text" placeholder=" " required/>
+                  <input id="Address_Street" name="Address_Street" class="input1" type="text" placeholder=" "
+                    required />
                   <div class="cut cut-short"></div>
                   <label for="Address_Street" class="placeholder">Address Street</label>
                 </div>
 
                 <div class="input1-container ic2">
-                  <input id="Address_Province" name="Address_Province" class="input1" type="text" placeholder=" " required/>
+                  <input id="Address_Province" name="Address_Province" class="input1" type="text" placeholder=" "
+                    required />
                   <div class="cut cut-short"></div>
                   <label for="Address_Province" class="placeholder">Address Province</label>
                 </div>
-                
-            </div>
+
+              </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="closex" data-dismiss="modal">Close</button>
-          <button id = "btnAddUser" name="btnAddUser" type="submit" class="confirmx">Add User</button>
+          <button id="btnAddUser" name="btnAddUser" type="submit" class="confirmx">Add User</button>
         </div>
       </div>
     </div>
-  </div>  
+  </div>
   </form>
   <!--ADD BANK MODAL-->
-  <div class="modal fade" id="addBankModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: -250px;">
+  <div class="modal fade" id="addBankModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true" style="margin-top: -250px;">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header" style="background-color: #83b2d0;">
@@ -1022,39 +1063,41 @@
         </div>
         <div class="modal-body">
           <center>
-          <form method="POST" id = "addBank" action = "{% url 'CasharkApp:bankAdd'%}">
-            {% csrf_token %}
-            <div class="form1">
-              <div class="title1">Bank</div>
-              <hr>
-              <div class="input1-container ic2">
-                <input id="Account_Number" name="Account_Number" class="input1" type="text" placeholder=" " required/>
-                <div class="cut"></div>
-                <label for="Account_Number" class="placeholder">Account Number</label>
-              </div>
+            <form method="POST" id="addBank" action="{% url 'CasharkApp:bankAdd'%}">
+              {% csrf_token %}
+              <div class="form1">
+                <div class="title1">Bank</div>
+                <hr>
+                <div class="input1-container ic2">
+                  <input id="Account_Number" name="Account_Number" class="input1" type="text" placeholder=" "
+                    required />
+                  <div class="cut"></div>
+                  <label for="Account_Number" class="placeholder">Account Number</label>
+                </div>
 
-              <div class="input1-container ic2">
-                <input id="Balance" name="Balance" class="input1" type="number" placeholder=" " required/>
-                <div class="cut cut-short"></div>
-                <label for="Balance" class="placeholder">Balance</label>
+                <div class="input1-container ic2">
+                  <input id="Balance" name="Balance" class="input1" type="number" placeholder=" " required />
+                  <div class="cut cut-short"></div>
+                  <label for="Balance" class="placeholder">Balance</label>
+                </div>
+                <div class="input1-container ic2">
+                  <input id="Bank_Info_ID" name="Bank_Info_ID" class="input1" type="number" placeholder=" " required />
+                  <div class="cut cut-short"></div>
+                  <label for="Bank_Info_ID" class="placeholder">Bank Info ID</label>
+                </div>
               </div>
-              <div class="input1-container ic2">
-                <input id="Bank_Info_ID" name="Bank_Info_ID" class="input1" type="number" placeholder=" " required/>
-                <div class="cut cut-short"></div>
-                <label for="Bank_Info_ID" class="placeholder">Bank Info ID</label>
-              </div>
-            </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="closex" data-dismiss="modal">Close</button>
-          <button id = "btnAddBank" name="btnAddBank" type="submit" class="confirmx">Add Bank</button>
+          <button id="btnAddBank" name="btnAddBank" type="submit" class="confirmx">Add Bank</button>
         </div>
       </div>
     </div>
-  </div>  
+  </div>
   </form>
   <!--ADD BANK INFO MODAL-->
-  <div class="modal fade" id="addBankInfoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: -250px;">
+  <div class="modal fade" id="addBankInfoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true" style="margin-top: -250px;">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header" style="background-color: #83b2d0;">
@@ -1065,33 +1108,34 @@
         </div>
         <div class="modal-body">
           <center>
-          <form method="POST" id = "addBankInfo" action = "{% url 'CasharkApp:bankInfoAdd'%}">
-            {% csrf_token %}
-            <div class="form1">
+            <form method="POST" id="addBankInfo" action="{% url 'CasharkApp:bankInfoAdd'%}">
+              {% csrf_token %}
+              <div class="form1">
                 <div class="title1">Bank Info</div>
                 <hr>
                 <div class="input1-container ic2">
-                  <input id="Bank" name="Bank" class="input1" type="text" placeholder=" " required/>
+                  <input id="Bank" name="Bank" class="input1" type="text" placeholder=" " required />
                   <div class="cut"></div>
                   <label for="Bank" class="placeholder">Bank</label>
                 </div>
                 <div class="input1-container ic2">
-                  <input id="User_ID" name="User_ID" class="input1" type="number" placeholder=" " required/>
+                  <input id="User_ID" name="User_ID" class="input1" type="number" placeholder=" " required />
                   <div class="cut"></div>
                   <label for="User_ID" class="placeholder">User ID</label>
                 </div>
-            </div>
+              </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="closex" data-dismiss="modal">Close</button>
-          <button id = "btnAddBankInfo" name="btnAddBankInfo" type="submit" class="confirmx">Add Bank Info</button>
+          <button id="btnAddBankInfo" name="btnAddBankInfo" type="submit" class="confirmx">Add Bank Info</button>
         </div>
       </div>
     </div>
-  </div>  
+  </div>
   </form>
   <!--ADD FEEDBACK MODAL-->
-  <div class="modal fade" id="addFeedbackModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: -250px;">
+  <div class="modal fade" id="addFeedbackModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true" style="margin-top: -250px;">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header" style="background-color: #83b2d0;">
@@ -1102,39 +1146,40 @@
         </div>
         <div class="modal-body">
           <center>
-          <form method="POST" id = "addFeedback" action = "{% url 'CasharkApp:feedbackAdd'%}">
-            {% csrf_token %}
-            <div class="form1">
-              <div class="title1">Feedback</div>
+            <form method="POST" id="addFeedback" action="{% url 'CasharkApp:feedbackAdd'%}">
+              {% csrf_token %}
+              <div class="form1">
+                <div class="title1">Feedback</div>
                 <hr>
-              <div class="input1-container ic2">
-                <input id="Receiver_ID" name="Receiver_ID" class="input1" type="number" placeholder=" " required/>
-                <div class="cut"></div>
-                <label for="Receiver_ID" class="placeholder">Receiver ID</label>
-              </div>
-              <div class="input1-container ic2">
-                  <input id="Sender_ID" name="Sender_ID" class="input1" type="number" placeholder=" " required/>
+                <div class="input1-container ic2">
+                  <input id="Receiver_ID" name="Receiver_ID" class="input1" type="number" placeholder=" " required />
+                  <div class="cut"></div>
+                  <label for="Receiver_ID" class="placeholder">Receiver ID</label>
+                </div>
+                <div class="input1-container ic2">
+                  <input id="Sender_ID" name="Sender_ID" class="input1" type="number" placeholder=" " required />
                   <div class="cut"></div>
                   <label for="Sender_ID" class="placeholder">Sender ID</label>
                 </div>
-            <div class="input1-container ic2">
-              <input id="Message" name="Message" class="input1" type="text" placeholder=" " required/>
-              <div class="cut"></div>
-              <label for="Message" class="placeholder">Message</label>
-            </div>
-          </div>
+                <div class="input1-container ic2">
+                  <input id="Message" name="Message" class="input1" type="text" placeholder=" " required />
+                  <div class="cut"></div>
+                  <label for="Message" class="placeholder">Message</label>
+                </div>
+              </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="closex" data-dismiss="modal">Close</button>
-          <button id = "btnAddFeedback" name="btnAddFeedback" type="submit" class="confirmx">Add Feedback</button>
+          <button id="btnAddFeedback" name="btnAddFeedback" type="submit" class="confirmx">Add Feedback</button>
         </div>
       </div>
     </div>
-  </form>
-  </div>  
-  
+    </form>
+  </div>
+
   <!--ADD TRANSACTIONS MODAL-->
-  <div class="modal fade" id="addTransactionsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" name="transactionModal" aria-hidden="true" style="margin-top: -250px;">
+  <div class="modal fade" id="addTransactionsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    name="transactionModal" aria-hidden="true" style="margin-top: -250px;">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header" style="background-color: #83b2d0;">
@@ -1145,70 +1190,74 @@
         </div>
         <div class="modal-body">
           <center>
-            <form method="POST" id = "addTransactions" action = "{% url 'CasharkApp:transactionAdd'%}">
+            <form method="POST" id="addTransactions" action="{% url 'CasharkApp:transactionAdd'%}">
               {% csrf_token %}
               <div class="form1">
                 <div class="title1">Transactions</div>
-                  <hr>
-                  <div class="input1-container ic2">
-                    <input id="Amount" name="Amount" class="input1" type="number" placeholder=" " required/>
-                    <div class="cut"></div>
-                    <label for="Amount" class="placeholder">Amount</label>
-                  </div>
-    
-                  <div class="input1-container ic2">
-                    <input id="Interest_Rate" name="Interest_Rate" class="input1" type="number" placeholder=" " required/>
-                    <div class="cut"></div>
-                    <label for="Interest_Rate" class="placeholder">Interest Rate</label>
-                  </div>
-                  
-                  <div class="input1-container ic2">
-                    <input id="Date_Due" name="Date_Due" class="input1" type="date" placeholder=" " required/>
-                    <div class="cut"></div>
-                    <label for="Date_Due" class="placeholder">Date Due</label>
-                  </div>
-  
-                  <div class="input1-container ic2">
-                    <input id="Transaction_Date" name="Transaction_Date" class="input1" type="date" placeholder=" " required/>
-                    <div class="cut"></div>
-                    <label for="Transaction_Date" class="placeholder">Transaction Date</label>
-                  </div>
-  
-                  <div class="input1-container ic2">
-                    <input id="Status" name="Status" class="input1" type="text" placeholder=" " required/>
-                    <div class="cut"></div>
-                    <label for="Status" class="placeholder">Status</label>
-                  </div>
-  
-                  <div class="input1-container ic2">
-                    <input id="Borrower_ID" name="Borrower_ID" class="input1" type="number" placeholder=" " required/>
-                    <div class="cut"></div>
-                    <label for="Borrower_ID" class="placeholder">Borrower ID</label>
-                  </div>
-  
-                  <div class="input1-container ic2">
-                    <input id="Lender_ID" name="Lender_ID" class="input1" type="number" placeholder=" " required/>
-                    <div class="cut"></div>
-                    <label for="Lender_ID" class="placeholder">Lender ID</label>
-                  </div>
-  
-                  <div class="input1-container ic2">
-                    <input id="Date_Paid" name="Date_Paid" class="input1" type="date" placeholder=" " required/>
-                    <div class="cut"></div>
-                    <label for="Date_Paid" class="placeholder">Date Paid</label>
-                  </div>
+                <hr>
+                <div class="input1-container ic2">
+                  <input id="Amount" name="Amount" class="input1" type="number" placeholder=" " required />
+                  <div class="cut"></div>
+                  <label for="Amount" class="placeholder">Amount</label>
+                </div>
+
+                <div class="input1-container ic2">
+                  <input id="Interest_Rate" name="Interest_Rate" class="input1" type="number" placeholder=" "
+                    required />
+                  <div class="cut"></div>
+                  <label for="Interest_Rate" class="placeholder">Interest Rate</label>
+                </div>
+
+                <div class="input1-container ic2">
+                  <input id="Date_Due" name="Date_Due" class="input1" type="date" placeholder=" " required />
+                  <div class="cut"></div>
+                  <label for="Date_Due" class="placeholder">Date Due</label>
+                </div>
+
+                <div class="input1-container ic2">
+                  <input id="Transaction_Date" name="Transaction_Date" class="input1" type="date" placeholder=" "
+                    required />
+                  <div class="cut"></div>
+                  <label for="Transaction_Date" class="placeholder">Transaction Date</label>
+                </div>
+
+                <div class="input1-container ic2">
+                  <input id="Status" name="Status" class="input1" type="text" placeholder=" " required />
+                  <div class="cut"></div>
+                  <label for="Status" class="placeholder">Status</label>
+                </div>
+
+                <div class="input1-container ic2">
+                  <input id="Borrower_ID" name="Borrower_ID" class="input1" type="number" placeholder=" " required />
+                  <div class="cut"></div>
+                  <label for="Borrower_ID" class="placeholder">Borrower ID</label>
+                </div>
+
+                <div class="input1-container ic2">
+                  <input id="Lender_ID" name="Lender_ID" class="input1" type="number" placeholder=" " required />
+                  <div class="cut"></div>
+                  <label for="Lender_ID" class="placeholder">Lender ID</label>
+                </div>
+
+                <div class="input1-container ic2">
+                  <input id="Date_Paid" name="Date_Paid" class="input1" type="date" placeholder=" " required />
+                  <div class="cut"></div>
+                  <label for="Date_Paid" class="placeholder">Date Paid</label>
+                </div>
               </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="closex" data-dismiss="modal">Close</button>
-            <button id = "btnAddTransaction" name="btnAddTransaction" type="submit" class="confirmx">Add Transaction</button>
-          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="closex" data-dismiss="modal">Close</button>
+          <button id="btnAddTransaction" name="btnAddTransaction" type="submit" class="confirmx">Add
+            Transaction</button>
         </div>
       </div>
-    </div>  
-    </form>
+    </div>
+  </div>
+  </form>
   <!--ADD MESSAGE MODAL-->
-  <div class="modal fade" id="addMessageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: -250px;">
+  <div class="modal fade" id="addMessageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true" style="margin-top: -250px;">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header" style="background-color: #83b2d0;">
@@ -1219,69 +1268,71 @@
         </div>
         <div class="modal-body">
           <center>
-          <form method="POST" id = "addMessage" action = "{% url 'CasharkApp:messageAdd'%}">
-            {% csrf_token %}
-            <div class="form1">
+            <form method="POST" id="addMessage" action="{% url 'CasharkApp:messageAdd'%}">
+              {% csrf_token %}
+              <div class="form1">
                 <div class="title1">Message</div>
                 <hr>
                 <div class="input1-container ic2">
-                  <input id="Time_Sent" name="Time_Sent" class="input1" type="time" placeholder=" " required/>
+                  <input id="Time_Sent" name="Time_Sent" class="input1" type="time" placeholder=" " required />
                   <div class="cut"></div>
                   <label for="Time_Sent" class="placeholder">Time Sent</label>
                 </div>
-  
+
                 <div class="input1-container ic2">
-                  <input id="Date_Sent" name="Date_Sent" class="input1" type="date" placeholder=" " required/>
+                  <input id="Date_Sent" name="Date_Sent" class="input1" type="date" placeholder=" " required />
                   <div class="cut"></div>
                   <label for="Date_Sent" class="placeholder">Date Sent</label>
                 </div>
-                
+
                 <div class="input1-container ic2">
-                  <input id="Message" name="Message" class="input1" type="text" placeholder=" " required/>
+                  <input id="Message" name="Message" class="input1" type="text" placeholder=" " required />
                   <div class="cut"></div>
                   <label for="Message" class="placeholder">Message</label>
                 </div>
 
                 <div class="input1-container ic2">
-                  <input id="Sender_ID" name="Sender_ID" class="input1" type="number" placeholder=" " required/>
+                  <input id="Sender_ID" name="Sender_ID" class="input1" type="number" placeholder=" " required />
                   <div class="cut"></div>
                   <label for="Sender_ID" class="placeholder">Sender ID</label>
                 </div>
 
                 <div class="input1-container ic2">
-                  <input id="Transaction_ID" name="Transaction_ID" class="input1" type="number" placeholder=" " required/>
+                  <input id="Transaction_ID" name="Transaction_ID" class="input1" type="number" placeholder=" "
+                    required />
                   <div class="cut"></div>
                   <label for="Transaction_ID" class="placeholder">Transaction ID</label>
                 </div>
-            </div>
+              </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="closex" data-dismiss="modal">Close</button>
-          <button id = "btnAddMessage" name="btnAddMessage" type="submit" class="confirmx">Add Message</button>
+          <button id="btnAddMessage" name="btnAddMessage" type="submit" class="confirmx">Add Message</button>
         </div>
       </div>
     </div>
-  </div>  
+  </div>
   </form>
   <!--END CREATE USER MODAL-->
-  
-<script src="{% static '/js/jquery-3.5.1.min.js'%}"></script>
 
-<script src="{% static '/js/bootstrap.bundle.min.js'%}"></script>
-  
-<script src="{% static '/vendor/owl-carousel/js/owl.carousel.min.js'%}"></script>
-  
-<script src="{% static '/vendor/wow/wow.min.js'%}"></script>
-  
-<script src="{% static '/vendor/fancybox/js/jquery.fancybox.min.js'%}"></script>
-  
-<script src="{% static '/vendor/isotope/isotope.pkgd.min.js'%}"></script>
-  
-<script src="{% static '/js/google-maps.js'%}"></script>
-  
-<script src="{% static '/js/theme.js'%}"></script>
+  <script src="{% static '/js/jquery-3.5.1.min.js'%}"></script>
 
-<script src="{% static '/js/tabs.js'%}"></script>
+  <script src="{% static '/js/bootstrap.bundle.min.js'%}"></script>
 
-</body>
+  <script src="{% static '/vendor/owl-carousel/js/owl.carousel.min.js'%}"></script>
+
+  <script src="{% static '/vendor/wow/wow.min.js'%}"></script>
+
+  <script src="{% static '/vendor/fancybox/js/jquery.fancybox.min.js'%}"></script>
+
+  <script src="{% static '/vendor/isotope/isotope.pkgd.min.js'%}"></script>
+
+  <script src="{% static '/js/google-maps.js'%}"></script>
+
+  <script src="{% static '/js/theme.js'%}"></script>
+
+  <script src="{% static '/js/tabs.js'%}"></script>
+
+  </body>
+
 </html>

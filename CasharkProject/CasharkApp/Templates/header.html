@@ -1,0 +1,101 @@
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="copyright" content="MACode ID, https://macodeid.com/">
+
+    <link rel="stylesheet" href="{% static '/css/bootstrap.css'%}" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static '/css/maicons.css'%}" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static '/vendor/animate/animate.css'%}" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static '/vendor/owl-carousel/css/owl.carousel.css'%}" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static '/vendor/fancybox/css/jquery.fancybox.css'%}" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static '/css/theme.css'%}" rel="stylesheet">
+
+    <link rel="icon" href="{% static 'img/casharkicon.png'%}">
+</head>
+
+<body>
+
+    <!-- Back to top button -->
+    <div class="back-to-top"></div>
+
+    <header>
+        <div class="top-bar">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-8">
+                    </div>
+                    <div class="col-md-4 text-right d-none d-md-block">
+                        <div class="social-mini-button">
+                            <a href="https://www.facebook.com/st3r10official" target="blank"><span
+                                    class="mai-logo-facebook-f"></span></a>
+                            <a href="https://twitter.com/st3r10official" target="blank"><span
+                                    class="mai-logo-twitter"></span></a>
+                            <a href="https://www.youtube.com/channel/UCwzgkVy4QGM-J9wKzSplTfw" target="blank"><span
+                                    class="mai-logo-youtube"></span></a>
+                            <a href="https://open.spotify.com/artist/7oeyEGN0XiJUynY5Zit8Gu" target="blank"><span
+                                    class="mai-logo-linkedin"></span></a>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- .container -->
+        </div> <!-- .top-bar -->
+
+        <nav class="navbar navbar-expand-lg navbar-light sticky">
+            <div class="container">
+                <a href="{% url 'CasharkApp:index' %}"><img src="{% static '/img/casharklogowhite.png'%}" height="50"
+                        width="50"><img src="{% static '/img/Casharktext.png'%}" height="50" width="150"></a>
+
+                <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarContent"
+                    aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="navbar-collapse collapse" id="navbarContent">
+                    <ul class="navbar-nav ml-auto pt-3 pt-lg-0">
+                        <li class="nav-item">
+                            <a href="{% url 'CasharkApp:index' %}" class="nav-link">Home</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a href="{% url 'CasharkApp:about' %}" class="nav-link">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'CasharkApp:services' %}" class="nav-link">Services</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'CasharkApp:portfolio' %}" class="nav-link">Projects</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'CasharkApp:blog' %}" class="nav-link">News</a>
+                        </li>
+                        {% if request.session.User_ID == None %}
+                        <li class="nav-item">
+                            <a href="{% url 'CasharkApp:contact' %}" class="nav-link">Sign Up</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'CasharkApp:login' %}" class="nav-link">Login</a>
+                        </li>
+                        {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="{% url 'CasharkApp:profile' %}">Welcome,
+                                {{user.First_Name}}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="{% url 'CasharkApp:admindash' %}"> Admin Dashboard </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'CasharkApp:logout' %}" class="nav-link">Logout</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div> <!-- .container -->
+        </nav> <!-- .navbar -->
