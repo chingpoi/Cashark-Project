@@ -145,6 +145,19 @@ class ProfileView(View):
 
 class AdminView(View):
 	def get(self,request):
+		try:
+			request.session['User_ID']
+			currentUser = User.objects.get(User_ID = request.session['User_ID'])
+			user = User.objects.get(User_ID = currentUser.User_ID)
+			context = {
+				'user': user,
+			}
+			return render(request,'userdash.html',context)
+		except KeyError:
+			pass
+		return render(request,'userdash.html')
+
+	def get(self,request):
 		currentUser = User.objects.get(User_ID = request.session['User_ID'])
 
 		user = User.objects.all()
@@ -179,9 +192,12 @@ class AdminView(View):
 				usBirthdate = request.POST.get("Birthdate")
 				usBalance = request.POST.get("Balance")
 				usCS = request.POST.get("Credit_Score")
+				usAddressCity = request.POST.get("Address_City")
+				usAddressStreet = request.POST.get("Address_Street")
+				usAddressProvince = request.POST.get("Address_Province")
 
 				update_user = User.objects.filter(User_ID = usID).update(
-					First_Name = usFname, Last_Name = usLname, Mobile_Number = usMobileNumber, Email = usEmail, Password = usPassword, Birthdate = usBirthdate, Balance = usBalance, Credit_Score = usCS)
+					First_Name = usFname, Last_Name = usLname, Mobile_Number = usMobileNumber, Email = usEmail, Password = usPassword, Birthdate = usBirthdate, Balance = usBalance, Credit_Score = usCS, Address_City = usAddressCity, Address_Street = usAddressStreet, Address_Province = usAddressProvince)
 
 				print(update_user)
 				print('User Updated! Yey!')
