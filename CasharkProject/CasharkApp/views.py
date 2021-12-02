@@ -149,33 +149,27 @@ class AdminView(View):
 			request.session['User_ID']
 			currentUser = User.objects.get(User_ID = request.session['User_ID'])
 			user = User.objects.get(User_ID = currentUser.User_ID)
+			users = User.objects.all()
+			bankInfo = BankInfo.objects.all()
+			transaction = Transaction.objects.all()
+			message = Message.objects.all()
+			bank = Bank.objects.all()
+			feedback = Feedback.objects.all()
 			context = {
 				'user': user,
+				'users': users,
+				'bankInfo': bankInfo,
+				'transaction': transaction,
+				'message': message,
+				'bank': bank,
+				'feedback': feedback,
 			}
 			return render(request,'userdash.html',context)
 		except KeyError:
 			pass
 		return render(request,'userdash.html')
 
-	def get(self,request):
-		currentUser = User.objects.get(User_ID = request.session['User_ID'])
-
-		user = User.objects.all()
-		bankInfo = BankInfo.objects.all()
-		transaction = Transaction.objects.all()
-		message = Message.objects.all()
-		bank = Bank.objects.all()
-		feedback = Feedback.objects.all()
 	
-		context = {
-			'user': user,
-			'bankInfo': bankInfo,
-			'transaction': transaction,
-			'message': message,
-			'bank': bank,
-			'feedback': feedback,
-		}
-		return render(request,'userdash.html',context)
 
 	#FOR UPDATE AND DELETE FUNCTIONS/METHODS
 	def post(self, request):
