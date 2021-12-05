@@ -36,4 +36,20 @@ urlpatterns = [
     path('createFeedback', views.AdminView.AddFeedback, name = "feedbackAdd"),
     path('createTransaction', views.AdminView.AddTransaction, name = "transactionAdd"),
     path('createMessage', views.AdminView.AddMessage, name = "messageAdd"),
+
+    #UPDATE FUNCTIONS
+    path('updateUser', views.AdminView.UpdateUser, name = "updateUser"),
+    path('updateBank', views.AdminView.UpdateBank, name = "updateBank"),
+    path('updateBankInfo', views.AdminView.UpdateBankInfo, name = "updateBankInfo"),
+    path('updateFeedback', views.AdminView.UpdateFeedback, name = "updateFeedback"),
+    path('updateTransactions', views.AdminView.UpdateTransaction, name = "updateTransactions"),
+    path('updateMessage', views.AdminView.UpdateMessage, name = "updateMessage"),
+
+    #DELETE FUNCTIONS
+    path('deleteUser', views.AdminView.DeleteUser, name = "deleteUser"),
+    path('deleteBank', views.AdminView.DeleteBank, name = "deleteBank"),
+    path('deleteBankInfo', views.AdminView.DeleteBankInfo, name = "deleteBankInfo"),
+    path('deleteFeedback', views.AdminView.DeleteFeedback, name = "deleteFeedback"),
+    path('deleteTransactions', views.AdminView.DeleteTransactions, name = "deleteTransactions"),
+    path('deleteMessage', views.AdminView.DeleteMessage, name = "deleteMessage"),
 ]

@@ -176,145 +176,6 @@ class AdminView(View):
 			pass
 		return render(request,'userdash.html')
 
-	
-
-	#FOR UPDATE AND DELETE FUNCTIONS/METHODS
-	def post(self, request):
-		if request.method == 'POST':
-			#FOR USER
-			if 'btnUpdateUser' in request.POST:
-				print('User Update Button has been Clicked')
-				usID = request.POST.get("User_ID")
-				usFname = request.POST.get("First_Name")
-				usLname = request.POST.get("Last_Name")
-				usMobileNumber = request.POST.get("Mobile_Number")
-				usEmail = request.POST.get("Email")
-				usPassword = request.POST.get("Password")
-				usBirthdate = request.POST.get("Birthdate")
-				usBalance = request.POST.get("Balance")
-				usCS = request.POST.get("Credit_Score")
-				usAddressCity = request.POST.get("Address_City")
-				usAddressStreet = request.POST.get("Address_Street")
-				usAddressProvince = request.POST.get("Address_Province")
-
-				update_user = User.objects.filter(User_ID = usID).update(
-					First_Name = usFname, Last_Name = usLname, Mobile_Number = usMobileNumber, Email = usEmail, Password = usPassword, Birthdate = usBirthdate, Balance = usBalance, Credit_Score = usCS, Address_City = usAddressCity, Address_Street = usAddressStreet, Address_Province = usAddressProvince)
-
-				print(update_user)
-				print('User Updated! Yey!')
-				return redirect('http://127.0.0.1:8000/admindashboard/')
-			elif 'btnDeleteUser' in request.POST:
-				print('User Delete Button has been Clicked')
-				usID = request.POST.get("User_ID")
-				User.objects.filter(User_ID = usID).delete()
-				print('USER Record Deleted')
-				return redirect('http://127.0.0.1:8000/admindashboard/')
-
-			#FOR BANK
-			elif 'btnUpdateBank' in request.POST:
-				print('Bank Update Button has been Clicked')
-				bankID = request.POST.get("Bank_ID")
-				bankAccNumber = request.POST.get("Account_Number")
-				bankBalance = request.POST.get("Balance")
-
-				update_bank = Bank.objects.filter(Bank_ID = bankID).update(
-					Account_Number = bankAccNumber, Balance = bankBalance
-				)
-
-				print(update_bank)
-				print('BANK UPDATED! YEYY!!')
-				return redirect('http://127.0.0.1:8000/admindashboard/')
-			elif 'btnDeleteBank' in request.POST:
-				print('Bank Delete Button has been clicked')
-				bankID = request.POST.get("Bank_ID")
-				Bank.objects.filter(Bank_ID = bankID).delete()
-				print('BANK Record Deleted')
-				return redirect('http://127.0.0.1:8000/admindashboard/')
-
-			#FOR BANK INFO
-			elif 'btnUpdateBankInfo' in request.POST:
-				print('Bank Info Update Button has been Clicked')
-				bankInfoID = request.POST.get("Bank_Info_ID")
-				bankInfoBank = request.POST.get("Bank")
-
-				update_BankInfo = BankInfo.objects.filter(Bank_Info_ID = bankInfoID).update(Bank = bankInfoBank)
-
-				print(update_BankInfo)
-				print('Bank Info UPDATED! NOICE!')
-				return redirect('http://127.0.0.1:8000/admindashboard/')
-			elif 'btnDeleteBankInfo' in request.POST:
-				print('Bank Info Delete Button has been clicked')
-				bankInfoID = request.POST.get("Bank_Info_ID")
-				BankInfo.objects.filter(Bank_Info_ID = bankInfoID).delete()
-				print('BANK Info Record Deleted')
-				return redirect('http://127.0.0.1:8000/admindashboard/')
-
-			#FOR FEEDBACK
-			elif 'btnUpdateFeedback' in request.POST:
-				print('Feedbank Update Button has been Clicked')
-				feedbackID = request.POST.get("Feedback_ID")
-				feedbackMessage = request.POST.get("Message")
-
-				update_Feedback = Feedback.objects.filter(Feedback_ID = feedbackID).update(Message = feedbackMessage)
-
-				print(update_Feedback)
-				print('Feedback UPDATED! NOIIIICEEEEE!')
-				return redirect('http://127.0.0.1:8000/admindashboard/')
-			elif 'btnDeleteFeedback' in request.POST:
-				print('Feedback Delete Button has been clicked')
-				feedbackID = request.POST.get("Feedback_ID")
-				Feedback.objects.filter(Feedback_ID = feedbackID).delete()
-				print('FEEDBACK Record Deleted')
-				return redirect('http://127.0.0.1:8000/admindashboard/')
-
-			#FOR TRANSACTIONS
-			elif 'btnUpdateTransactions' in request.POST:
-				print('Transactions Update Button has been Clicked')
-				transID = request.POST.get("Transaction_ID")
-				transAmount = request.POST.get("Amount")
-				transInterRate = request.POST.get("Interest_Rate")
-				transDateDue = request.POST.get("Date_Due")
-				transDate = request.POST.get("Transaction_Date")
-				transStatus = request.POST.get("Status")
-				transDatePaid = request.POST.get("Date_Paid")
-
-				update_Transactions = Transaction.objects.filter(Transaction_ID = transID).update(
-					Amount = transAmount, Interest_Rate = transInterRate, Date_Due = transDateDue, Transaction_Date = transDate, Status = transStatus, Date_Paid = transDatePaid
-				)
-
-				print(update_Transactions)
-				print('Transactions UPDATED! LEZGO!')
-				return redirect('http://127.0.0.1:8000/admindashboard/')
-			elif 'btnDeleteTransactions' in request.POST:
-				print('Transactions Delete Button has been clicked')
-				transID = request.POST.get("Transaction_ID")
-				Transaction.objects.filter(Transaction_ID = transID).delete()
-				print('TRANSACTION Record Deleted')
-				return redirect('http://127.0.0.1:8000/admindashboard/')
-
-			#FOR MESSAGE
-			elif 'btnUpdateMessage' in request.POST:
-				print('Message Update Button has been Clicked')
-				msgID = request.POST.get("Message_ID")
-				msgTimeSent = request.POST.get("Time_Sent")
-				msgDateSent = request.POST.get("Date_Sent")
-				msg = request.POST.get("Message")
-
-				update_Message = Message.objects.filter(Message_ID = msgID).update(
-					Time_Sent = msgTimeSent, Date_Sent = msgDateSent, Message = msg
-				)
-
-				print(update_Message)
-				print('Message UPDATED! SHEESHH!')
-				return redirect('http://127.0.0.1:8000/admindashboard/')
-			elif 'btnDeleteMessage' in request.POST:
-				print('Message Delete Button has been clicked')
-				msgID = request.POST.get("Message_ID")
-				Message.objects.filter(Message_ID = msgID).delete()
-				print('MESSAGE Record Deleted')
-				return redirect('http://127.0.0.1:8000/admindashboard/')
-
-
 	#FOR ADD USER
 	def AddUser(request):
 		if request.method == "POST":
@@ -491,6 +352,162 @@ class AdminView(View):
 			else:
 				print(form.errors)
 				return HttpResponse('not valid')
+
+
+	#UPDATE FUNCTIONS
+
+	#FOR USER
+	def UpdateUser(request):
+		if request.method == "POST":
+			usID = request.POST.get("User_ID")
+			usFname = request.POST.get("First_Name")
+			usLname = request.POST.get("Last_Name")
+			usMobileNumber = request.POST.get("Mobile_Number")
+			usEmail = request.POST.get("Email")
+			usPassword = request.POST.get("Password")
+			usBirthdate = request.POST.get("Birthdate")
+			usBalance = request.POST.get("Balance")
+			usCS = request.POST.get("Credit_Score")
+			usAddressCity = request.POST.get("Address_City")
+			usAddressStreet = request.POST.get("Address_Street")
+			usAddressProvince = request.POST.get("Address_Province")
+
+			User.objects.filter(User_ID = usID).update(
+				First_Name = usFname, 
+				Last_Name = usLname, 
+				Mobile_Number = usMobileNumber, 
+				Email = usEmail, 
+				Password = usPassword, 
+				Birthdate = usBirthdate, 
+				Balance = usBalance, 
+				Credit_Score = usCS, 
+				Address_City = usAddressCity, 
+				Address_Street = usAddressStreet, 
+				Address_Province = usAddressProvince)
+
+			return redirect('http://127.0.0.1:8000/admindashboard/')
+
+	#FOR BANK
+	def UpdateBank(request):
+		if request.method == "POST":
+			bankID = request.POST.get("Bank_ID")
+			bankAccNumber = request.POST.get("Account_Number")
+			bankBalance = request.POST.get("Balance")
+
+			Bank.objects.filter(Bank_ID = bankID).update(
+				Account_Number = bankAccNumber, 
+				Balance = bankBalance)
+
+			return redirect('http://127.0.0.1:8000/admindashboard/')
+
+	#FOR BANK INFO
+	def UpdateBankInfo(request):
+		if request.method == "POST":
+			bankInfoID = request.POST.get("Bank_Info_ID")
+			bankInfoBank = request.POST.get("Bank")
+
+			BankInfo.objects.filter(Bank_Info_ID = bankInfoID).update(
+				Bank = bankInfoBank)
+
+			return redirect('http://127.0.0.1:8000/admindashboard/')
+
+	#FOR FEEDBACK
+	def UpdateFeedback(request):
+		if request.method == "POST":
+			feedbackID = request.POST.get("Feedback_ID")
+			feedbackMessage = request.POST.get("Message")
+
+			Feedback.objects.filter(Feedback_ID = feedbackID).update(
+				Message = feedbackMessage)
+
+			return redirect('http://127.0.0.1:8000/admindashboard/')
+
+	#FOR TRANSACTION
+	def UpdateTransaction(request):
+		if request.method == "POST":
+			transID = request.POST.get("Transaction_ID")
+			transAmount = request.POST.get("Amount")
+			transInterRate = request.POST.get("Interest_Rate")
+			transDateDue = request.POST.get("Date_Due")
+			transDate = request.POST.get("Transaction_Date")
+			transStatus = request.POST.get("Status")
+			transDatePaid = request.POST.get("Date_Paid")
+
+			Transaction.objects.filter(Transaction_ID = transID).update(
+				Amount = transAmount, 
+				Interest_Rate = transInterRate, 
+				Date_Due = transDateDue, 
+				Transaction_Date = transDate, 
+				Status = transStatus, 
+				Date_Paid = transDatePaid)
+
+			return redirect('http://127.0.0.1:8000/admindashboard/')
+
+	#FOR MESSAGE
+	def UpdateMessage(request):
+		if request.method == "POST":
+			msgID = request.POST.get("Message_ID")
+			msgTimeSent = request.POST.get("Time_Sent")
+			msgDateSent = request.POST.get("Date_Sent")
+			msg = request.POST.get("Message")
+
+			Message.objects.filter(Message_ID = msgID).update(
+				Time_Sent = msgTimeSent, 
+				Date_Sent = msgDateSent, 
+				Message = msg)
+			
+			return redirect('http://127.0.0.1:8000/admindashboard/')
+
+
+
+	#DELETE FUNCTIONS
+	#FOR USER
+	def DeleteUser(request):
+		if request.method == "POST":
+			usID = request.POST.get("User_ID")
+			User.objects.filter(User_ID = usID).delete()
+			return redirect('http://127.0.0.1:8000/admindashboard/')
+
+
+	#FOR BANK
+	def DeleteBank(request):
+		if request.method == "POST":
+			bankID = request.POST.get("Bank_ID")
+			Bank.objects.filter(Bank_ID = bankID).delete()
+			return redirect('http://127.0.0.1:8000/admindashboard/')
+
+
+	#FOR BANK INFO
+	def DeleteBankInfo(request):
+		if request.method == "POST":
+			bankInfoID = request.POST.get("Bank_Info_ID")
+			BankInfo.objects.filter(Bank_Info_ID = bankInfoID).delete()
+			return redirect('http://127.0.0.1:8000/admindashboard/')
+
+
+	#FOR FEEDBACK
+	def DeleteFeedback(request):
+		if request.method == "POST":
+			feedbackID = request.POST.get("Feedback_ID")
+			Feedback.objects.filter(Feedback_ID = feedbackID).delete()
+			return redirect('http://127.0.0.1:8000/admindashboard/')
+
+
+	#FOR TRANSACTION
+	def DeleteTransactions(request):
+		if request.method == "POST":
+			transID = request.POST.get("Transaction_ID")
+			Transaction.objects.filter(Transaction_ID = transID).delete()
+			return redirect('http://127.0.0.1:8000/admindashboard/')
+
+
+	#FOR MESSAGE
+	def DeleteMessage(request):
+		if request.method == "POST":
+			msgID = request.POST.get("Message_ID")
+			Message.objects.filter(Message_ID = msgID).delete()
+			return redirect('http://127.0.0.1:8000/admindashboard/')
+
 
 
 

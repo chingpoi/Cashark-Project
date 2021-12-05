@@ -103,7 +103,7 @@
                       </div>
                       <div class="modal-body">
                         <center>
-                          <form method="POST" id="updateUser">
+                          <form method="POST" id="updateUser" action="updateUser">
                             {% csrf_token %}
                             <div class="form1">
                               <div class="title1">User</div>
@@ -214,7 +214,7 @@
                         <h4 class="modal-title w-100">Are you sure?</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                       </div>
-                      <form method="POST" id="deleteUser">
+                      <form method="POST" id="deleteUser" action="deleteUser">
                         {% csrf_token %}
                         <div class="modal-body">
                           <input type="text" class="form-control" id="User_ID" name="User_ID" value="{{u.User_ID}}"
@@ -294,7 +294,7 @@
                       </div>
                       <div class="modal-body">
                         <center>
-                          <form method="POST" id="updateBank">
+                          <form method="POST" id="updateBank" action="updateBank">
                             {% csrf_token %}
                             <div class="form1">
                               <div class="title1">Bank</div>
@@ -340,7 +340,7 @@
                         <h4 class="modal-title w-100">Are you sure?</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                       </div>
-                      <form method="POST" id="deleteBank">
+                      <form method="POST" id="deleteBank" action="deleteBank">
                         {% csrf_token %}
                         <div class="modal-body">
                           <input type="text" class="form-control" id="Bank_ID" name="Bank_ID" value="{{b.Bank_ID}}"
@@ -417,7 +417,7 @@
                       </div>
                       <div class="modal-body">
                         <center>
-                          <form method="POST" id="updateBankInfo">
+                          <form method="POST" id="updateBankInfo" action="updateBankInfo">
                             {% csrf_token %}
                             <div class="form1">
                               <div class="title1">Bank Info</div>
@@ -456,7 +456,7 @@
                         <h4 class="modal-title w-100">Are you sure?</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                       </div>
-                      <form method="POST" id="deleteBankInfo">
+                      <form method="POST" id="deleteBankInfo" action="deleteBankInfo">
                         {% csrf_token %}
                         <div class="modal-body">
                           <input type="text" class="form-control" id="Bank_Info_ID" name="Bank_Info_ID"
@@ -535,7 +535,7 @@
                       </div>
                       <div class="modal-body">
                         <center>
-                          <form method="POST" id="updateFeedback">
+                          <form method="POST" id="updateFeedback" action="updateFeedback">
                             {% csrf_token %}
                             <div class="form1">
                               <div class="title1">Feedback</div>
@@ -574,7 +574,7 @@
                         <h4 class="modal-title w-100">Are you sure?</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                       </div>
-                      <form method="POST" id="deleteFeedback">
+                      <form method="POST" id="deleteFeedback" action="deleteFeedback">
                         {% csrf_token %}
                         <div class="modal-body">
                           <input type="text" class="form-control" id="Feedback_ID" name="Feedback_ID"
@@ -663,7 +663,7 @@
                       </div>
                       <div class="modal-body">
                         <center>
-                          <form method="POST" id="updateTransactions">
+                          <form method="POST" id="updateTransactions" action="updateTransactions">
                             {% csrf_token %}
                             <div class="form1">
                               <div class="title1">Transactions</div>
@@ -737,7 +737,7 @@
                         <h4 class="modal-title w-100">Are you sure?</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                       </div>
-                      <form method="POST" id="deleteTransactions">
+                      <form method="POST" id="deleteTransactions" action="deleteTransactions">
                         {% csrf_token %}
                         <div class="modal-body">
                           <input type="text" class="form-control" id="Transaction_ID" name="Transaction_ID"
@@ -821,7 +821,7 @@
                       </div>
                       <div class="modal-body">
                         <center>
-                          <form method="POST" id="updateMessage">
+                          <form method="POST" id="updateMessage" action="updateMessage">
                             {% csrf_token %}
                             <div class="form1">
                               <div class="title1">Message</div>
@@ -874,7 +874,7 @@
                         <h4 class="modal-title w-100">Are you sure?</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                       </div>
-                      <form method="POST" id="deleteMessage">
+                      <form method="POST" id="deleteMessage" action="deleteMessage">
                         {% csrf_token %}
                         <div class="modal-body">
                           <input type="text" class="form-control" id="Message_ID" name="Message_ID"
