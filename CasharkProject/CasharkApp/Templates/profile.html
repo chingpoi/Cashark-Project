@@ -45,6 +45,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
+
         <div class="modal-body">
           <div class="col-sm-12 py-2">
             <form action="bankInfo" method="POST" class="form-contact">
@@ -125,31 +126,28 @@
                 </div>
               </div> -->
               <div class="row">
+                {% for b in bank %}
                 {% for i in bankInfo %}
-                {% ifequal user.User_ID i.User_ID_id %}
+                {% ifequal b.Bank_Info_ID_id i.Bank_Info_ID%}
                 <div class="col-md-6 col-lg-4 py-3 ">
                   <div class="card-blog align-items-center">
                     <div class="header">
                       <img class="cursor-pointer" src="{% static '/img/icons/GCash.png '%}" data-toggle="modal"
-                        data-target="#addFunds{{i.Bank_Info_ID}}" alt="">
+                        data-target="#addFunds{{b.Bank_ID}}" alt="">
                       <div class="entry-footer">
                         <h5 class="GCash">{{i.Bank}}</h5>
-                        {% for b in bank %}
-                        {% ifequal i.Bank_Info_ID b.Bank_Info_ID_id %}
                         <h6 class="balance">Balance: {{ b.Balance }}</h6>
-                        {% endifequal %}
-                        {% endfor %}
                       </div>
                     </div>
                   </div>
                 </div>
                 <!-- Add Funds Modal -->
-                <div class="modal fade" id="addFunds{{i.Bank_Info_ID}}" tabindex="-1" role="dialog"
+                <div class="modal fade" id="addFunds{{b.Bank_ID}}" tabindex="-1" role="dialog"
                   aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h5 class="modal-title" id="withdrawModalLabel">{{i.Bank_Info_ID}}</h5>
+                        <h5 class="modal-title" id="withdrawModalLabel">{{b.Bank_ID}}</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
@@ -182,6 +180,7 @@
                   </div>
                 </div>
                 {% endifequal %}
+                {% endfor %}
                 {% endfor %}
 
                 <div class="col-md-6 col-lg-4 py-3 ">
@@ -253,12 +252,19 @@
           <div class="col-lg-4">
             <div class="widget">
               <div class="widget-box">
-                <h3 class="widget-title">Search</h3>
+                <!-- <h3 class="widget-title">Search</h3>
                 <div class="divider"></div>
                 <form action="#" class="search-form">
                   <div class="form-group">
                     <input type="text" class="form-control" placeholder="Type a keyword and hit enter">
                     <button type="submit" class="btn"><span class="icon mai-search"></span></button>
+                  </div>
+                </form> -->
+                <h2 class="widget-title">Wallet</h2>
+                <div class="divider"></div>
+                <form action="#" class="search-form">
+                  <div class="form-group">
+                    <h3 class="display-5">${{user.Balance}}</h3>
                   </div>
                 </form>
               </div>

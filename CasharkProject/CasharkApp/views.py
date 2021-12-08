@@ -134,7 +134,7 @@ class ProfileView(View):
 		currentUser = User.objects.get(User_ID = request.session['User_ID'])
 
 		user = User.objects.get(User_ID = currentUser.User_ID)
-		bankInfo = BankInfo.objects.all()
+		bankInfo = BankInfo.objects.filter(User_ID = user)
 		transaction = Transaction.objects.all()
 		message = Message.objects.all()
 		bank = Bank.objects.all()
