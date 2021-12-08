@@ -457,38 +457,78 @@
                 <div class="row">
                   <div class="col-sm-6 py-2">
                     <label for="fname" class="fg-grey">First Name</label>
-                    <input type="text" class="form-control" id="fname" name="First_Name" placeholder="First..">
-
+                    <input type="text" class="form-control" id="fname" name="First_Name" placeholder="First name"
+                      required>
                   </div>
                   <div class="col-sm-6 py-2">
                     <label for="lname" class="fg-grey">Last Name</label>
-                    <input type="text" class="form-control" id="lname" name="Last_Name" placeholder="Last..">
-
+                    <input type="text" class="form-control" id="lname" name="Last_Name" placeholder="Last name"
+                      required>
                   </div>
                   <div class="col-12 py-2">
                     <label for="email" class="fg-grey">Email</label>
-                    <input type="email" class="form-control" id="id_email" name="Email" placeholder="Email..">
-
+                    <input type="email" class="form-control" id="id_email" name="Email" placeholder="Email" required>
                   </div>
                   <div class="col-12 py-2">
                     <label for="password" class="fg-grey">Password</label>
-                    <input type="password" class="form-control" id="id_password" name="Password"
-                      placeholder="Password..">
-
+                    <input type="password" class="form-control" id="id_password" name="Password" placeholder="Password"
+                      pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
+                    <small id="passwordHelp" class="text-danger">
+                      *Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more
+                      characters.
+                    </small>
                   </div>
+                  <div class="col-12 mb-2">
+                    <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"
+                      placeholder="Confirm password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
+                  </div>
+
+                  <div class="col-12 ml-4">
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault"
+                        onclick="showPassword()">
+                      <label class="form-check-label" for="flexSwitchCheckDefault">Show Password</label>
+                    </div>
+                  </div>
+
                   <!--<div class="col-12 py-2">
-                  <label for="message" class="fg-grey"></label>
-                  <textarea id="message" rows="8" class="form-control" placeholder="Enter message.."></textarea>
-                </div>-->
-                  <div class="col-12 mt-3">
-                    <button type="submit" class="btn btn-primary px-5">Submit</button>
+                    <label for="message" class="fg-grey"></label>
+                    <textarea id="message" rows="8" class="form-control" placeholder="Enter message.."></textarea>
+                  </div>-->
+                  <div class="col-sm-6 py-2">
+                    <label for="Birthdate" class="fg-grey">Birthdate</label>
+                    <input type="date" class="form-control" id="Birthdate" name="Birthdate" placeholder="Birthdate"
+                      required>
+                  </div>
+                  <div class="col-sm-6 py-2">
+                    <label for="Mobile Number" class="fg-grey">Mobile Number</label>
+                    <input type="number" class="form-control" id="Mobile_Number" name="Mobile_Number"
+                      placeholder="Mobile number" required>
+                  </div>
+                  <div class="col-sm-4 py-2">
+                    <label for="province" class="fg-grey" required>Province</label>
+                    <select class="form-control" name="Address_Province" id="province" required></select>
+                  </div>
+                  <div class="col-sm-4 py-2">
+                    <label for="city" class="fg-grey " required>City</label>
+                    <select class="form-control" name="Address_City" id="city" required></select>
+                  </div>
+                  <div class="col-sm-4 py-2">
+                    <label for="Street" class="fg-grey" required>Street</label>
+                    <input type="text" class="form-control" id="Street" name="Address_Street" placeholder="Street"
+                      required>
+                  </div>
+                  <div class="col-12 mt-3 text-right">
+                    <button type="submit" class="btn btn-primary px-5">Register</button>
                   </div>
                 </div>
               </form>
             </div>
           </div>
-        </div>
-      </div>
+        </div> <!-- .container -->
+      </div> <!-- .page-section -->
+
+
 
       <div class="page-section">
         <div class="container-fluid">
