@@ -32,6 +32,8 @@
   </div> <!-- .page-banner -->
 
 
+
+
   <!-- Modal -->
   <div class="modal fade" id="withdrawModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
@@ -129,7 +131,7 @@
                   <div class="card-blog align-items-center">
                     <div class="header">
                       <img class="cursor-pointer" src="{% static '/img/icons/GCash.png '%}" data-toggle="modal"
-                        data-target="#withdrawModal" alt="">
+                        data-target="#addFunds{{i.Bank_Info_ID}}" alt="">
                       <div class="entry-footer">
                         <h5 class="GCash">{{i.Bank}}</h5>
                         {% for b in bank %}
@@ -138,6 +140,44 @@
                         {% endifequal %}
                         {% endfor %}
                       </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Add Funds Modal -->
+                <div class="modal fade" id="addFunds{{i.Bank_Info_ID}}" tabindex="-1" role="dialog"
+                  aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="withdrawModalLabel">{{i.Bank_Info_ID}}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <div class="col-sm-12 py-2">
+                          <form action="bankInfo" method="POST" class="form-contact">
+                            {% csrf_token %}
+                            <input type="text" class="form-control" id="User_ID" value="{{user.User_ID}}" name="User_ID"
+                              hidden>
+                            <label for="Bank" class="fg-grey">addFunds</label>
+                            <select name="Bank" class="form-control" id="Bank">
+                              <option value="" disabled selected>Select a bank</option>
+                              <option value="GCash">GCash</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-12 py-2">
+                          <label for="Account_Number" class="fg-grey">Account Number</label>
+                          <input type="text" class="form-control" id="Account_Number" name="Account_Number"
+                            placeholder="Account number">
+                        </div>
+
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Confirm</button>
+                      </div>
+                      </form>
                     </div>
                   </div>
                 </div>
