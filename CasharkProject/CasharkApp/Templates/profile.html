@@ -47,7 +47,7 @@
         </div>
 
         <div class="modal-body">
-          <div class="col-sm-12 py-2">
+          <div class="col-sm-12 py-2 mh-100">
             <form action="bankInfo" method="POST" class="form-contact">
               {% csrf_token %}
               <input type="text" class="form-control" id="User_ID" value="{{user.User_ID}}" name="User_ID" hidden>
@@ -129,14 +129,13 @@
                 {% for b in bank %}
                 {% for i in bankInfo %}
                 {% ifequal b.Bank_Info_ID_id i.Bank_Info_ID%}
-                <div class="col-md-6 col-lg-4 py-3 ">
+                <div class="col-md-6 col-lg-4 py-3  align-items-center">
                   <div class="card-blog align-items-center">
-                    <div class="header">
+                    <div class="header text-center">
                       <img class="cursor-pointer" src="{% static '/img/icons/GCash.png '%}" data-toggle="modal"
                         data-target="#addFunds{{b.Bank_ID}}" alt="">
                       <div class="entry-footer">
-                        <h5 class="GCash">{{i.Bank}}</h5>
-                        <h6 class="balance">Balance: {{ b.Balance }}</h6>
+                        <h5>{{i.Bank}}</h5>
                       </div>
                     </div>
                   </div>
@@ -147,33 +146,28 @@
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h5 class="modal-title" id="withdrawModalLabel">{{b.Bank_ID}}</h5>
+                        <h5 class="modal-title" id="withdrawModalLabel">{{i.Bank}}</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
                       </div>
+
                       <div class="modal-body">
                         <div class="col-sm-12 py-2">
-                          <form action="bankInfo" method="POST" class="form-contact">
-                            {% csrf_token %}
-                            <input type="text" class="form-control" id="User_ID" value="{{user.User_ID}}" name="User_ID"
-                              hidden>
-                            <label for="Bank" class="fg-grey">addFunds</label>
-                            <select name="Bank" class="form-control" id="Bank">
-                              <option value="" disabled selected>Select a bank</option>
-                              <option value="GCash">GCash</option>
-                            </select>
+                          Account No. : {{b.Account_Number}}
                         </div>
                         <div class="col-sm-12 py-2">
-                          <label for="Account_Number" class="fg-grey">Account Number</label>
-                          <input type="text" class="form-control" id="Account_Number" name="Account_Number"
-                            placeholder="Account number">
+                          Wallet: {{b.Balance}}
+                        </div>
+
+                        <div class="col-sm-12 py-2">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Withdraw</button>
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Deposit</button>
                         </div>
 
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Confirm</button>
                       </div>
                       </form>
                     </div>
@@ -185,7 +179,7 @@
 
                 <div class="col-md-6 col-lg-4 py-3 ">
                   <div class="card-blog align-items-center">
-                    <div class="header">
+                    <div class="header text-center">
                       <img class="cursor-pointer" src="{% static '/img/icons/add.png '%}" data-toggle="modal"
                         data-target="#withdrawModal" alt="">
                       <div class="entry-footer">

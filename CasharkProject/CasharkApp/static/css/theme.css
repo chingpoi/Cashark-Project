@@ -2419,19 +2419,15 @@ a.fg-light:hover, a.fg-light:focus {
   width: 80%;
 }
 
-.add-bank {
-  margin: auto;
-  padding-left: 35px;
-  margin-top: 20px;
+.card-blog{
+  max-height: 50px;
 }
 
-.GCash {
-  margin: auto;
-  padding-left: 55px;
+.add-bank{
+  margin-top: 25px;
 }
 
-.balance {
-  margin: auto;
-  padding-left: 40px;
-}
+
+
+
 
