@@ -157,22 +157,107 @@
                           Account No. : {{b.Account_Number}}
                         </div>
                         <div class="col-sm-12 py-2">
-                          Wallet: {{b.Balance}}
+                          Balance: ${{b.Balance}}
                         </div>
-
+                        <input type="text" class="form-control" id="Bank_ID" value="{{b.Bank_ID}}" name="Bank_ID"
+                          hidden>
                         <div class="col-sm-12 py-2">
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Withdraw</button>
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Deposit</button>
+                          <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal"
+                            href="#withdraw{{b.Bank_ID}}">Withdraw</button>
+                          <button type="button" class="btn btn-success" data-dismiss="modal" data-toggle="modal"
+                            href="#deposit{{b.Bank_ID}}">Deposit</button>
                         </div>
 
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                       </div>
+
+                    </div>
+                  </div>
+                </div>
+
+
+                <!-- Withdraw -->
+                <div class="modal fade" id="withdraw{{b.Bank_ID}}" tabindex="-1" role="dialog"
+                  aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="withdrawModalLabel">Withdraw</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+
+                      <div class="modal-body">
+                        <div class="col-sm-12 py-2 mh-100">
+                          <form action="withdraw" method="POST" class="form-contact">
+                            {% csrf_token %}
+                            <input type="text" class="form-control" id="User_ID" value="{{user.User_ID}}" name="User_ID"
+                              hidden>
+                            <input type="text" class="form-control" id="Bank_ID" value="{{b.Bank_ID}}" name="Bank_ID"
+                              hidden>
+                            Balance: ${{b.Balance}}
+                        </div>
+                        <div class="col-sm-12 py-2">
+                          <label for="Amount" class="fg-grey">Withdraw Amount</label>
+                          <input type="number" min="1" max="{{b.Balance}}" class="form-control" id="Amount"
+                            name="Amount" placeholder="Amount" step=".01">
+                        </div>
+
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Confirm</button>
+                      </div>
                       </form>
                     </div>
                   </div>
                 </div>
+
+                <!-- Deposit -->
+                <div class="modal fade" id="deposit{{b.Bank_ID}}" tabindex="-1" role="dialog"
+                  aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="withdrawModalLabel">Deposit</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+
+                      <div class="modal-body">
+                        <div class="col-sm-12 py-2 mh-100">
+                          <form action="deposit" method="POST" class="form-contact">
+                            {% csrf_token %}
+                            <input type="text" class="form-control" id="User_ID" value="{{user.User_ID}}" name="User_ID"
+                              hidden>
+                            <input type="text" class="form-control" id="Bank_ID" value="{{b.Bank_ID}}" name="Bank_ID"
+                              hidden>
+                            Wallet: ${{user.Balance}}
+                        </div>
+                        <div class="col-sm-12 py-2">
+                          <label for="Amount" class="fg-grey">Deposit Amount</label>
+                          <input type="number" min="1" max="{{user.Balance}}" class="form-control" id="Amount"
+                            name="Amount" placeholder="Amount" step=".01">
+                        </div>
+
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Confirm</button>
+                      </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+
+
+
+
+
                 {% endifequal %}
                 {% endfor %}
                 {% endfor %}

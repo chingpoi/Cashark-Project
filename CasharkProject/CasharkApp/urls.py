@@ -22,6 +22,8 @@ urlpatterns = [
     path('logout', views.Functions.Logout, name="logout"),
     path('userLogin', views.Functions.UserLogin, name = "userLogin"),
     path('bankInfo', views.Functions.BankInfo, name = "bankInfo"),
+    path('withdraw', views.Functions.Withdraw, name = "withdraw"),
+    path('deposit', views.Functions.Deposit, name = "deposit"),
 
     #DASHBOARD ADD FUNCTIONS
     path('createUser', views.AdminView.AddUser, name = "userAdd"),

@@ -2404,8 +2404,8 @@ a.fg-light:hover, a.fg-light:focus {
 /*# sourceMappingURL=theme.css.map */
 
 .modal-open {
-  overflow:hidden;
-  overflow-y:scroll;
+  overflow:hidden !important;
+  overflow:scroll !important;
   padding-right:0 !important;
 }
 
@@ -2426,6 +2426,7 @@ a.fg-light:hover, a.fg-light:focus {
 .add-bank{
   margin-top: 25px;
 }
+
 
 
 

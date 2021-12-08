@@ -574,5 +574,53 @@ class Functions(View):
 					print(form.errors)
 					return HttpResponse('not valid')
 
+	def Withdraw(request):
+			if request.method == "POST":
+				user = request.session['User_ID']
+				userID = User.objects.get(User_ID = user)
+
+				bank = request.POST.get("Bank_ID")
+				amount = request.POST.get("Amount")
+
+				withdrawBank = Bank.objects.get(Bank_ID = bank)
+				withdrawAmount = float(withdrawBank.Balance) - float(amount)
+
+				Bank.objects.filter(Bank_ID = bank).update(
+				Balance = withdrawAmount)
+
+				walletAmount = float(userID.Balance) + float(amount)
+
+				User.objects.filter(User_ID = user).update(
+				Balance = walletAmount)
+
+
+
+				return redirect('http://127.0.0.1:8000/user-profile')
+			else:
+				return HttpResponse('not valid')
+
+	def Deposit(request):
+			if request.method == "POST":
+				user = request.session['User_ID']
+				userID = User.objects.get(User_ID = user)
+
+				bank = request.POST.get("Bank_ID")
+				amount = request.POST.get("Amount")
+
+				withdrawBank = Bank.objects.get(Bank_ID = bank)
+				withdrawAmount = float(withdrawBank.Balance) + float(amount)
+
+				Bank.objects.filter(Bank_ID = bank).update(
+				Balance = withdrawAmount)
+
+				walletAmount = float(userID.Balance) - float(amount)
+
+				User.objects.filter(User_ID = user).update(
+				Balance = walletAmount)
+
+				return redirect('http://127.0.0.1:8000/user-profile')
+			else:
+				return HttpResponse('not valid')
+
 
 				
