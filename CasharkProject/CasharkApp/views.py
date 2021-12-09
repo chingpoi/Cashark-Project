@@ -201,7 +201,7 @@ class AdminView(View):
 			message = Message.objects.all()
 			bank = Bank.objects.all()
 			feedback = Feedback.objects.all()
-			admin = AdminList.objects.all()
+			admin = AdminList.objects.exclude(User_ID = user.User_ID)
 			context = {
 				'user': user,
 				'users': users,
@@ -591,6 +591,9 @@ class Functions(View):
 			if user.Password == request.POST['Password']:
 				request.session['User_ID'] = user.User_ID
 
+			if(AdminList.objects.filter(User_ID = request.session['User_ID']).exists()):
+				AdminList.objects.filter(User_ID = request.session['User_ID']).update(
+				Last_Accessed = datetime.datetime.now())
 				return redirect('http://127.0.0.1:8000/user-profile')
 			else:
 				return HttpResponse("Your Email and Password do not Match.")
