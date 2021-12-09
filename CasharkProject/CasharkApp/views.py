@@ -676,6 +676,12 @@ class Functions(View):
 			else:
 				return HttpResponse('not valid')
 
+	def DemoteAdmin(request):
+		if request.method == "POST":
+			admin = request.POST.get("Admin_ID")
+			AdminList.objects.filter(Admin_ID = admin).delete()
+			return redirect('http://127.0.0.1:8000/admindashboard/')
+
 
 			
 

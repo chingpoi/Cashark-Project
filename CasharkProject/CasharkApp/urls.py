@@ -25,6 +25,7 @@ urlpatterns = [
     path('withdraw', views.Functions.Withdraw, name = "withdraw"),
     path('deposit', views.Functions.Deposit, name = "deposit"),
     path('promoteUser', views.Functions.PromoteUser, name = "promoteUser"),
+    path('demoteAdmin', views.Functions.DemoteAdmin, name = "demoteAdmin"),
 
     #DASHBOARD ADD FUNCTIONS
     path('createUser', views.AdminView.AddUser, name = "userAdd"),
