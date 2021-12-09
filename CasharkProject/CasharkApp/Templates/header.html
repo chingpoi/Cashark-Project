@@ -5,6 +5,8 @@
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
+
+
     <meta name="copyright" content="MACode ID, https://macodeid.com/">
 
     <link rel="stylesheet" href="{% static '/css/bootstrap.css'%}" rel="stylesheet">
@@ -20,6 +22,9 @@
     <link rel="stylesheet" href="{% static '/css/theme.css'%}" rel="stylesheet">
 
     <link rel="icon" href="{% static 'img/casharkicon.png'%}">
+    <script src="{% static '/js/cityFunction.js'%}"></script>
+
+    <script src="{% static '/js/city.js'%}"></script>
 </head>
 
 <body>
@@ -84,10 +89,12 @@
                             <a href="{% url 'CasharkApp:login' %}" class="nav-link {{Login}}">Login</a>
                         </li>
                         {% else %}
+                        {% if isAdmin == True %}
                         <li class="nav-item">
                             <a class="nav-link {{Admin}}" href="{% url 'CasharkApp:admindash' %}"> Admin
                                 Dashboard </a>
                         </li>
+                        {% endif %}
                         <li class="nav-item">
                             <a class="nav-link text-white {{Profile}}" href="{% url 'CasharkApp:profile' %}">Welcome,
                                 {{user.First_Name}}</a>

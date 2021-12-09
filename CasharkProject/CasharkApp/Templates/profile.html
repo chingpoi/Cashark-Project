@@ -61,6 +61,8 @@
             <label for="Account_Number" class="fg-grey">Account Number</label>
             <input type="text" class="form-control" id="Account_Number" name="Account_Number"
               placeholder="Account number">
+
+
           </div>
 
         </div>
@@ -153,24 +155,23 @@
                       </div>
 
                       <div class="modal-body">
-                        <div class="col-sm-12 py-2">
-                          Account No. : {{b.Account_Number}}
-                        </div>
-                        <div class="col-sm-12 py-2">
-                          Balance: ${{b.Balance}}
-                        </div>
+
+                        <h2 class="widget-title">Account No.</h2>
+                        <h3 class="display-5">{{b.Account_Number}}</h3>
+                        <hr>
+                        <h2 class="widget-title">Balance</h2>
+                        <h3 class="display-5">${{user.Balance}}</h3>
+
                         <input type="text" class="form-control" id="Bank_ID" value="{{b.Bank_ID}}" name="Bank_ID"
                           hidden>
-                        <div class="col-sm-12 py-2">
-                          <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal"
-                            href="#withdraw{{b.Bank_ID}}">Withdraw</button>
-                          <button type="button" class="btn btn-success" data-dismiss="modal" data-toggle="modal"
-                            href="#deposit{{b.Bank_ID}}">Deposit</button>
-                        </div>
 
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal"
+                          href="#withdraw{{b.Bank_ID}}">Withdraw</button>
+
+                        <button type="button" class="btn btn-success" data-dismiss="modal" data-toggle="modal"
+                          href="#deposit{{b.Bank_ID}}">Deposit</button>
                       </div>
 
                     </div>
@@ -198,7 +199,11 @@
                               hidden>
                             <input type="text" class="form-control" id="Bank_ID" value="{{b.Bank_ID}}" name="Bank_ID"
                               hidden>
-                            Balance: ${{b.Balance}}
+                            <h2 class="widget-title">Bank Balance</h2>
+                            <h3 class="display-5">${{b.Balance}}</h3>
+                            <hr>
+                            <h2 class="widget-title">Wallet</h2>
+                            <h3 class="display-5">${{user.Balance}}</h3>
                         </div>
                         <div class="col-sm-12 py-2">
                           <label for="Amount" class="fg-grey">Withdraw Amount</label>
@@ -236,7 +241,11 @@
                               hidden>
                             <input type="text" class="form-control" id="Bank_ID" value="{{b.Bank_ID}}" name="Bank_ID"
                               hidden>
-                            Wallet: ${{user.Balance}}
+                            <h2 class="widget-title">Bank Balance</h2>
+                            <h3 class="display-5">${{b.Balance}}</h3>
+                            <hr>
+                            <h2 class="widget-title">Wallet</h2>
+                            <h3 class="display-5">${{user.Balance}}</h3>
                         </div>
                         <div class="col-sm-12 py-2">
                           <label for="Amount" class="fg-grey">Deposit Amount</label>
@@ -296,7 +305,8 @@
                 </div>
               </div>
               <div class="post-content">
-                <p>Born and raised in Metropolitan Cebu, my goal is to help people who need money the most. To loan them
+                <p>Born and raised in Metropolitan Cebu, my goal is to help people who need money the most. To loan
+                  them
                   a generous amount
                   To use my priviledge in helping people who are in need and are honest in using their money.
                 </p>

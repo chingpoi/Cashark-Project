@@ -2,17 +2,22 @@ from django.shortcuts import redirect, render
 from django.views.generic import View
 from .forms import *
 from django.http import HttpResponse
+import datetime
 
 # Create your views here.
 class AboutView(View):
 	def get(self,request):
 		try:
+			isAdmin = False
 			request.session['User_ID']
+			if(AdminList.objects.filter(User_ID = request.session['User_ID']).exists()):
+				isAdmin = True
 			currentUser = User.objects.get(User_ID = request.session['User_ID'])
 			user = User.objects.get(User_ID = currentUser.User_ID)
 			context = {
 				'user': user,
-				'About': 'active'
+				'About': 'active',
+				'isAdmin': isAdmin
 			}
 			return render(request,'about.html',context)
 		except KeyError:
@@ -23,11 +28,15 @@ class AboutView(View):
 class BlogSingleView(View):
 	def get(self,request):
 		try:
+			isAdmin = False
 			request.session['User_ID']
+			if(AdminList.objects.filter(User_ID = request.session['User_ID']).exists()):
+				isAdmin = True
 			currentUser = User.objects.get(User_ID = request.session['User_ID'])
 			user = User.objects.get(User_ID = currentUser.User_ID)
 			context = {
 				'user': user,
+				'isAdmin': isAdmin
 			}
 			return render(request,'blog-single.html',context)
 		except KeyError:
@@ -37,11 +46,15 @@ class BlogSingleView(View):
 class BlogDoubleView(View):
 	def get(self,request):
 		try:
+			isAdmin = False
 			request.session['User_ID']
+			if(AdminList.objects.filter(User_ID = request.session['User_ID']).exists()):
+				isAdmin = True
 			currentUser = User.objects.get(User_ID = request.session['User_ID'])
 			user = User.objects.get(User_ID = currentUser.User_ID)
 			context = {
 				'user': user,
+				'isAdmin': isAdmin
 			}
 			return render(request,'blog-double.html',context)
 		except KeyError:
@@ -51,12 +64,16 @@ class BlogDoubleView(View):
 class BlogView(View):
 	def get(self,request):
 		try:
+			isAdmin = False
 			request.session['User_ID']
+			if(AdminList.objects.filter(User_ID = request.session['User_ID']).exists()):
+				isAdmin = True
 			currentUser = User.objects.get(User_ID = request.session['User_ID'])
 			user = User.objects.get(User_ID = currentUser.User_ID)
 			context = {
 				'user': user,
-				'Blog': 'active'
+				'Blog': 'active',
+				'isAdmin': isAdmin
 			}
 			return render(request,'blog.html',context)
 		except KeyError:
@@ -66,12 +83,16 @@ class BlogView(View):
 class ContactView(View):
 	def get(self,request):
 		try:
+			isAdmin = False
 			request.session['User_ID']
+			if(AdminList.objects.filter(User_ID = request.session['User_ID']).exists()):
+				isAdmin = True
 			currentUser = User.objects.get(User_ID = request.session['User_ID'])
 			user = User.objects.get(User_ID = currentUser.User_ID)
 			context = {
 				'user': user,
-				'SignUp': 'active'
+				'SignUp': 'active',
+				'isAdmin': isAdmin
 			}
 			return render(request,'contact.html',context)
 		except KeyError:
@@ -81,12 +102,16 @@ class ContactView(View):
 class IndexView(View):
 	def get(self,request):
 		try:
+			isAdmin = False
 			request.session['User_ID']
+			if(AdminList.objects.filter(User_ID = request.session['User_ID']).exists()):
+				isAdmin = True
 			currentUser = User.objects.get(User_ID = request.session['User_ID'])
 			user = User.objects.get(User_ID = currentUser.User_ID)
 			context = {
 				'user': user,
-				'Index': 'active'
+				'Index': 'active',
+				'isAdmin': isAdmin
 			}
 			return render(request,'index.html',context)
 		except KeyError:
@@ -102,12 +127,16 @@ class LoginView(View):
 class PortfolioView(View):
 	def get(self,request):
 		try:
+			isAdmin = False
 			request.session['User_ID']
+			if(AdminList.objects.filter(User_ID = request.session['User_ID']).exists()):
+				isAdmin = True
 			currentUser = User.objects.get(User_ID = request.session['User_ID'])
 			user = User.objects.get(User_ID = currentUser.User_ID)
 			context = {
 				'user': user,
-				'Portfolio': 'active'
+				'Portfolio': 'active',
+				'isAdmin': isAdmin
 			}
 			return render(request,'portfolio.html',context)
 		except KeyError:
@@ -117,12 +146,16 @@ class PortfolioView(View):
 class ServicesView(View):
 	def get(self,request):
 		try:
+			isAdmin = False
 			request.session['User_ID']
+			if(AdminList.objects.filter(User_ID = request.session['User_ID']).exists()):
+				isAdmin = True
 			currentUser = User.objects.get(User_ID = request.session['User_ID'])
 			user = User.objects.get(User_ID = currentUser.User_ID)
 			context = {
 				'user': user,
-				'Service': 'active'
+				'Service': 'active',
+				'isAdmin': isAdmin
 			}
 			return render(request,'services.html',context)
 		except KeyError:
@@ -131,6 +164,9 @@ class ServicesView(View):
 
 class ProfileView(View):
 	def get(self,request):
+		isAdmin = False
+		if(AdminList.objects.filter(User_ID = request.session['User_ID']).exists()):
+			isAdmin = True
 		currentUser = User.objects.get(User_ID = request.session['User_ID'])
 
 		user = User.objects.get(User_ID = currentUser.User_ID)
@@ -146,13 +182,17 @@ class ProfileView(View):
 			'transaction': transaction,
 			'message': message,
 			'bank': bank,
-			'Profile': 'active'
+			'Profile': 'active',
+			'isAdmin': isAdmin
 		}
 		return render(request,'profile.html',context)
 
 class AdminView(View):
 	def get(self,request):
 		try:
+			isAdmin = False
+			if(AdminList.objects.filter(User_ID = request.session['User_ID']).exists()):
+				isAdmin = True
 			currentUser = User.objects.get(User_ID = request.session['User_ID'])
 			user = User.objects.get(User_ID = currentUser.User_ID)
 			users = User.objects.all()
@@ -161,6 +201,7 @@ class AdminView(View):
 			message = Message.objects.all()
 			bank = Bank.objects.all()
 			feedback = Feedback.objects.all()
+			admin = AdminList.objects.all()
 			context = {
 				'user': user,
 				'users': users,
@@ -169,7 +210,9 @@ class AdminView(View):
 				'message': message,
 				'bank': bank,
 				'feedback': feedback,
-				'Admin': 'active'
+				'admin':admin,
+				'Admin': 'active',
+				'isAdmin': isAdmin
 			}
 			return render(request,'userdash.html',context)
 		except KeyError:
@@ -621,6 +664,20 @@ class Functions(View):
 				return redirect('http://127.0.0.1:8000/user-profile')
 			else:
 				return HttpResponse('not valid')
+
+
+	def PromoteUser(request):
+			if request.method == "POST":
+				user = request.POST.get('User_ID')
+				userID = User.objects.get(User_ID = user)
+				form = AdminList(User_ID = userID, Last_Accessed = datetime.datetime.now())
+				form.save()
+				return redirect('http://127.0.0.1:8000/admindashboard')
+			else:
+				return HttpResponse('not valid')
+
+
+			
 
 
 				

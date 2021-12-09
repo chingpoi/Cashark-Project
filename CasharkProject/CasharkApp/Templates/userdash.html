@@ -48,6 +48,8 @@
               onclick="openTab(event, 'Transactions')">Transactions</button>
             <button class="tablinks btn btn-primary text-white" type="button" data-div="6"
               onclick="openTab(event, 'MessageTab')">Message</button>
+            <button class="tablinks btn btn-primary text-white" type="button" data-div="7"
+              onclick="openTab(event, 'Admin')">Admin</button>
 
             <!--USER TABLE-->
             <table class="table">
@@ -84,7 +86,10 @@
                   <td>{{u.Address_Street}}</td>
                   <td>{{u.Address_Province}}</td>
 
-                  <td><button class="btn btn-primary" data-toggle="modal"
+                  <td>
+                    <button class="btn btn-primary" data-toggle="modal"
+                      data-target="#promoteUser-{{u.User_ID}}">PROMOTE</button>
+                    <button class="btn btn-primary" data-toggle="modal"
                       data-target="#updateUser-{{u.User_ID}}">UPDATE</button>
                     <button class="btn btn-primary" data-toggle="modal"
                       data-target="#deleteUser-{{u.User_ID}}">DELETE</button>
@@ -230,6 +235,33 @@
                     </div>
                   </div>
                 </div>
+
+                </form>
+
+                <div id="promoteUser-{{u.User_ID}}" class="modal fade">
+                  <div class="modal-dialog modal-confirm">
+                    <div class="modal-content">
+                      <div class="modal-header flex-column">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title w-100">Are you sure?</h4>
+
+                      </div>
+                      <form method="POST" id="promoteUser" action="promoteUser">
+                        {% csrf_token %}
+                        <div class="modal-body">
+                          <input type="text" class="form-control" id="User_ID" name="User_ID" value="{{u.User_ID}}"
+                            hidden>
+                          <p>Do you want to promote User no. {{u.User_ID}}: {{u.First_Name}}?</p>
+                        </div>
+                        <input type="text" class="form-control" id="User_ID" name="User_ID" value="{{u.User_ID}}"
+                          hidden>
+                        <div class="modal-footer justify-content-center">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                          <button type="submit" class="btn btn-success">Promote</button>
+                        </div>
+                    </div>
+                  </div>
+                </div>
                 </form>
                 {% endfor %}
               </tbody>
@@ -257,6 +289,8 @@
               onclick="openTab(event, 'Transactions')">Transactions</button>
             <button class="tablinks btn btn-primary text-white" type="button" data-div="6"
               onclick="openTab(event, 'MessageTab')">Message</button>
+            <button class="tablinks btn btn-primary text-white" type="button" data-div="7"
+              onclick="openTab(event, 'Admin')">Admin</button>
             <!--BANK TABLE-->
             <table class="table">
               <thead>
@@ -382,6 +416,8 @@
               onclick="openTab(event, 'Transactions')">Transactions</button>
             <button class="tablinks btn btn-primary text-white" type="button" data-div="6"
               onclick="openTab(event, 'MessageTab')">Message</button>
+            <button class="tablinks btn btn-primary text-white" type="button" data-div="7"
+              onclick="openTab(event, 'Admin')">Admin</button>
             <!--BANK INFO TABLE-->
             <table class="table">
               <thead>
@@ -498,6 +534,8 @@
               onclick="openTab(event, 'Transactions')">Transactions</button>
             <button class="tablinks btn btn-primary text-white" type="button" data-div="6"
               onclick="openTab(event, 'MessageTab')">Message</button>
+            <button class="tablinks btn btn-primary text-white" type="button" data-div="7"
+              onclick="openTab(event, 'Admin')">Admin</button>
             <!--FEEDBACK TABLE-->
             <table class="table">
               <thead>
@@ -616,6 +654,8 @@
               onclick="openTab(event, 'Transactions')">Transactions</button>
             <button class="tablinks btn btn-primary text-white" type="button" data-div="6"
               onclick="openTab(event, 'MessageTab')">Message</button>
+            <button class="tablinks btn btn-primary text-white" type="button" data-div="7"
+              onclick="openTab(event, 'Admin')">Admin</button>
             <!--TRANSACTIONS TABLE-->
             <table class="table">
               <thead>
@@ -780,6 +820,8 @@
               onclick="openTab(event, 'Transactions')">Transactions</button>
             <button class="tablinks btn btn-primary text-white" type="button" data-div="6"
               onclick="openTab(event, 'MessageTab')">Message</button>
+            <button class="tablinks btn btn-primary text-white" type="button" data-div="7"
+              onclick="openTab(event, 'Admin')">Admin</button>
             <!--MESSAGE TABLE-->
             <table class="table">
               <thead>
@@ -864,6 +906,139 @@
                 </div>
                 </form>
                 <!--DELETE MESSAGE MODAL-->
+                <div id="deleteMessage-{{m.Message_ID}}" class="modal fade">
+                  <div class="modal-dialog modal-confirm">
+                    <div class="modal-content">
+                      <div class="modal-header flex-column">
+                        <div class="icon-box">
+                          <i class="material-icons">&#xE5CD;</i>
+                        </div>
+                        <h4 class="modal-title w-100">Are you sure?</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                      </div>
+                      <form method="POST" id="deleteMessage" action="deleteMessage">
+                        {% csrf_token %}
+                        <div class="modal-body">
+                          <input type="text" class="form-control" id="Message_ID" name="Message_ID"
+                            value="{{m.Message_ID}}" hidden>
+                          <p>Do you really want to delete the data of Message no. {{m.Message_ID}}: {{m.Time_Sent}}
+                            {{m.Date_Sent}} {{m.Message}}? This process cannot be undone.</p>
+                        </div>
+                        <div class="modal-footer justify-content-center">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                          <button type="submit" id="btnDeleteMessage" name="btnDeleteMessage"
+                            class="btn btn-danger">Delete</button>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+                </form>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          <button class="btn btn-primary" data-toggle="modal" data-target="#addMessageModal">Add Message</button>
+        </div> <!-- .container -->
+      </div> <!-- .page-section -->
+    </div> <!-- .tab -->
+    <div id="Admin" class="tabcontent">
+      <!--ADMIN-->
+      <div class="page-section" id="7">
+        <div class="container">
+          <div class="row justify-content-center">
+            <button class="tablinks btn btn-primary text-white" type="button" data-div="1"
+              onclick="openTab(event, 'User')">User</button>
+            <button class="tablinks btn btn-primary text-white" type="button" data-div="2"
+              onclick="openTab(event, 'Bank')">Bank</button>
+            <button class="tablinks btn btn-primary text-white" type="button" data-div="3"
+              onclick="openTab(event, 'Bank Info')">Bank Info</button>
+            <button class="tablinks btn btn-primary text-white" type="button" data-div="4"
+              onclick="openTab(event, 'Feedback')">Feedback</button>
+            <button class="tablinks btn btn-primary text-white" type="button" data-div="5"
+              onclick="openTab(event, 'Transactions')">Transactions</button>
+            <button class="tablinks btn btn-primary text-white" type="button" data-div="6"
+              onclick="openTab(event, 'MessageTab')">Message</button>
+            <button class="tablinks btn btn-primary text-white" type="button" data-div="7"
+              onclick="openTab(event, 'Admin')">Admin</button>
+            <!--ADMIN TABLE-->
+            <table class="table">
+
+              <thead>
+                <tr>
+                  <th>Admin_ID</th>
+                  <th>User_ID</th>
+                  <th>Last_Accessed</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for a in admin %}
+                <tr>
+                  <td>{{a.Admin_ID}}</td>
+                  <td>{{a.User_ID}}</td>
+                  <td>{{a.Last_Accessed}}</td>
+
+                  <td><button class="btn btn-primary" data-toggle="modal"
+                      data-target="#updateMessage-{{m.Message_ID}}">UPDATE</button>
+                    <button class="btn btn-primary" data-toggle="modal"
+                      data-target="#deleteMessage-{{m.Message_ID}}">DELETE</button>
+                  </td>
+                </tr>
+                <!--UPDATE ADMIN MODAL-->
+                <div class="modal fade" id="updateMessage-{{m.Message_ID}}" tabindex="-1" role="dialog"
+                  aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: -250px;">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header" style="background-color: #83b2d0;">
+                        <h5 class="modal-title" id="exampleModalLabel" style="color: #ffffff;">Update Bank</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <center>
+                          <form method="POST" id="updateMessage" action="updateMessage">
+                            {% csrf_token %}
+                            <div class="form1">
+                              <div class="title1">Message</div>
+                              <hr>
+                              <div class="input1-container ic2">
+                                <input id="Message_ID" name="Message_ID" class="input1" type="number"
+                                  value="{{m.Message_ID}}" readonly />
+                                <div class="cut"></div>
+                                <label for="Message_ID" class="placeholder">Message ID</label>
+                              </div>
+                              <div class="input1-container ic2">
+                                <input id="Time_Sent" name="Time_Sent" class="input1" type="time"
+                                  value="{{m.Time_Sent}}" placeholder=" " required />
+                                <div class="cut"></div>
+                                <label for="Time_Sent" class="placeholder">Time Sent</label>
+                              </div>
+
+                              <div class="input1-container ic2">
+                                <input id="Date_Sent" name="Date_Sent" class="input1" type="date"
+                                  value="{{m.Date_Sent}}" placeholder=" " required />
+                                <div class="cut"></div>
+                                <label for="Date_Sent" class="placeholder">Date Sent</label>
+                              </div>
+
+                              <div class="input1-container ic2">
+                                <input id="Message" name="Message" class="input1" type="text" value="{{m.Message}}"
+                                  placeholder=" " required />
+                                <div class="cut"></div>
+                                <label for="Message" class="placeholder">Message</label>
+                              </div>
+                            </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="closex" data-dismiss="modal">Close</button>
+                        <button id="btnUpdateMessage" name="btnUpdateMessage" type="submit"
+                          class="confirmx">Update</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                </form>
+                <!--DELETE UPDATE MODAL-->
                 <div id="deleteMessage-{{m.Message_ID}}" class="modal fade">
                   <div class="modal-dialog modal-confirm">
                     <div class="modal-content">
