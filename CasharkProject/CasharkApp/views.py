@@ -195,7 +195,7 @@ class AdminView(View):
 				isAdmin = True
 			currentUser = User.objects.get(User_ID = request.session['User_ID'])
 			user = User.objects.get(User_ID = currentUser.User_ID)
-			users = User.objects.all()
+			users = User.objects.exclude(User_ID = user.User_ID)
 			bankInfo = BankInfo.objects.all()
 			transaction = Transaction.objects.all()
 			message = Message.objects.all()

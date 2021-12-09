@@ -159,15 +159,15 @@
                         <h2 class="widget-title">Account No.</h2>
                         <h3 class="display-5">{{b.Account_Number}}</h3>
                         <hr>
-                        <h2 class="widget-title">Balance</h2>
-                        <h3 class="display-5">${{user.Balance}}</h3>
+                        <h2 class="widget-title">Bank Balance</h2>
+                        <h3 class="display-5">${{b.Balance}}</h3>
 
                         <input type="text" class="form-control" id="Bank_ID" value="{{b.Bank_ID}}" name="Bank_ID"
                           hidden>
 
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal"
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="modal"
                           href="#withdraw{{b.Bank_ID}}">Withdraw</button>
 
                         <button type="button" class="btn btn-success" data-dismiss="modal" data-toggle="modal"
