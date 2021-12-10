@@ -587,16 +587,20 @@ class Functions(View):
 
 	def UserLogin(request):
 		if request.method == "POST":
+			if(User.objects.filter(Email = request.POST['Email']).exists() == False):
+				return HttpResponse("Email Does Not Exists")
+
 			user = User.objects.get(Email = request.POST['Email'])
 			if user.Password == request.POST['Password']:
 				request.session['User_ID'] = user.User_ID
+			else:
+				return HttpResponse("Your Email and Password do not Match.")
 
 			if(AdminList.objects.filter(User_ID = request.session['User_ID']).exists()):
 				AdminList.objects.filter(User_ID = request.session['User_ID']).update(
 				Last_Accessed = datetime.datetime.now())
 				return redirect('http://127.0.0.1:8000/user-profile')
-			else:
-				return redirect('http://127.0.0.1:8000/user-profile')
+			return redirect('http://127.0.0.1:8000/user-profile')
 
 	def BankInfo(request):
 			if request.method == "POST":
