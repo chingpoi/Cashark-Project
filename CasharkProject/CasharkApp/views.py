@@ -596,7 +596,7 @@ class Functions(View):
 				Last_Accessed = datetime.datetime.now())
 				return redirect('http://127.0.0.1:8000/user-profile')
 			else:
-				return HttpResponse("Your Email and Password do not Match.")
+				return redirect('http://127.0.0.1:8000/user-profile')
 
 	def BankInfo(request):
 			if request.method == "POST":
