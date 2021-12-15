@@ -38,7 +38,7 @@ class Transaction(models.Model):
     Transaction_Date = models.CharField(max_length = 10)
     Date_Due = models.CharField(max_length = 10)
     Date_Paid = models.CharField(max_length = 10, null = True, blank=True)
-    Status = models.CharField(max_length = 10)
+    Status = models.CharField(max_length = 50)
 
     class meta:
         db_table = 'tblTransaction'
@@ -47,7 +47,7 @@ class Transaction(models.Model):
 class Message(models.Model):
     Message_ID = models.AutoField(auto_created = True, primary_key = True)
     Transaction_ID = models.ForeignKey(Transaction, on_delete = models.CASCADE)
-    Sender_ID = models.ForeignKey(User, on_delete = models.CASCADE)
+    Sender_ID = models.ForeignKey(User, on_delete = models.CASCADE, related_name='mSender')
     Date_Sent = models.CharField(max_length = 10)
     Time_Sent = models.CharField(max_length = 10)
     Message = models.CharField(max_length = 200)
@@ -67,8 +67,8 @@ class Bank(models.Model):
 
 class Feedback(models.Model):
     Feedback_ID = models.AutoField(auto_created = True, primary_key = True)
-    Receiver_ID = models.ForeignKey(User, on_delete = models.CASCADE, related_name='Receiver')
-    Sender_ID = models.ForeignKey(User, on_delete = models.CASCADE, related_name='Sender')
+    Receiver_ID = models.ForeignKey(User, on_delete = models.CASCADE, related_name='fReceiver')
+    Sender_ID = models.ForeignKey(User, on_delete = models.CASCADE, related_name='fSender')
     Message = models.CharField(max_length = 200)
 
     class meta:
@@ -81,3 +81,13 @@ class AdminList(models.Model):
 
     class meta:
         db_table = 'tblAdminList'
+
+class Request(models.Model):
+    Request_ID = models.AutoField(auto_created = True, primary_key = True)
+    Receiver_ID = models.ForeignKey(User, on_delete = models.CASCADE, related_name='rReceiver')
+    Sender_ID = models.ForeignKey(User, on_delete = models.CASCADE, related_name='rSender')
+    Request_Description = models.CharField(max_length = 50)
+    Status = models.CharField(max_length = 50)
+
+    class meta:
+        db_table = 'tblRequest'

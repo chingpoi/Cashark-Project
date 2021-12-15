@@ -114,7 +114,7 @@
                 <div class="card-blog">
                   <div class="header">
                     <div class="avatar">
-                      <img src="{% static '/img/franco.jpg '%}" alt="">
+                      <img src="{% static '/img/franco.png '%}" alt="">
                     </div>
                     <div class="entry-footer">
                       <div class="post-author">Franco Dosdos</div>
@@ -361,40 +361,251 @@
               <div class="widget-box">
                 <h3 class="widget-title">Quickbar</h3>
                 <div class="divider"></div>
-                <div class="blog-item">
-                </div>
+
 
                 <div class="widget-box">
-                  <h3 class="widget-title">Look For</h3>
-                  <div class="divider"></div>
-                  <div class="tagcloud">
-                    <a href="#" class="tag-cloud-link">Loaner</a>
-                    <a href="#" class="tag-cloud-link">Borrower</a>
-                    <a href="#" class="tag-cloud-link">Enterprise</a>
+                  <h3 class="widget-title">Transactions</h3>
+                  <hr>
+
+                  {% for borrow in borrow %}
+                  <div class="widget-box">
+                    <h5 class="widget-title">Borrow from</h5>
+                    <h6>{{borrow.Lender_ID.First_Name}} {{borrow.Lender_ID.Last_Name}}</h6>
+                    <hr>
+                    <div class="footer">
+                      <a href="" data-toggle="modal" data-target="#borrow{{borrow.Transaction_ID}}">View<span
+                          class="mai-chevron-forward text-sm"></span></a>
+                    </div>
                   </div>
+
+                  <!-- Borrow -->
+                  <div class="modal fade" id="borrow{{borrow.Transaction_ID}}" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="withdrawModalLabel">Borrow from {{borrow.Lender_ID.First_Name}}
+                            {{borrow.Lender_ID.Last_Name}}</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+
+                        <div class="modal-body">
+                          <div class="col-sm-12 py-2 mh-100">
+                            <form action="sendBorrow" method="POST" class="form-contact">
+                              {% csrf_token %}
+                              <input type="text" class="form-control" id="Transaction_ID"
+                                value="{{borrow.Transaction_ID}}" name="Transaction_ID" hidden>
+
+
+                              <div class="col-sm-12 py-2">
+                                <label for="Amount" class="fg-grey">Borrow Amount</label>
+                                <input type="number" min="1" class="form-control" id="Amount" name="Amount"
+                                  placeholder="Amount" step=".01" required>
+                              </div>
+
+                              <div class="col-sm-12 py-2">
+                                <label for="Date_Due" class="fg-grey">Promise Date</label>
+                                <input type="date" class="form-control" id="Date_Due" name="Date_Due"
+                                  placeholder="Promise Date" min="{{borrow.Transaction_Date}}" required>
+                              </div>
+
+                          </div>
+
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                          <button type="submit" id="btnAccept" name="btnAccept" class="btn btn-success">Confirm</button>
+                        </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+
+                  {% endfor %}
+
+                  {% for lend in lend %}
+                  <div class="widget-box">
+                    <h5 class="widget-title">Lend to</h5>
+                    <h6>{{lend.Borrower_ID.First_Name}} {{lend.Borrower_ID.Last_Name}}</h6>
+                    <hr>
+                    <div class="footer">
+                      <a href="" data-toggle="modal" data-target="#lend{{lend.Transaction_ID}}">View<span
+                          class="mai-chevron-forward text-sm"></span></a>
+                    </div>
+                  </div>
+
+                  <!-- Lend -->
+                  <div class="modal fade" id="lend{{lend.Transaction_ID}}" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="withdrawModalLabel">Lend</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+
+                        <div class="modal-body">
+                          <div class="col-sm-12 py-2 mh-100">
+                            <form action="requestResponse" method="POST" class="form-contact">
+                              {% csrf_token %}
+                              <input type="text" class="form-control" id="Transaction_ID"
+                                value="{{lend.Transaction_ID}}" name="Transaction_ID" hidden>
+
+                              <h4 class="text-grey">Amount</h4>
+                              <h6 class="display-5">${{lend.Amount}}</h6>
+                              <h4 class="text-grey">Date Due</h4>
+                              <h6 class="display-5">{{lend.Date_Due}}</h6>
+
+
+                              <div class="col-sm-12 py-2">
+                                <label for="Amount" class="fg-grey">Borrow Amount</label>
+                                <input type="number" min="1" class="form-control" id="Amount" name="Amount"
+                                  placeholder="Amount" step=".01">
+                              </div>
+
+                              <div class="col-sm-12 py-2">
+                                <label for="Date_Due" class="fg-grey">Promise Date</label>
+                                <input type="date" class="form-control" id="Date_Due" name="Date_Due"
+                                  placeholder="Promise Date" min="{{borrow.Transaction_Date}}" required>
+                              </div>
+
+                          </div>
+                          <div class="modal-footer">
+                            <button type="submit" id="btnDeny" name="btnDeny" class="btn btn-danger">Deny</button>
+                            <button type="submit" id="btnAccept" name="btnAccept"
+                              class="btn btn-success">Accept</button>
+                          </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                    {% endfor %}
+
+                  </div>
+
+
+                  <div class="widget-box">
+                    <h3 class="widget-title">Requests</h3>
+                    <hr>
+                    {% for requestReceive in requestReceive %}
+                    <div class="widget-box">
+                      <h5 class="widget-title">Borrow</h5>
+                      <hr>
+                      <div class="footer">
+                        <h6>Borrow request from <span class="text-primary"> <br>
+                            <b class="text-secondary">{{requestReceive.Sender_ID.First_Name}}
+                              {{requestReceive.Sender_ID.Last_Name}}</b> </h6>
+                        <a href="" data-toggle="modal"
+                          data-target="#requestReceive{{requestReceive.Request_ID}}">View<span
+                            class="mai-chevron-forward text-sm"></span></a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Request Receive -->
+                  <div class="modal fade" id="requestReceive{{requestReceive.Request_ID}}" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="withdrawModalLabel">Borrow Request</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+
+                        <div class="modal-body">
+                          <div class="col-sm-12 py-2 mh-100">
+                            <form action="requestResponse" method="POST" class="form-contact">
+                              {% csrf_token %}
+                              <input type="text" class="form-control" id="Request_ID"
+                                value="{{requestReceive.Request_ID}}" name="Request_ID" hidden>
+
+
+                              <h3 class="widget-title text-center"><span
+                                  class="fg-primary">{{requestReceive.Sender_ID.First_Name}}
+                                  {{requestReceive.Sender_ID.Last_Name}}</span> sent you a borrow request. </h3>
+                          </div>
+
+                        </div>
+                        <div class="modal-footer">
+                          <button type="submit" id="btnDeny" name="btnDeny" class="btn btn-danger">Deny</button>
+                          <button type="submit" id="btnAccept" name="btnAccept" class="btn btn-success">Accept</button>
+                        </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+
+                  {% endfor %}
+
                 </div>
 
                 <div class="widget-box">
                   <h3 class="widget-title">Recommended Profiles</h3>
                   <div class="divider"></div>
-                  <div class="card-blog">
+
+                  {% for users in users %}
+                  <div class="card-blog mb-3" id="card-blog">
                     <div class="header">
-                      <div class="avatar">
-                        <img src="{% static '/img/ching.png '%}" alt="">
+                      <div class="avatar" id="{{users.First_Name}}">
+                        <img src="{% static '/img/'%}{{users.First_Name|lower}}.png" alt="">
                       </div>
                       <div class="entry-footer">
-                        <div class="post-author">Jasper Ching</div>
-                        <a href="#" class="post-date">5 Nov 2021</a>
+                        <div class="post-author">{{users.First_Name}} {{users.Last_Name}}</div>
+                        <p class="post-date">5 Nov 2021</p>
                       </div>
                     </div>
-                    <div class="body">
-                      <div class="post-title"><a href="{% url 'CasharkApp:blog-single' %}">I Am A Loaner</a></div>
-                      <div class="post-excerpt">I've been known to give generous deadlines.</div>
-                    </div>
                     <div class="footer">
-                      <a href="">Read More <span class="mai-chevron-forward text-sm"></span></a>
+                      <a href="" data-toggle="modal" data-target="#request{{users.User_ID}}">Send a Request <span
+                          class="mai-chevron-forward text-sm"></span></a>
                     </div>
                   </div>
+
+                  <!-- Request -->
+                  <div class="modal fade" id="request{{users.User_ID}}" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="withdrawModalLabel">Request</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+
+                        <div class="modal-body">
+                          <div class="col-sm-12 py-2 mh-100">
+                            <form action="sendBorrowRequest" method="POST" class="form-contact">
+                              {% csrf_token %}
+                              <input type="text" class="form-control" id="Receiver_ID" value="{{users.User_ID}}"
+                                name="Receiver_ID" hidden>
+
+                              <input type="text" class="form-control" id="Sender_ID" value="{{user.User_ID}}"
+                                name="Sender_ID" hidden>
+                              <h3 class="widget-title text-center">Do you want to send a borrow request to <span
+                                  class="fg-primary">{{users.First_Name}}
+                                  {{users.Last_Name}}</span> </h3>
+                          </div>
+
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                          <button type="submit" class="btn btn-success">Confirm</button>
+                        </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  {% endfor %}
+
+
                 </div>
               </div>
 

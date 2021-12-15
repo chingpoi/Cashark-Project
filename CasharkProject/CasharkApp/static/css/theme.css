@@ -1924,6 +1924,18 @@ a.fg-light:hover, a.fg-light:focus {
           box-shadow: 0 2px 6px rgba(51, 55, 75, 0.16);
 }
 
+#card-blog {
+  position: relative;
+  display: block;
+  margin: 0 auto;
+  padding: 32px 20px 70px 20px;
+  max-width: 260px;
+  min-height: 150px;
+  border-radius: 6px;
+  -webkit-box-shadow: 0 2px 6px rgba(51, 55, 75, 0.16);
+          box-shadow: 0 2px 6px rgba(51, 55, 75, 0.16);
+}
+
 .card-blog .header {
   margin-bottom: 16px;
 }
@@ -2404,8 +2416,8 @@ a.fg-light:hover, a.fg-light:focus {
 /*# sourceMappingURL=theme.css.map */
 
 .modal-open {
-  overflow:hidden !important;
-  overflow:scroll !important;
+  overflow-x:hidden ;
+
   padding-right:0 !important;
 }
 
@@ -2425,6 +2437,11 @@ a.fg-light:hover, a.fg-light:focus {
 
 .add-bank{
   margin-top: 25px;
+}
+
+.red-link{
+color: #F64C72;
+text-align: left;
 }
 
 

@@ -26,6 +26,9 @@ urlpatterns = [
     path('deposit', views.Functions.Deposit, name = "deposit"),
     path('promoteUser', views.Functions.PromoteUser, name = "promoteUser"),
     path('demoteAdmin', views.Functions.DemoteAdmin, name = "demoteAdmin"),
+    path('sendBorrowRequest', views.Functions.SendBorrowRequest, name = "sendBorrowRequest"),
+    path('requestResponse', views.Functions.RequestResponse, name = "requestResponse"),
+    path('sendBorrow', views.Functions.SendBorrow, name = "sendBorrow"),
 
     #DASHBOARD ADD FUNCTIONS
     path('createUser', views.AdminView.AddUser, name = "userAdd"),

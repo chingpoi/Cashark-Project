@@ -3,7 +3,7 @@ from django.views.generic import View
 from .forms import *
 from django.http import HttpResponse
 import datetime
-
+from django.http import HttpResponseRedirect
 # Create your views here.
 class AboutView(View):
 	def get(self,request):
@@ -170,10 +170,14 @@ class ProfileView(View):
 		currentUser = User.objects.get(User_ID = request.session['User_ID'])
 
 		user = User.objects.get(User_ID = currentUser.User_ID)
+		users = User.objects.exclude(User_ID = currentUser.User_ID)
 		bankInfo = BankInfo.objects.filter(User_ID = user)
 		transaction = Transaction.objects.all()
 		message = Message.objects.all()
 		bank = Bank.objects.all()
+		requestReceive = Request.objects.filter(Receiver_ID = currentUser.User_ID, Status = 'Pending')
+		transactionBorrow = Transaction.objects.filter(Borrower_ID = currentUser.User_ID, Status = 'Pending')
+		transactionLend = Transaction.objects.filter(Lender_ID = currentUser.User_ID, Status = 'Borrow Sent')
 
 
 		context = {
@@ -183,7 +187,11 @@ class ProfileView(View):
 			'message': message,
 			'bank': bank,
 			'Profile': 'active',
-			'isAdmin': isAdmin
+			'isAdmin': isAdmin,
+			'users' : users,
+			'requestReceive' : requestReceive,
+			'borrow' : transactionBorrow,
+			'lend' : transactionLend,
 		}
 		return render(request,'profile.html',context)
 
@@ -688,6 +696,73 @@ class Functions(View):
 			admin = request.POST.get("Admin_ID")
 			AdminList.objects.filter(Admin_ID = admin).delete()
 			return redirect('http://127.0.0.1:8000/admindashboard/')
+
+	def SendBorrowRequest(request):
+			if request.method == "POST":
+				rID = request.POST.get('Receiver_ID')
+				sID = request.POST.get('Sender_ID')
+				receiverID = User.objects.get(User_ID = rID)
+				senderID = User.objects.get(User_ID = sID)
+				
+				form = Request(Receiver_ID = receiverID, 
+				Sender_ID = senderID, 
+				Request_Description = 'Borrow Request from '+ senderID.First_Name +' '+ senderID.Last_Name,
+				Status = 'Pending' )
+				form.save()
+				return redirect('http://127.0.0.1:8000/admindashboard')
+			else:
+				return HttpResponse('not valid')
+
+	def RequestResponse(request):
+		if request.method == 'POST':
+			requestID = request.POST.get("Request_ID")
+			if 'btnDeny' in request.POST:
+				Request.objects.filter(Request_ID = requestID).update(
+				Status = 'Denied')
+				return redirect('http://127.0.0.1:8000/user-profile/')
+
+			elif 'btnAccept' in request.POST:
+				Request.objects.filter(Request_ID = requestID).update(
+				Status = 'Accepted')
+
+				request = Request.objects.get(Request_ID = requestID)
+
+				borrowerID = request.Sender_ID
+				lenderID = request.Receiver_ID
+
+				form = Transaction(
+					Lender_ID = lenderID,
+					Borrower_ID = borrowerID,
+					Amount = 0,
+					Interest_Rate = 0,
+					Transaction_Date = datetime.date.today(),
+					Date_Due = '--,--,--',
+					Date_Paid = '--,--,--',
+					Status = 'Pending'
+
+				)
+				
+				form.save()
+				return redirect('http://127.0.0.1:8000/user-profile/')
+
+	def SendBorrow(request):
+		if request.method == "POST":
+			transactionID = request.POST.get('Transaction_ID')
+			amount = request.POST.get('Amount')
+			dateDue = request.POST.get('Date_Due')
+
+			Transaction.objects.filter(Transaction_ID = transactionID).update(
+				Amount = amount,
+				Date_Due = dateDue,
+				Status = 'Borrow Sent')
+
+
+			return redirect('http://127.0.0.1:8000/user-profile')
+		else:
+			return HttpResponse('not valid')
+
+			
+
 
 
 			
