@@ -830,7 +830,7 @@ class Functions(View):
 			User.objects.filter(User_ID = transaction.Borrower_ID.User_ID).update(Balance = borrowAmount)
 			
 			
-			Transaction.objects.filter(Transaction_ID = transactionID).update(Status = 'Paid')
+			Transaction.objects.filter(Transaction_ID = transactionID).update(Status = 'Paid', Date_Paid = datetime.date.today())
 			return redirect('http://127.0.0.1:8000/user-profile/')
 				
 
