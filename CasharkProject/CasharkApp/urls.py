@@ -29,6 +29,10 @@ urlpatterns = [
     path('sendBorrowRequest', views.Functions.SendBorrowRequest, name = "sendBorrowRequest"),
     path('requestResponse', views.Functions.RequestResponse, name = "requestResponse"),
     path('sendBorrow', views.Functions.SendBorrow, name = "sendBorrow"),
+    path('transactionResponse', views.Functions.TransactionResponse, name = "transactionResponse"),
+    path('historyResponse', views.Functions.HistoryResponse, name = "historyResponse"),
+    path('confirmTransaction', views.Functions.ConfirmTransaction, name = "confirmTransaction"),
+    path('payLoan', views.Functions.PayLoan, name = "payLoan"),
 
     #DASHBOARD ADD FUNCTIONS
     path('createUser', views.AdminView.AddUser, name = "userAdd"),

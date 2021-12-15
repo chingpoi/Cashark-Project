@@ -367,6 +367,198 @@
                   <h3 class="widget-title">Transactions</h3>
                   <hr>
 
+                  {% for transactionHistory in transactionHistory %}
+                  <div class="widget-box">
+                    <h5 class="widget-title">Transaction Request History from</h5>
+                    <h6>{{transactionHistory.Lender_ID.First_Name}} {{transactionHistory.Lender_ID.Last_Name}}</h6>
+                    <hr>
+                    <div class="footer">
+                      <a href="" data-toggle="modal"
+                        data-target="#transactionHistory{{transactionHistory.Transaction_ID}}">View<span
+                          class="mai-chevron-forward text-sm"></span></a>
+                    </div>
+                  </div>
+
+                  <!-- History -->
+                  <div class="modal fade" id="transactionHistory{{transactionHistory.Transaction_ID}}" tabindex="-1"
+                    role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="withdrawModalLabel">Transaction Request History</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+
+                        <div class="modal-body">
+                          <div class="col-sm-12 py-2 mh-100">
+                            <form action="historyResponse" method="POST" class="form-contact">
+                              {% csrf_token %}
+                              <input type="text" class="form-control" id="Transaction_ID"
+                                value="{{transactionHistory.Transaction_ID}}" name="Transaction_ID" hidden>
+
+
+
+                              <h5 class="widget-title"> {{transactionHistory.Lender_ID.First_Name}}
+                                {{transactionHistory.Lender_ID.Last_Name}} Requests to view your transaction history
+                              </h5>
+
+                          </div>
+
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" id="btnDeny" name="btnDeny" class="btn btn-danger"
+                            data-dismiss="modal">Deny</button>
+                          <button type="submit" id="btnAccept" name="btnAccept" class="btn btn-success">Confirm</button>
+                        </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+
+                  {% endfor %}
+
+
+                  {% for pendingLoan in pendingLoan %}
+                  <div class="widget-box">
+                    <h6 class="widget-title">Pending loan with</h6>
+                    <h6>{{pendingLoan.Lender_ID.First_Name}} {{pendingLoan.Lender_ID.Last_Name}}</h6>
+                    <hr>
+                    <div class="footer">
+                      <a href="" data-toggle="modal" data-target="#pendingLoan{{pendingLoan.Transaction_ID}}">View<span
+                          class="mai-chevron-forward text-sm"></span></a>
+                    </div>
+                  </div>
+
+                  <!-- Borrow -->
+                  <div class="modal fade" id="pendingLoan{{pendingLoan.Transaction_ID}}" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="withdrawModalLabel">Pending loan with
+                            {{pendingLoan.Lender_ID.First_Name}}
+                            {{pendingLoan.Lender_ID.Last_Name}}</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+
+                        <div class="modal-body">
+                          <div class="col-sm-12 py-2 mh-100">
+                            <form action="payLoan" method="POST" class="form-contact">
+                              {% csrf_token %}
+                              <input type="text" class="form-control" id="Transaction_ID"
+                                value="{{pendingLoan.Transaction_ID}}" name="Transaction_ID" hidden>
+
+
+
+                              <input type="number" class="form-control" id="Amount" value="{{pendingLoan.Amount}}"
+                                name="Amount" hidden>
+
+
+                              <h3 class="widget-title">
+                                Pay {{pendingLoan.Lender_ID.First_Name}} {{pendingLoan.Lender_ID.Last_Name}}
+                                <span class="fg-primary">${{pendingLoan.Amount}}</span>
+
+                                <h4 class="widget-title">
+                                  to be paid on
+                                  <span class="fg-primary">{{pendingLoan.Date_Due}}</span>
+                                </h4>
+
+                                <hr>
+
+
+                          </div>
+
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                          <button type="submit" id="btnConfirm" name="btnConfirm" class="btn btn-success">Pay</button>
+                        </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+
+                  {% endfor %}
+
+
+
+                  {% for sendLend in sendLend %}
+                  <div class="widget-box">
+                    <h6 class="widget-title">Confirm Transaction with</h6>
+                    <h6>{{sendLend.Lender_ID.First_Name}} {{sendLend.Lender_ID.Last_Name}}</h6>
+                    <hr>
+                    <div class="footer">
+                      <a href="" data-toggle="modal" data-target="#sendLend{{sendLend.Transaction_ID}}">View<span
+                          class="mai-chevron-forward text-sm"></span></a>
+                    </div>
+                  </div>
+
+                  <!-- Borrow -->
+                  <div class="modal fade" id="sendLend{{sendLend.Transaction_ID}}" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="withdrawModalLabel">Confirm Transaction with
+                            {{sendLend.Lender_ID.First_Name}}
+                            {{sendLend.Lender_ID.Last_Name}}</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+
+                        <div class="modal-body">
+                          <div class="col-sm-12 py-2 mh-100">
+                            <form action="confirmTransaction" method="POST" class="form-contact">
+                              {% csrf_token %}
+                              <input type="text" class="form-control" id="Transaction_ID"
+                                value="{{sendLend.Transaction_ID}}" name="Transaction_ID" hidden>
+
+                              <input type="number" class="form-control" id="Interest_Rate"
+                                value="{{sendLend.Interest_Rate}}" name="Interest_Rate" hidden>
+
+                              <input type="number" class="form-control" id="Amount" value="{{sendLend.Amount}}"
+                                name="Amount" hidden>
+
+
+                              <h3 class="widget-title">
+
+                                <span class="fg-primary">${{sendLend.Amount}}</span> at
+                                <span class="fg-primary">{{sendLend.Interest_Rate}}% </span>
+                                Interest Rate
+                              </h3>
+                              <h4 class="widget-title">
+                                <span class="fg-primary">$115</span>
+                                to be paid on
+                                <span class="fg-primary">{{sendLend.Date_Due}}</span>
+                              </h4>
+
+                              <hr>
+
+
+                          </div>
+
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                          <button type="submit" id="btnConfirm" name="btnConfirm"
+                            class="btn btn-success">Confirm</button>
+                        </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+
+                  {% endfor %}
+
+
+
+
+
                   {% for borrow in borrow %}
                   <div class="widget-box">
                     <h5 class="widget-title">Borrow from</h5>
@@ -450,28 +642,99 @@
 
                         <div class="modal-body">
                           <div class="col-sm-12 py-2 mh-100">
-                            <form action="requestResponse" method="POST" class="form-contact">
+                            <form action="transactionResponse" method="POST" class="form-contact">
                               {% csrf_token %}
                               <input type="text" class="form-control" id="Transaction_ID"
                                 value="{{lend.Transaction_ID}}" name="Transaction_ID" hidden>
 
-                              <h4 class="text-grey">Amount</h4>
-                              <h6 class="display-5">${{lend.Amount}}</h6>
-                              <h4 class="text-grey">Date Due</h4>
-                              <h6 class="display-5">{{lend.Date_Due}}</h6>
+                              <div class="row">
+                                <div class="col-sm-6 py-2">
+                                  <h4 class="text-grey">Amount</h4>
+                                  <h6 class="display-5">${{lend.Amount}}</h6>
+                                </div>
+
+                                <div class="col-sm-6 py-2">
+                                  <h4 class="text-grey">Date Due</h4>
+                                  <h6 class="display-5">{{lend.Date_Due}}</h6>
+                                </div>
+                              </div>
+
+
+
 
 
                               <div class="col-sm-12 py-2">
-                                <label for="Amount" class="fg-grey">Borrow Amount</label>
-                                <input type="number" min="1" class="form-control" id="Amount" name="Amount"
-                                  placeholder="Amount" step=".01">
+                                <label for="Rate" class="fg-grey">Rate</label>
+                                <input type="number" min="1" class="form-control" id="Rate" name="Rate"
+                                  placeholder="Rate" step=".01">
                               </div>
 
-                              <div class="col-sm-12 py-2">
-                                <label for="Date_Due" class="fg-grey">Promise Date</label>
-                                <input type="date" class="form-control" id="Date_Due" name="Date_Due"
-                                  placeholder="Promise Date" min="{{borrow.Transaction_Date}}" required>
+                              {% if lend.Transaction_History_Status == "False" %}
+                              <button type="submit" id="btnHistoryRequest" name="btnHistoryRequest"
+                                class="btn btn-link">Request to See
+                                Transaction
+                                History<span class="mai-chevron-forward text-sm"></span></button>
+                              {% endif %}
+
+                              {% if lend.Transaction_History_Status == "True" %}
+                              <button type="button" class="btn btn-link" data-toggle="modal"
+                                data-target="#transactionHistory{{lend.Transaction_ID}}">View
+                                Transaction
+                                History<span class="mai-chevron-forward text-sm"></span></button>
+
+                              <!-- History -->
+                              <div class="modal fade" id="transactionHistory{{lend.Transaction_ID}}" tabindex="-1"
+                                role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h5 class="modal-title" id="withdrawModalLabel">
+                                        {{lend.Borrower_ID.First_Name}} {{lend.Borrower_ID.Last_Name}} Transaction
+                                        History</h5>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>
+
+                                    <div class="modal-body">
+                                      <div class="col-sm-12 py-2 mh-100">
+
+
+                                        <h3 class="widget-title">
+
+                                          $500
+                                          <span class="fg-primary"> Paid </span>
+                                        </h3>
+                                        November 15, 2021
+                                      </div>
+
+
+
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-success" data-dismiss="modal">Ok</button>
+                                    </div>
+
+                                  </div>
+                                </div>
                               </div>
+
+                              {% endif %}
+
+                              {% if lend.Transaction_History_Status == "Pending" and lend.Borrower_ID == user.User_ID %}
+                              <button type="button" id="btnTransaction" name="btnTransaction" class="btn btn-link">View
+                                Transaction
+                                History<span class="mai-chevron-forward text-sm"></span></button>
+                              {% endif %}
+
+                              {% if lend.Transaction_History_Status == "Denied" and lend.Lender_ID == user.User_ID %}
+                              <button type="button" id="btnTransaction" name="btnTransaction" class="btn btn-link"
+                                disabled>
+                                Transaction History Request Denied<span
+                                  class="mai-chevron-forward text-sm"></span></button>
+                              {% endif %}
+
+
 
                           </div>
                           <div class="modal-footer">
@@ -542,6 +805,7 @@
                   </div>
 
                   {% endfor %}
+
 
                 </div>
 

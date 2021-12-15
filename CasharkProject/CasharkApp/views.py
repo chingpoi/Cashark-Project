@@ -178,6 +178,9 @@ class ProfileView(View):
 		requestReceive = Request.objects.filter(Receiver_ID = currentUser.User_ID, Status = 'Pending')
 		transactionBorrow = Transaction.objects.filter(Borrower_ID = currentUser.User_ID, Status = 'Pending')
 		transactionLend = Transaction.objects.filter(Lender_ID = currentUser.User_ID, Status = 'Borrow Sent')
+		transactionHistory = Transaction.objects.filter(Borrower_ID = currentUser.User_ID, Transaction_History_Status = 'Pending')
+		sendLend = Transaction.objects.filter(Borrower_ID = currentUser.User_ID, Status = 'Send Lend')
+		pendingLoan = Transaction.objects.filter(Borrower_ID = currentUser.User_ID, Status = 'Pending Loan')
 
 
 		context = {
@@ -192,6 +195,10 @@ class ProfileView(View):
 			'requestReceive' : requestReceive,
 			'borrow' : transactionBorrow,
 			'lend' : transactionLend,
+			'transactionHistory' : transactionHistory,
+			'sendLend' : sendLend,
+			'pendingLoan' : pendingLoan,
+			
 		}
 		return render(request,'profile.html',context)
 
@@ -591,7 +598,7 @@ class Functions(View):
 
 	def Logout(request):
 		del request.session['User_ID']
-		return redirect('http://127.0.0.1:8000/')
+		return redirect('http://127.0.0.1:8000/login/')
 
 	def UserLogin(request):
 		if request.method == "POST":
@@ -709,7 +716,7 @@ class Functions(View):
 				Request_Description = 'Borrow Request from '+ senderID.First_Name +' '+ senderID.Last_Name,
 				Status = 'Pending' )
 				form.save()
-				return redirect('http://127.0.0.1:8000/admindashboard')
+				return redirect('http://127.0.0.1:8000/user-profile')
 			else:
 				return HttpResponse('not valid')
 
@@ -738,7 +745,8 @@ class Functions(View):
 					Transaction_Date = datetime.date.today(),
 					Date_Due = '--,--,--',
 					Date_Paid = '--,--,--',
-					Status = 'Pending'
+					Status = 'Pending',
+					Transaction_History_Status = 'False'
 
 				)
 				
@@ -760,6 +768,73 @@ class Functions(View):
 			return redirect('http://127.0.0.1:8000/user-profile')
 		else:
 			return HttpResponse('not valid')
+
+	def TransactionResponse(request):
+		if request.method == "POST":
+			transactionID = request.POST.get("Transaction_ID")
+			if 'btnHistoryRequest' in request.POST:
+				Transaction.objects.filter(Transaction_ID = transactionID).update(Transaction_History_Status = 'Pending')
+				return redirect('http://127.0.0.1:8000/user-profile/')
+			if 'btnAccept' in request.POST:
+				rate = request.POST.get("Rate")
+				Transaction.objects.filter(Transaction_ID = transactionID).update(Status = 'Send Lend', Interest_Rate = rate)
+				return redirect('http://127.0.0.1:8000/user-profile/')
+
+	def HistoryResponse(request):
+		if request.method == "POST":
+			transactionID = request.POST.get("Transaction_ID")
+			if 'btnDeny' in request.POST:
+				Transaction.objects.filter(Transaction_ID = transactionID).update(
+				Transaction_History_Status = 'Denied')
+				return redirect('http://127.0.0.1:8000/user-profile/')
+			elif 'btnAccept' in request.POST:
+				Transaction.objects.filter(Transaction_ID = transactionID).update(
+				Transaction_History_Status = 'True')
+				return redirect('http://127.0.0.1:8000/user-profile/')
+
+	def ConfirmTransaction(request):
+		if request.method == "POST":
+			transactionID = request.POST.get("Transaction_ID")
+			amount = request.POST.get("Amount")
+			rate = request.POST.get("Interest_Rate")
+			transaction = Transaction.objects.get(Transaction_ID = transactionID)
+			
+
+			if 'btnDeny' in request.POST:
+				Transaction.objects.filter(Transaction_ID = transactionID).update(
+				Status = 'Denied')
+				return redirect('http://127.0.0.1:8000/user-profile/')
+				
+			elif 'btnConfirm' in request.POST:
+				calculatedAmount = (float(rate) * .01) * float(amount) + float(amount)
+				lendAmount = float(transaction.Lender_ID.Balance) - float(amount) 
+				borrowAmount = float(transaction.Borrower_ID.Balance) + float(amount) 
+
+				User.objects.filter(User_ID = transaction.Lender_ID.User_ID).update(Balance = lendAmount)
+				User.objects.filter(User_ID = transaction.Borrower_ID.User_ID).update(Balance = borrowAmount)
+
+				Transaction.objects.filter(Transaction_ID = transactionID).update(Amount = calculatedAmount, Interest_Rate = rate,
+				Status = 'Pending Loan')
+				return redirect('http://127.0.0.1:8000/user-profile/')
+
+	def PayLoan(request):
+		if request.method == "POST":
+			transactionID = request.POST.get("Transaction_ID")
+			amount = request.POST.get("Amount")
+			transaction = Transaction.objects.get(Transaction_ID = transactionID)
+			lendAmount = float(transaction.Lender_ID.Balance) + float(amount) 
+			borrowAmount = float(transaction.Borrower_ID.Balance) - float(amount) 
+			
+
+			User.objects.filter(User_ID = transaction.Lender_ID.User_ID).update(Balance = lendAmount)
+			User.objects.filter(User_ID = transaction.Borrower_ID.User_ID).update(Balance = borrowAmount)
+			
+			
+			Transaction.objects.filter(Transaction_ID = transactionID).update(Status = 'Paid')
+			return redirect('http://127.0.0.1:8000/user-profile/')
+				
+
+
 
 			
 

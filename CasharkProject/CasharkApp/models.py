@@ -39,6 +39,7 @@ class Transaction(models.Model):
     Date_Due = models.CharField(max_length = 10)
     Date_Paid = models.CharField(max_length = 10, null = True, blank=True)
     Status = models.CharField(max_length = 50)
+    Transaction_History_Status = models.CharField(max_length = 50)
 
     class meta:
         db_table = 'tblTransaction'
